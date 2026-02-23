@@ -145,7 +145,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl w-max"
               >
                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_10px_#38BDF8]" />
-                <span className="text-xs font-semibold tracking-widest uppercase text-slate-200">Aura IT Systems</span>
+                <span className="text-xs font-semibold tracking-widest uppercase text-slate-200">CSMV Solutions</span>
               </motion.div>
 
               <motion.h1
@@ -154,9 +154,9 @@ export default function Home() {
                 transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[1] text-white"
               >
-                Architect <br />
+                Build systems <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent relative inline-block">
-                  The Future.
+                  that last.
                 </span>
               </motion.h1>
 
@@ -164,9 +164,9 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 1.5 }}
-                className="text-base text-slate-400 max-w-sm leading-relaxed font-light"
+                className="text-lg text-slate-400 max-w-lg leading-relaxed font-light"
               >
-                Elite systems engineering and next-gen infrastructure. We build highly scalable, interactive architectures for ambitious enterprises.
+                We specialize in product engineering, technology modernization, and dedicated engineering teams. Delivering reliable, scalable, and high-performance software systems for growing businesses.
               </motion.p>
 
               <motion.div
@@ -248,54 +248,67 @@ export default function Home() {
 
               {/* Left Side: Massive Interactive Accordion / List */}
               <div className="lg:col-span-7 flex flex-col gap-4">
-                {[
-                  { title: "Neural Resource Allocation", desc: "Our AI-driven auto-scaling engines continuously monitor traffic load and instantly provision compute parameters based on unpredictable spikes, guaranteeing zero downtime.", icon: Cpu, stat: "0.2ms Compute Latency" },
-                  { title: "Quantum-Resistant Vaults", desc: "Data rest encryption utilizing post-quantum cryptographic algorithms. We secure your most sensitive intellectual property against attacks from future quantum computing arrays.", icon: Shield, stat: "Post-RSA Ready" },
-                  { title: "Hyper-Fast CI/CD Pipelines", desc: "Custom integrations pushing massive codebase updates across thousands of nodes globally in fractional milliseconds. Deployment is continuous and flawless.", icon: Zap, stat: "Zero Downtime Deployments" },
-                  { title: "Isolated Render Engines", desc: "Constructing completely isolated, mathematically perfect environments for your backend architecture, ensuring maximum system integrity.", icon: Layers, stat: "100% Isolation Matrix" }
-                ].map((step, idx) => (
-                  <div key={idx} className="group relative overflow-hidden bg-[#0A0A0F] border border-white/5 rounded-[2rem] p-8 md:p-10 cursor-pointer cursor-crosshair hover:bg-[#12121B] hover:border-white/20 transition-all duration-500">
-                    <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-transparent via-primary/0 to-transparent group-hover:via-primary/50 transition-colors duration-500" />
+                {featuresList.map((step, idx) => {
+                  const isActive = activeFeature === idx;
+                  return (
+                    <div
+                      key={idx}
+                      onMouseEnter={() => setActiveFeature(idx)}
+                      className={`group relative overflow-hidden bg-[#0A0A0F] border rounded-[2rem] p-8 md:p-10 cursor-pointer cursor-crosshair transition-all duration-500
+                      ${isActive ? 'bg-[#12121B] border-white/20' : 'border-white/5 hover:bg-[#12121B] hover:border-white/20'}
+                    `}
+                    >
+                      <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b transition-colors duration-500
+                       ${isActive ? 'from-transparent via-primary/50 to-transparent' : 'from-transparent via-primary/0 to-transparent group-hover:via-primary/50'}
+                    `} />
 
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
-                      <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 rounded-2xl bg-black/50 border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors shadow-2xl">
-                          <step.icon className="w-8 h-8 text-white/50 group-hover:text-primary transition-colors" />
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+                        <div className="flex items-center gap-6">
+                          <div className={`w-16 h-16 rounded-2xl bg-black/50 border flex items-center justify-center transition-colors shadow-2xl shrink-0
+                            ${isActive ? 'border-primary/50' : 'border-white/10 group-hover:border-primary/50'}
+                         `}>
+                            <step.icon className={`w-8 h-8 transition-colors ${isActive ? 'text-primary' : 'text-white/50 group-hover:text-primary'}`} />
+                          </div>
+                          <h4 className={`text-2xl md:text-3xl font-bold tracking-tight transition-colors ${isActive ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
+                            {step.title}
+                          </h4>
                         </div>
-                        <h4 className="text-2xl md:text-3xl font-bold tracking-tight text-white/70 group-hover:text-white transition-colors">{step.title}</h4>
-                      </div>
 
-                      <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300 md:ml-auto shrink-0">
-                        <ChevronRight className="w-5 h-5 text-white/50 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                        <div className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 md:ml-auto shrink-0 hidden md:flex
+                         ${isActive ? 'bg-primary border-primary' : 'border-white/10 group-hover:bg-primary group-hover:border-primary'}
+                      `}>
+                          <ChevronRight className={`w-5 h-5 transition-all ${isActive ? 'text-white' : 'text-white/50 group-hover:text-white group-hover:translate-x-1'}`} />
+                        </div>
                       </div>
                     </div>
-
-                    {/* Expandable hidden content simulation */}
-                    <div className="mt-0 h-0 opacity-0 group-hover:mt-8 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 ease-out overflow-hidden md:pl-22">
-                      <p className="text-slate-400 font-light text-lg leading-relaxed max-w-2xl mb-6">{step.desc}</p>
-                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/40 border border-white/5">
-                        <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                        <span className="text-xs font-bold uppercase tracking-widest text-slate-300">{step.stat}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
 
               {/* Right Side: The Diamond Dock (Massive Vertical Target) */}
-              <div className="lg:col-span-5 relative w-full h-[600px] lg:h-auto rounded-[3rem] bg-gradient-to-br from-[#101018] to-[#0A0A0F] border border-primary/20 overflow-hidden flex flex-col justify-end p-12">
+              <div className="lg:col-span-5 relative w-full h-[600px] lg:h-auto rounded-[3rem] bg-gradient-to-br from-[#101018] to-[#0A0A0F] border border-primary/20 overflow-hidden flex flex-col justify-end p-10 md:p-12">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.1)_0%,transparent_70%)]" />
 
                 {/* Empty space at the top reserved for the scrolling 3D Diamond to land */}
-                <div className="absolute top-0 right-0 w-full h-2/3 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-full h-1/2 pointer-events-none" />
 
-                <div className="relative z-10 w-full backdrop-blur-md bg-black/40 border border-white/10 p-8 rounded-3xl mt-auto shadow-2xl">
+                <div className="relative z-10 w-full backdrop-blur-md bg-black/40 border border-white/10 p-8 rounded-3xl mt-auto shadow-2xl transition-all duration-500">
                   <div className="mb-4 flex items-center gap-3">
                     <span className="flex h-3 w-3"><span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-primary opacity-75"></span><span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span></span>
-                    <span className="text-xs font-bold uppercase tracking-widest text-primary">System Integrity: 100%</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-primary">{featuresList[activeFeature].stat}</span>
                   </div>
-                  <h4 className="text-3xl font-black mb-4 tracking-tighter leading-none">Architectural <br /> Convergence.</h4>
-                  <MagneticButton className="w-full mt-4 py-4 bg-white text-black rounded-xl font-bold uppercase tracking-widest text-sm hover:scale-[1.02] transition-transform">
+
+                  <motion.div
+                    key={activeFeature}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <h4 className="text-3xl font-black mb-4 tracking-tighter leading-tight">{featuresList[activeFeature].title}</h4>
+                    <p className="text-slate-400 font-light leading-relaxed mb-8">{featuresList[activeFeature].desc}</p>
+                  </motion.div>
+
+                  <MagneticButton className="w-full py-4 bg-white text-black rounded-xl font-bold uppercase tracking-widest text-sm hover:scale-[1.02] transition-transform">
                     Access Control Panel
                   </MagneticButton>
                 </div>
