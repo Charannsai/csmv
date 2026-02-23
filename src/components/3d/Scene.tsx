@@ -39,8 +39,8 @@ export function Scene() {
                 // Transition to Statement 1
                 const t = (scroll - 0.1) / 0.1;
                 targetX = THREE.MathUtils.lerp(0, 3.5, t);
-                targetY = 0;
-                targetScale = THREE.MathUtils.lerp(1.2, 0.9, t);
+                targetY = THREE.MathUtils.lerp(-1.2, 0, t);
+                targetScale = THREE.MathUtils.lerp(1, 0.9, t);
                 targetRotationZ = THREE.MathUtils.lerp(0, Math.PI / 2, t);
             } else if (scroll >= 0.2 && scroll < 0.28) {
                 // Steady at Statement 1 (Text is on left, diamond on right)
