@@ -46,7 +46,7 @@ export default function Navbar() {
                                 <span className="w-3 h-3 bg-white rounded-sm rotate-45"></span>
                             </span>
                             <span>
-                                ARGUS
+                                AURA <span className="text-primary">IT</span>
                             </span>
                         </Link>
                     </div>
