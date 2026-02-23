@@ -33,20 +33,16 @@ export default function Navbar() {
             className={cn(
                 "fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b",
                 scrolled
-                    ? "bg-[#030014]/60 backdrop-blur-xl border-white/10"
+                    ? "bg-black/60 backdrop-blur-xl border-white/10"
                     : "bg-transparent border-transparent"
             )}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     <div className="flex-shrink-0 flex items-center">
-                        <Link href="/" className="text-2xl font-black tracking-widest uppercase text-white group flex items-center gap-3">
-                            <span className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.5)] overflow-hidden">
-                                <span className="absolute inset-0 bg-white/20 group-hover:scale-110 transition-transform mix-blend-overlay"></span>
-                                <span className="w-3 h-3 bg-white rounded-sm rotate-45"></span>
-                            </span>
+                        <Link href="/" className="text-2xl font-semibold tracking-tighter text-white group flex items-center gap-3">
                             <span>
-                                AURA <span className="text-primary">IT</span>
+                                CSMV.
                             </span>
                         </Link>
                     </div>
@@ -59,7 +55,7 @@ export default function Navbar() {
                                 href={link.href}
                                 className={cn(
                                     "relative px-1 py-2 text-sm font-medium transition-colors hover:text-white",
-                                    pathname === link.href ? "text-primary shadow-[0_1px_0_0_currentColor]" : "text-slate-400"
+                                    pathname === link.href ? "text-white" : "text-[#86868B]"
                                 )}
                             >
                                 {link.label}
@@ -70,9 +66,9 @@ export default function Navbar() {
                     <div className="hidden md:flex items-center">
                         <Link
                             href="/contact"
-                            className="relative inline-flex items-center justify-center px-6 py-2 border border-white/10 rounded-full shadow-sm text-sm font-medium text-white bg-white/5 hover:bg-white/10 hover:border-primary/50 focus:outline-none transition-all hover:shadow-[0_0_15px_rgba(139,92,246,0.3)] backdrop-blur-md"
+                            className="relative inline-flex items-center justify-center px-6 py-2 border border-white rounded-full text-sm font-medium text-white hover:bg-white hover:text-black focus:outline-none transition-colors"
                         >
-                            Consultation
+                            Contact Us
                         </Link>
                     </div>
 
@@ -97,7 +93,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="md:hidden border-t border-white/10 bg-[#030014]/95 backdrop-blur-2xl overflow-hidden"
+                        className="md:hidden border-t border-white/10 bg-black/95 backdrop-blur-2xl overflow-hidden"
                     >
                         <div className="pt-2 pb-3 space-y-1">
                             {links.map((link) => (

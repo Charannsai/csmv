@@ -29,26 +29,33 @@ export function Scene() {
             let targetScale = 1;
             let targetRotationZ = 0;
 
-            if (scroll < 0.25) {
-                // Section 1: Hero
-                targetX = 2.5;
+            if (scroll < 0.15) {
+                // Hero: Centered and massive
+                targetX = 0;
                 targetY = 0;
-                targetScale = 0.8;
-            } else if (scroll >= 0.25 && scroll < 0.6) {
-                // Section 2: Horizontal Scroll Track
-                // Move diamond down and sweep it across the screen horizontally as the cards pan
-                const t = (scroll - 0.25) / 0.35;
-                targetX = THREE.MathUtils.lerp(2.5, -2, t);
-                targetY = THREE.MathUtils.lerp(0, -1, t);
-                targetScale = THREE.MathUtils.lerp(0.8, 0.5, t);
-                targetRotationZ = THREE.MathUtils.lerp(0, Math.PI, t);
+                targetScale = 1.2;
+                targetRotationZ = 0;
+            } else if (scroll >= 0.15 && scroll < 0.35) {
+                // Statement 1: Text on left, diamond moves right
+                const t = (scroll - 0.15) / 0.2;
+                targetX = THREE.MathUtils.lerp(0, 2.8, t);
+                targetY = 0;
+                targetScale = THREE.MathUtils.lerp(1.2, 0.9, t);
+                targetRotationZ = THREE.MathUtils.lerp(0, Math.PI / 2, t);
+            } else if (scroll >= 0.35 && scroll < 0.55) {
+                // Statement 2: Text on right, diamond moves left
+                const t = (scroll - 0.35) / 0.2;
+                targetX = THREE.MathUtils.lerp(2.8, -2.8, t);
+                targetY = 0;
+                targetScale = THREE.MathUtils.lerp(0.9, 0.9, t);
+                targetRotationZ = THREE.MathUtils.lerp(Math.PI / 2, Math.PI, t);
             } else {
-                // Section 3: Interactive Accordion - landing in the right-side docking container
-                const t = Math.min((scroll - 0.6) / 0.2, 1);
-                targetX = THREE.MathUtils.lerp(-2, 2.5, t); // Move back toward right side
-                targetY = THREE.MathUtils.lerp(-1, 0, t);  // Center vertically relatively
-                targetScale = THREE.MathUtils.lerp(0.5, 1.3, t);
-                targetRotationZ = THREE.MathUtils.lerp(Math.PI, Math.PI * 2, t);
+                // Bento Box section: Diamond moves up and away as we scroll past it
+                const t = Math.min((scroll - 0.55) / 0.15, 1);
+                targetX = THREE.MathUtils.lerp(-2.8, 0, t);
+                targetY = THREE.MathUtils.lerp(0, 5, t); // Fly upwards
+                targetScale = THREE.MathUtils.lerp(0.9, 0.5, t);
+                targetRotationZ = Math.PI;
             }
 
             // Smoothly Damp towards the targets using framerate-independent easing

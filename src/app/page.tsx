@@ -86,41 +86,46 @@ const featuresList = [
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const isHeroInView = useInView(heroRef, { margin: "0px 0px 500px 0px" });
-
   const [mounted, setMounted] = useState(false);
-  const [activeFeature, setActiveFeature] = useState(0);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const smoothY = useSpring(scrollYProgress, { stiffness: 50, damping: 20 });
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Parallax calculations
-  const yHeroText = useTransform(smoothY, [0, 0.2], [0, -100]);
-  const opacityHeroText = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-  const yHero3D = useTransform(smoothY, [0, 0.3], [0, 150]);
-  const scaleHero3D = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
-  const opacityHero3D = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const smoothY = useSpring(scrollYProgress, { stiffness: 40, damping: 20 });
+
+  // SCROLL CHOREOGRAPHY (Apple-like sticky fades)
+  // Hero (0% -> 15%)
+  const heroOpacity = useTransform(smoothY, [0, 0.1, 0.15], [1, 1, 0]);
+  const heroScale = useTransform(smoothY, [0, 0.15], [1, 0.95]);
+
+  // Statement 1 (18% -> 35%)
+  const s1Opacity = useTransform(smoothY, [0.15, 0.22, 0.3, 0.35], [0, 1, 1, 0]);
+  const s1Y = useTransform(smoothY, [0.15, 0.35], [50, -50]);
+
+  // Statement 2 (38% -> 55%)
+  const s2Opacity = useTransform(smoothY, [0.35, 0.42, 0.5, 0.55], [0, 1, 1, 0]);
+  const s2Y = useTransform(smoothY, [0.35, 0.55], [50, -50]);
+
+  // Bento Box Entrance (60% -> 100%)
+  const bentoOpacity = useTransform(smoothY, [0.6, 0.7], [0, 1]);
+  const bentoY = useTransform(smoothY, [0.6, 0.7], [100, 0]);
 
   return (
     <ReactLenis root options={{ smoothWheel: true, lerp: 0.08 }}>
-      <div ref={containerRef} className="relative bg-[#050505] text-white selection:bg-primary selection:text-white">
+      <div ref={containerRef} className="relative bg-[#000000] text-white selection:bg-white selection:text-black min-h-[400vh]">
 
-        {/* --- GLOBAL BACKDROP GLOW --- */}
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.03)_0%,rgba(5,5,5,1)_70%)]" />
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] mix-blend-overlay"></div>
+        {/* Apple-style pure black background with ultra-subtle grain */}
+        <div className="fixed inset-0 z-0 pointer-events-none bg-black">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.06] mix-blend-overlay"></div>
         </div>
 
-        {/* --- HERO 3D SCENE (Persists across the entire scroll) --- */}
+        {/* 3D SCENE: Sticky & Background */}
         <div className="fixed top-0 bottom-0 right-0 left-0 z-[1] pointer-events-none">
           {mounted && (
             <div className="w-full h-full">
@@ -131,218 +136,123 @@ export default function Home() {
           )}
         </div>
 
-        {/* --- HERO SECTION --- */}
-        <section ref={heroRef} className="relative h-screen flex items-center z-10">
-          <div className="max-w-7xl mx-auto px-6 w-full flex flex-col lg:flex-row items-center justify-between">
-            <motion.div
-              style={{ y: yHeroText, opacity: opacityHeroText }}
-              className="w-full lg:w-1/2 flex flex-col text-left space-y-8 pt-20"
-            >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl w-max"
-              >
-                <div className="w-2 h-2 rounded-full bg-white/80 animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
-                <span className="text-xs font-semibold tracking-widest uppercase text-slate-200">CSMV Solutions</span>
-              </motion.div>
+        {/* STICKY CONTENT WRAPPER */}
+        <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden z-10 pointer-events-none">
 
-              <motion.h1
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[1] text-white"
-              >
-                Build systems <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-500 relative inline-block">
-                  that last.
-                </span>
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6, duration: 1.5 }}
-                className="text-lg text-slate-400 max-w-lg leading-relaxed font-light"
-              >
-                We specialize in product engineering, technology modernization, and dedicated engineering teams. Delivering reliable, scalable, and high-performance software systems for growing businesses.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 1 }}
-                className="flex flex-col sm:flex-row gap-4 pt-6"
-              >
-                <MagneticButton className="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest text-sm rounded-full shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_60px_rgba(255,255,255,0.4)] transition-shadow">
-                  Explore Solutions <ChevronRight className="w-4 h-4 ml-2" />
-                </MagneticButton>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* --- HORIZONTAL PANNING GALLERY (Redesigned Section 2) --- */}
-        <section className="relative z-20 w-full h-[300vh] bg-[#050505]">
-          <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
-            <div className="w-full max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
-              <div>
-                <h2 className="text-4xl md:text-5xl font-black tracking-tighter">Core Services.</h2>
-                <p className="text-slate-400 font-light mt-2">Delivering reliable, scalable, and high-performance software systems.</p>
-              </div>
-              <div className="hidden md:flex gap-2">
-                <div className="w-2 h-2 rounded-full bg-white/50 animate-pulse" />
-                <span className="text-xs uppercase tracking-widest text-white/50 font-bold">Global Technology Partner</span>
-              </div>
-            </div>
-
-            {/* Horizontal Track */}
-            <motion.div
-              style={{ x: useTransform(smoothY, [0.1, 0.5], ["0%", "-66%"]) }}
-              className="flex gap-8 w-max pl-6 pr-6 lg:pl-[calc(50vw-616px)] lg:pr-[50vw]"
-            >
-              {[
-                { i: Layers, t: "Product Engineering", d: "From early-stage concepts to enterprise-grade platforms, we build intuitive and scalable digital products." },
-                { i: Zap, t: "Tech Modernization", d: "We strengthen legacy infrastructure, optimizing for performance, security, and future horizontal scaling." },
-                { i: Activity, t: "Dedicated Teams", d: "Working as a seamless extension of your organization, combining technical depth and long-term partnership." }
-              ].map((item, idx) => (
-                <div key={idx} className={`w-[80vw] lg:w-[800px] shrink-0 h-[450px] bg-[#0A0A0A] border border-white/5 hover:border-white/10 rounded-[2rem] p-12 relative overflow-hidden group transition-colors duration-500`}>
-                  <div className="absolute -top-32 -right-32 w-96 h-96 bg-white/[0.02] rounded-full blur-[100px] group-hover:bg-white/[0.04] transition-colors duration-1000" />
-                  <div className="flex flex-col justify-between h-full relative z-10">
-                    <div className="flex justify-between items-start">
-                      <div className="w-20 h-20 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-center backdrop-blur-md">
-                        <item.i className="w-10 h-10 text-white" />
-                      </div>
-                      <h2 className="text-8xl font-black text-white/5 group-hover:text-white/10 transition-colors">0{idx + 1}</h2>
-                    </div>
-                    <div>
-                      <h3 className="text-4xl font-bold mb-4">{item.t}</h3>
-                      <p className="text-slate-400 font-light text-xl max-w-md">{item.d}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* --- INTERACTIVE ACCORDION SHOWCASE (Redesigned Section 3) --- */}
-        <section className="relative z-20 py-40 bg-[#050505] overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12">
-              <div>
-                <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-slate-300 mb-4 flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-white/50" /> The CSMV Approach
-                </h2>
-                <h3 className="text-5xl md:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500 leading-none">
-                  Outcomes, <br /> Not Just Code.
-                </h3>
-              </div>
-              <p className="text-slate-400 font-light text-lg max-w-sm">
-                We combine technical depth with structured execution to build highly reliable platforms for ambitious organizations.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-6">
-
-              {/* Left Side: Massive Interactive Accordion / List */}
-              <div className="lg:col-span-7 flex flex-col gap-4">
-                {featuresList.map((step, idx) => {
-                  const isActive = activeFeature === idx;
-                  return (
-                    <div
-                      key={idx}
-                      onMouseEnter={() => setActiveFeature(idx)}
-                      className={`group relative overflow-hidden bg-[#0A0A0A] border rounded-[2rem] p-8 md:p-10 cursor-pointer transition-all duration-500
-                      ${isActive ? 'border-white/20' : 'border-white/5 hover:border-white/10'}
-                    `}
-                    >
-                      <div className={`absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b transition-colors duration-500
-                       ${isActive ? 'from-transparent via-white/50 to-transparent' : 'from-transparent via-white/0 to-transparent group-hover:via-white/20'}
-                    `} />
-
-                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
-                        <div className="flex items-center gap-6">
-                          <div className={`w-16 h-16 rounded-2xl bg-black/40 border flex items-center justify-center transition-colors shrink-0 backdrop-blur-md
-                            ${isActive ? 'border-white/30' : 'border-white/5 group-hover:border-white/20'}
-                         `}>
-                            <step.icon className={`w-8 h-8 transition-colors ${isActive ? 'text-white' : 'text-slate-500 group-hover:text-slate-300'}`} />
-                          </div>
-                          <h4 className={`text-2xl md:text-3xl font-bold tracking-tight transition-colors ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'}`}>
-                            {step.title}
-                          </h4>
-                        </div>
-
-                        <div className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 md:ml-auto shrink-0 hidden md:flex
-                         ${isActive ? 'bg-white text-black border-white' : 'border-white/10 text-white/50 group-hover:border-white/30 group-hover:text-white'}
-                      `}>
-                          <ChevronRight className={`w-5 h-5 transition-all ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`} />
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-
-              {/* Right Side: The Diamond Dock (Massive Vertical Target) */}
-              <div className="lg:col-span-5 relative w-full h-[600px] lg:h-auto rounded-[3rem] bg-[#0A0A0A] border border-white/5 hover:border-white/10 transition-colors duration-500 overflow-hidden flex flex-col justify-end p-10 md:p-12">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.03)_0%,transparent_70%)]" />
-
-                {/* Empty space at the top reserved for the scrolling 3D Diamond to land */}
-                <div className="absolute top-0 right-0 w-full h-1/2 pointer-events-none" />
-
-                <div className="relative z-10 w-full backdrop-blur-md bg-black/40 border border-white/5 p-8 rounded-3xl mt-auto shadow-xl transition-all duration-500">
-                  <div className="mb-4 flex items-center gap-3">
-                    <span className="flex h-3 w-3"><span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-white/50 opacity-75"></span><span className="relative inline-flex rounded-full h-3 w-3 bg-white/80"></span></span>
-                    <span className="text-xs font-bold uppercase tracking-widest text-slate-400">{featuresList[activeFeature].stat}</span>
-                  </div>
-
-                  <motion.div
-                    key={activeFeature}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h4 className="text-3xl font-black mb-4 tracking-tighter leading-tight">{featuresList[activeFeature].title}</h4>
-                    <p className="text-slate-400 font-light leading-relaxed mb-8">{featuresList[activeFeature].desc}</p>
-                  </motion.div>
-
-                  <MagneticButton className="w-full py-4 bg-white text-black rounded-xl font-bold uppercase tracking-widest text-sm hover:scale-[1.02] transition-transform">
-                    Start a Conversation
-                  </MagneticButton>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        {/* --- EXTRAORDINARY RADIAL FOOTER (Expanding Circle) --- */}
-        <section className="relative z-20 h-screen bg-[#050505] overflow-hidden flex items-center justify-center">
+          {/* SEC 1: HERO */}
           <motion.div
-            style={{
-              scale: useTransform(smoothY, [0.8, 1], [0.1, 3]),
-              opacity: useTransform(smoothY, [0.8, 0.9], [0, 1])
-            }}
-            className="absolute w-[800px] h-[800px] bg-white rounded-full blur-[120px] opacity-10 mix-blend-screen"
-          />
-
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative z-10 text-center flex flex-col items-center"
+            style={{ opacity: heroOpacity, scale: heroScale }}
+            className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
           >
-            <h2 className="text-7xl md:text-9xl font-black tracking-tighter mb-8 leading-[0.9] text-white mix-blend-difference">
-              Start <br /> Building.
-            </h2>
-            <MagneticButton className="px-16 py-6 bg-white text-black rounded-full font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white border-2 border-transparent hover:border-white transition-colors duration-300">
-              Partner With Us
-            </MagneticButton>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter leading-none mb-6">
+              <span className="text-white">CSMV.</span><br />
+              <span className="text-[#86868B]">Systems that last.</span>
+            </h1>
+            <p className="text-xl md:text-3xl text-[#86868B] font-medium max-w-2xl">
+              Pro-grade software engineering. Uncompromising scale.
+            </p>
           </motion.div>
-        </section>
+
+          {/* SEC 2: FIRST STATEMENT */}
+          <motion.div
+            style={{ opacity: s1Opacity, y: s1Y }}
+            className="absolute left-[10%] w-full md:w-1/3 flex flex-col text-left px-6"
+          >
+            <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-[1.05]">
+              Flawless <br /> Architecture.
+            </h2>
+            <p className="text-2xl text-[#86868B] font-medium leading-snug">
+              Every interface, database, and edge node meticulously designed for absolute resilience.
+            </p>
+          </motion.div>
+
+          {/* SEC 3: SECOND STATEMENT */}
+          <motion.div
+            style={{ opacity: s2Opacity, y: s2Y }}
+            className="absolute right-[10%] w-full md:w-1/3 flex flex-col text-left px-6"
+          >
+            <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-[1.05]">
+              Boundless <br /> Scale.
+            </h2>
+            <p className="text-2xl text-[#86868B] font-medium leading-snug">
+              Vertical and horizontal load balancing built to effortlessly absorb multi-million request spikes.
+            </p>
+          </motion.div>
+
+        </div>
+
+        {/* BENTO BOX GRID (Triggers at bottom of scroll, blocks scrolling normally) */}
+        <div className="absolute bottom-0 w-full min-h-screen bg-black z-20 flex flex-col items-center justify-center pb-32 pt-20 px-6 pointer-events-auto">
+          <motion.div
+            style={{ opacity: bentoOpacity, y: bentoY }}
+            className="w-full max-w-6xl mx-auto"
+          >
+            <div className="text-center mb-16">
+              <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6">
+                Everything you need. <br /> <span className="text-[#86868B]">Nothing you don't.</span>
+              </h2>
+            </div>
+
+            {/* THE GRID */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+
+              {/* Large feature 1 */}
+              <div className="md:col-span-2 rounded-[2rem] bg-[#111111] border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors relative overflow-hidden group">
+                <div className="relative z-10">
+                  <Code className="w-10 h-10 text-white mb-6" />
+                  <h3 className="text-3xl font-semibold text-white tracking-tight mb-2">Product Engineering</h3>
+                  <p className="text-[#86868B] text-lg max-w-md leading-snug">
+                    We don't just build software. We craft digital products from zero to one, ensuring market-fit usability intertwined with enterprise-level stability.
+                  </p>
+                </div>
+                {/* Subtle glow effect on hover */}
+                <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-white/[0.03] blur-[80px] rounded-full group-hover:bg-white/[0.05] transition-all duration-700" />
+              </div>
+
+              {/* Square feature */}
+              <div className="rounded-[2rem] bg-[#111111] border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors">
+                <Server className="w-10 h-10 text-white mb-6" />
+                <div>
+                  <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">Tech Modernization</h3>
+                  <p className="text-[#86868B] text-base leading-snug">
+                    Tear down monolithic legacy code. Rebuild on unshakeable microservice foundations.
+                  </p>
+                </div>
+              </div>
+
+              {/* Square feature */}
+              <div className="rounded-[2rem] bg-[#111111] border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors">
+                <Shield className="w-10 h-10 text-white mb-6" />
+                <div>
+                  <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">Accountability</h3>
+                  <p className="text-[#86868B] text-base leading-snug">
+                    We operate transparently. Your outcomes are our direct responsibility.
+                  </p>
+                </div>
+              </div>
+
+              {/* Large feature 2 */}
+              <div className="md:col-span-2 rounded-[2rem] bg-[#111111] border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors relative overflow-hidden group">
+                <div className="relative z-10">
+                  <Activity className="w-10 h-10 text-white mb-6" />
+                  <h3 className="text-3xl font-semibold text-white tracking-tight mb-2">Dedicated Teams</h3>
+                  <p className="text-[#86868B] text-lg max-w-md leading-snug">
+                    Embed elite engineers directly into your current processes. We scale alongside you, instantly adapting to your technical roadmap.
+                  </p>
+                </div>
+                {/* Subtle glow effect on hover */}
+                <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-white/[0.03] blur-[80px] rounded-full group-hover:bg-white/[0.05] transition-all duration-700" />
+              </div>
+
+            </div>
+
+            <div className="mt-20 flex justify-center">
+              <button className="px-8 py-4 bg-white text-black font-semibold rounded-full text-lg hover:scale-105 transition-transform duration-300">
+                Partner With CSMV
+              </button>
+            </div>
+          </motion.div>
+        </div>
 
       </div>
     </ReactLenis>
