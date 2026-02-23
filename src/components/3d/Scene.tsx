@@ -30,43 +30,43 @@ export function Scene() {
             let targetRotationZ = 0;
 
             if (scroll < 0.1) {
-                // Hero: Diamond cleanly on the right
+                // Hero: Diamond cleanly on the right, much smaller
                 targetX = 3.5;
                 targetY = 0;
-                targetScale = 1.6;
+                targetScale = 0.9;
                 targetRotationZ = 0;
             } else if (scroll >= 0.1 && scroll < 0.2) {
                 // Transition to Statement 1 (Text Right, Diamond Left)
                 const t = (scroll - 0.1) / 0.1;
                 targetX = THREE.MathUtils.lerp(3.5, -3.5, t);
                 targetY = 0;
-                targetScale = THREE.MathUtils.lerp(1.6, 1.0, t);
+                targetScale = THREE.MathUtils.lerp(0.9, 0.7, t);
                 targetRotationZ = THREE.MathUtils.lerp(0, Math.PI / 2, t);
             } else if (scroll >= 0.2 && scroll < 0.28) {
                 // Steady at Statement 1: Diamond on LEFT
                 targetX = -3.5;
                 targetY = 0;
-                targetScale = 1.0;
+                targetScale = 0.7;
                 targetRotationZ = Math.PI / 2;
             } else if (scroll >= 0.28 && scroll < 0.38) {
                 // Transition to Statement 2 (Text Left, Diamond Right)
                 const t = (scroll - 0.28) / 0.1;
                 targetX = THREE.MathUtils.lerp(-3.5, 3.5, t);
                 targetY = 0;
-                targetScale = 1.0;
+                targetScale = 0.7;
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI / 2, Math.PI, t);
             } else if (scroll >= 0.38 && scroll < 0.52) {
                 // Steady at Statement 2: Diamond on RIGHT
                 targetX = 3.5;
                 targetY = 0;
-                targetScale = 1.0;
+                targetScale = 0.7;
                 targetRotationZ = Math.PI;
             } else {
                 // Bento Box section: Diamond moves up and away as we scroll past it
                 const t = Math.min((scroll - 0.52) / 0.15, 1);
                 targetX = THREE.MathUtils.lerp(3.5, 0, t);
                 targetY = THREE.MathUtils.lerp(0, 5, t); // Fly upwards
-                targetScale = THREE.MathUtils.lerp(1.0, 0.5, t);
+                targetScale = THREE.MathUtils.lerp(0.7, 0.4, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI, Math.PI * 1.5, t);
             }
 
@@ -93,8 +93,8 @@ export function Scene() {
                     azimuth={[-Math.PI / 1.4, Math.PI / 2]}
                 >
                     <Float speed={1.5} rotationIntensity={1} floatIntensity={1}>
-                        <mesh ref={meshRef} castShadow receiveShadow>
-                            <icosahedronGeometry args={[2, 0]} />
+                        <mesh ref={meshRef} castShadow receiveShadow scale={[1, 1.4, 1]}>
+                            <octahedronGeometry args={[1.5, 0]} />
                             <MeshTransmissionMaterial
                                 backside
                                 samples={16}
