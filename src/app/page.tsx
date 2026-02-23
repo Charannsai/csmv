@@ -116,8 +116,8 @@ export default function Home() {
 
         {/* --- GLOBAL BACKDROP GLOW --- */}
         <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(99,102,241,0.06)_0%,rgba(5,5,5,1)_70%)]" />
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.03)_0%,rgba(5,5,5,1)_70%)]" />
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] mix-blend-overlay"></div>
         </div>
 
         {/* --- HERO 3D SCENE (Persists across the entire scroll) --- */}
@@ -144,7 +144,7 @@ export default function Home() {
                 transition={{ duration: 1, ease: "easeOut" }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl w-max"
               >
-                <div className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_10px_#38BDF8]" />
+                <div className="w-2 h-2 rounded-full bg-white/80 animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
                 <span className="text-xs font-semibold tracking-widest uppercase text-slate-200">CSMV Solutions</span>
               </motion.div>
 
@@ -155,7 +155,7 @@ export default function Home() {
                 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[1] text-white"
               >
                 Build systems <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent relative inline-block">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-500 relative inline-block">
                   that last.
                 </span>
               </motion.h1>
@@ -192,8 +192,8 @@ export default function Home() {
                 <p className="text-slate-400 font-light mt-2">Delivering reliable, scalable, and high-performance software systems.</p>
               </div>
               <div className="hidden md:flex gap-2">
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-xs uppercase tracking-widest text-primary font-bold">Global Technology Partner</span>
+                <div className="w-2 h-2 rounded-full bg-white/50 animate-pulse" />
+                <span className="text-xs uppercase tracking-widest text-white/50 font-bold">Global Technology Partner</span>
               </div>
             </div>
 
@@ -203,12 +203,12 @@ export default function Home() {
               className="flex gap-8 w-max pl-6 pr-6 lg:pl-[calc(50vw-616px)] lg:pr-[50vw]"
             >
               {[
-                { i: Layers, t: "Product Engineering", d: "From early-stage concepts to enterprise-grade platforms, we build intuitive and scalable digital products.", c: "from-[#12121A] to-[#0A0A0F]", b: "border-white/10" },
-                { i: Zap, t: "Tech Modernization", d: "We strengthen legacy infrastructure, optimizing for performance, security, and future horizontal scaling.", c: "from-[#0F171A] to-[#0A0F12]", b: "border-accent/20" },
-                { i: Activity, t: "Dedicated Teams", d: "Working as a seamless extension of your organization, combining technical depth and long-term partnership.", c: "from-[#1A0F1A] to-[#120A12]", b: "border-purple-500/20" }
+                { i: Layers, t: "Product Engineering", d: "From early-stage concepts to enterprise-grade platforms, we build intuitive and scalable digital products." },
+                { i: Zap, t: "Tech Modernization", d: "We strengthen legacy infrastructure, optimizing for performance, security, and future horizontal scaling." },
+                { i: Activity, t: "Dedicated Teams", d: "Working as a seamless extension of your organization, combining technical depth and long-term partnership." }
               ].map((item, idx) => (
-                <div key={idx} className={`w-[80vw] lg:w-[800px] shrink-0 h-[450px] bg-gradient-to-br ${item.c} border ${item.b} rounded-[2rem] p-12 relative overflow-hidden group`}>
-                  <div className="absolute -top-32 -right-32 w-96 h-96 bg-white/5 rounded-full blur-[100px] group-hover:scale-150 transition-transform duration-1000" />
+                <div key={idx} className={`w-[80vw] lg:w-[800px] shrink-0 h-[450px] bg-[#0A0A0A] border border-white/5 hover:border-white/10 rounded-[2rem] p-12 relative overflow-hidden group transition-colors duration-500`}>
+                  <div className="absolute -top-32 -right-32 w-96 h-96 bg-white/[0.02] rounded-full blur-[100px] group-hover:bg-white/[0.04] transition-colors duration-1000" />
                   <div className="flex flex-col justify-between h-full relative z-10">
                     <div className="flex justify-between items-start">
                       <div className="w-20 h-20 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-center backdrop-blur-md">
