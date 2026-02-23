@@ -144,7 +144,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1] text-white"
+                className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[1] text-white"
               >
                 Architect <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent relative inline-block">
@@ -156,7 +156,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 1.5 }}
-                className="text-lg text-slate-400 max-w-md leading-relaxed font-light"
+                className="text-base text-slate-400 max-w-sm leading-relaxed font-light"
               >
                 Elite systems engineering and next-gen infrastructure. We build highly scalable, interactive architectures for ambitious enterprises.
               </motion.p>
@@ -175,63 +175,47 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- DYNAMIC STICKY STACKING SECTIONS --- */}
-        <section className="relative z-20 w-full min-h-[300vh] bg-[#050505]">
-          <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 w-full relative h-[600px] flex items-center justify-center">
-
-              {/* Card 1 */}
-              <motion.div
-                style={{
-                  scale: useTransform(smoothY, [0.1, 0.3], [1, 0.9]),
-                  y: useTransform(smoothY, [0.1, 0.3], [0, -50]),
-                  opacity: useTransform(smoothY, [0.25, 0.3], [1, 0]),
-                }}
-                className="absolute inset-x-0 w-full max-w-5xl mx-auto h-[500px] bg-gradient-to-br from-[#12121A] to-[#0A0A0F] border border-white/10 rounded-[2rem] p-12 shadow-[0_30px_60px_rgba(0,0,0,0.8)] flex flex-col justify-between overflow-hidden"
-              >
-                <div className="absolute -top-32 -right-32 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
-                <Server className="w-16 h-16 text-primary relative z-10" />
-                <div className="relative z-10">
-                  <h3 className="text-5xl font-black mb-4 tracking-tighter">Global Edge Cloud.</h3>
-                  <p className="text-xl text-slate-400 font-light max-w-xl">Zero latency globally. We architect horizontally scalable servers that replicate in real-time instantly across multiple regions.</p>
-                </div>
-              </motion.div>
-
-              {/* Card 2 */}
-              <motion.div
-                style={{
-                  scale: useTransform(smoothY, [0.3, 0.5], [0.8, 1]),
-                  y: useTransform(smoothY, [0.3, 0.5], [200, 0]),
-                  opacity: useTransform(smoothY, [0.3, 0.35], [0, 1]),
-                }}
-                className="absolute inset-x-0 w-full max-w-5xl mx-auto h-[500px] bg-gradient-to-br from-[#0F171A] to-[#0A0F12] border border-accent/20 rounded-[2rem] p-12 shadow-[0_30px_60px_rgba(0,0,0,0.8)] flex flex-col justify-between overflow-hidden"
-              >
-                <div className="absolute -bottom-32 left-1/2 w-96 h-96 bg-accent/20 rounded-full blur-[100px]" />
-                <Globe2 className="w-16 h-16 text-accent relative z-10" />
-                <div className="relative z-10">
-                  <h3 className="text-5xl font-black mb-4 tracking-tighter">Geo-Redundant Matrix.</h3>
-                  <p className="text-xl text-slate-400 font-light max-w-xl">Failovers are a thing of the past. Our multi-cloud architecture dynamically routes connections mathematically avoiding downtime.</p>
-                </div>
-              </motion.div>
-
-              {/* Card 3 */}
-              <motion.div
-                style={{
-                  scale: useTransform(smoothY, [0.5, 0.7], [0.8, 1]),
-                  y: useTransform(smoothY, [0.5, 0.7], [200, 0]),
-                  opacity: useTransform(smoothY, [0.5, 0.55], [0, 1]),
-                }}
-                className="absolute inset-x-0 w-full max-w-5xl mx-auto h-[500px] bg-gradient-to-br from-[#1A0F1A] to-[#120A12] border border-purple-500/20 rounded-[2rem] p-12 shadow-[0_30px_60px_rgba(0,0,0,0.8)] flex flex-col justify-between overflow-hidden"
-              >
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-purple-500/10 rounded-full blur-[120px]" />
-                <Fingerprint className="w-16 h-16 text-purple-400 relative z-10" />
-                <div className="relative z-10">
-                  <h3 className="text-5xl font-black mb-4 tracking-tighter text-white">Cryptographic Mesh.</h3>
-                  <p className="text-xl text-slate-400 font-light max-w-xl">End-to-end military-grade network encryption layered over internal zero-trust architecture. Bulletproof by design.</p>
-                </div>
-              </motion.div>
-
+        {/* --- HORIZONTAL PANNING GALLERY (Redesigned Section 2) --- */}
+        <section className="relative z-20 w-full h-[300vh] bg-[#050505]">
+          <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+            <div className="w-full max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-black tracking-tighter">Core Infrastructure.</h2>
+                <p className="text-slate-400 font-light mt-2">Engineered for absolute resilience.</p>
+              </div>
+              <div className="hidden md:flex gap-2">
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-xs uppercase tracking-widest text-primary font-bold">System Nominal</span>
+              </div>
             </div>
+
+            {/* Horizontal Track */}
+            <motion.div
+              style={{ x: useTransform(smoothY, [0.1, 0.5], ["0%", "-66%"]) }}
+              className="flex gap-8 px-6 w-[300vw] lg:w-[200vw]"
+            >
+              {[
+                { i: Server, t: "Global Edge Cloud", d: "Zero latency globally. We architect horizontally scalable servers that replicate in real-time instantly.", c: "from-[#12121A] to-[#0A0A0F]", b: "border-white/10" },
+                { i: Globe2, t: "Geo-Redundant Matrix", d: "Failovers are a thing of the past. Our multi-cloud architecture dynamically routes connections mathematically.", c: "from-[#0F171A] to-[#0A0F12]", b: "border-accent/20" },
+                { i: Fingerprint, t: "Cryptographic Mesh", d: "End-to-end military-grade network encryption layered over internal zero-trust architecture.", c: "from-[#1A0F1A] to-[#120A12]", b: "border-purple-500/20" }
+              ].map((item, idx) => (
+                <div key={idx} className={`w-[80vw] lg:w-[800px] shrink-0 h-[450px] bg-gradient-to-br ${item.c} border ${item.b} rounded-[2rem] p-12 relative overflow-hidden group`}>
+                  <div className="absolute -top-32 -right-32 w-96 h-96 bg-white/5 rounded-full blur-[100px] group-hover:scale-150 transition-transform duration-1000" />
+                  <div className="flex flex-col justify-between h-full relative z-10">
+                    <div className="flex justify-between items-start">
+                      <div className="w-20 h-20 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-center backdrop-blur-md">
+                        <item.i className="w-10 h-10 text-white" />
+                      </div>
+                      <h2 className="text-8xl font-black text-white/5 group-hover:text-white/10 transition-colors">0{idx + 1}</h2>
+                    </div>
+                    <div>
+                      <h3 className="text-4xl font-bold mb-4">{item.t}</h3>
+                      <p className="text-slate-400 font-light text-xl max-w-md">{item.d}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </section>
 

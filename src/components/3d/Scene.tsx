@@ -30,24 +30,24 @@ export function Scene() {
             let targetRotationZ = 0;
 
             if (scroll < 0.25) {
-                // Section 1: Hero (Diamond on the Right)
+                // Section 1: Hero
                 targetX = 2.5;
                 targetY = 0;
-                targetScale = 1.2;
+                targetScale = 0.8;
             } else if (scroll >= 0.25 && scroll < 0.6) {
-                // Section 2: Stacking Cards (Diamond Top Center, smaller, spinning)
-                // Lerp transition
+                // Section 2: Horizontal Scroll Track
+                // Move diamond down and sweep it across the screen horizontally as the cards pan
                 const t = (scroll - 0.25) / 0.35;
-                targetX = THREE.MathUtils.lerp(2.5, 0, t);
-                targetY = THREE.MathUtils.lerp(0, 2, t);
-                targetScale = THREE.MathUtils.lerp(1.2, 0.7, t);
+                targetX = THREE.MathUtils.lerp(2.5, -2, t);
+                targetY = THREE.MathUtils.lerp(0, -1, t);
+                targetScale = THREE.MathUtils.lerp(0.8, 0.5, t);
                 targetRotationZ = THREE.MathUtils.lerp(0, Math.PI, t);
             } else {
-                // Section 3: Interactive Glow Cards - specifically landing in the 3rd Card area (Left Side)
+                // Section 3: Interactive Glow Cards - landing in the 3rd Card area
                 const t = Math.min((scroll - 0.6) / 0.2, 1);
-                targetX = THREE.MathUtils.lerp(0, -2.5, t);
-                targetY = THREE.MathUtils.lerp(2, -0.2, t);
-                targetScale = THREE.MathUtils.lerp(0.7, 1.4, t);
+                targetX = THREE.MathUtils.lerp(-2, -2.5, t);
+                targetY = THREE.MathUtils.lerp(-1, -0.2, t);
+                targetScale = THREE.MathUtils.lerp(0.5, 1.4, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI, Math.PI * 2, t);
             }
 
