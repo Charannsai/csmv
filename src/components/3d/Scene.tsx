@@ -29,33 +29,45 @@ export function Scene() {
             let targetScale = 1;
             let targetRotationZ = 0;
 
-            if (scroll < 0.15) {
+            if (scroll < 0.1) {
                 // Hero: Centered and massive
                 targetX = 0;
                 targetY = 0;
                 targetScale = 1.2;
                 targetRotationZ = 0;
-            } else if (scroll >= 0.15 && scroll < 0.35) {
-                // Statement 1: Text on left, diamond moves right
-                const t = (scroll - 0.15) / 0.2;
-                targetX = THREE.MathUtils.lerp(0, 2.8, t);
+            } else if (scroll >= 0.1 && scroll < 0.2) {
+                // Transition to Statement 1
+                const t = (scroll - 0.1) / 0.1;
+                targetX = THREE.MathUtils.lerp(0, 3.5, t);
                 targetY = 0;
                 targetScale = THREE.MathUtils.lerp(1.2, 0.9, t);
                 targetRotationZ = THREE.MathUtils.lerp(0, Math.PI / 2, t);
-            } else if (scroll >= 0.35 && scroll < 0.55) {
-                // Statement 2: Text on right, diamond moves left
-                const t = (scroll - 0.35) / 0.2;
-                targetX = THREE.MathUtils.lerp(2.8, -2.8, t);
+            } else if (scroll >= 0.2 && scroll < 0.28) {
+                // Steady at Statement 1 (Text is on left, diamond on right)
+                targetX = 3.5;
                 targetY = 0;
-                targetScale = THREE.MathUtils.lerp(0.9, 0.9, t);
+                targetScale = 0.9;
+                targetRotationZ = Math.PI / 2;
+            } else if (scroll >= 0.28 && scroll < 0.38) {
+                // Transition to Statement 2 (Diamond sweeps perfectly across before next text is opaque)
+                const t = (scroll - 0.28) / 0.1;
+                targetX = THREE.MathUtils.lerp(3.5, -3.5, t);
+                targetY = 0;
+                targetScale = 0.9;
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI / 2, Math.PI, t);
+            } else if (scroll >= 0.38 && scroll < 0.52) {
+                // Steady at Statement 2 (Text is on right, diamond on left)
+                targetX = -3.5;
+                targetY = 0;
+                targetScale = 0.9;
+                targetRotationZ = Math.PI;
             } else {
                 // Bento Box section: Diamond moves up and away as we scroll past it
-                const t = Math.min((scroll - 0.55) / 0.15, 1);
-                targetX = THREE.MathUtils.lerp(-2.8, 0, t);
+                const t = Math.min((scroll - 0.52) / 0.15, 1);
+                targetX = THREE.MathUtils.lerp(-3.5, 0, t);
                 targetY = THREE.MathUtils.lerp(0, 5, t); // Fly upwards
                 targetScale = THREE.MathUtils.lerp(0.9, 0.5, t);
-                targetRotationZ = Math.PI;
+                targetRotationZ = THREE.MathUtils.lerp(Math.PI, Math.PI * 1.5, t);
             }
 
             // Smoothly Damp towards the targets using framerate-independent easing
