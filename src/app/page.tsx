@@ -78,10 +78,10 @@ function MagneticButton({ children, className = "" }: { children: React.ReactNod
 }
 
 const featuresList = [
-  { title: "Neural Resource Allocation", desc: "Our AI-driven auto-scaling engines continuously monitor traffic load and instantly provision compute parameters based on unpredictable spikes, guaranteeing zero downtime.", icon: Cpu, stat: "0.2ms Compute Latency" },
-  { title: "Quantum-Resistant Vaults", desc: "Data rest encryption utilizing post-quantum cryptographic algorithms. We secure your most sensitive intellectual property against attacks from future quantum computing arrays.", icon: Shield, stat: "Post-RSA Ready" },
-  { title: "Hyper-Fast CI/CD Pipelines", desc: "Custom integrations pushing massive codebase updates across thousands of nodes globally in fractional milliseconds. Deployment is continuous and flawless.", icon: Zap, stat: "Zero Downtime Deployments" },
-  { title: "Isolated Render Engines", desc: "Constructing completely isolated, mathematically perfect environments for your backend architecture, ensuring maximum system integrity.", icon: Layers, stat: "100% Isolation Matrix" }
+  { title: "Build Systems That Last", desc: "We focus on long-term architecture over quick fixes. Our engineering practices ensure that your platform remains robust, maintainable, and adaptable as your business evolves.", icon: Code, stat: "Sustainable Engineering" },
+  { title: "Performance & Scale", desc: "Designed for high-load environments. We construct scalable cloud infrastructure and optimize codebases to efficiently handle exponential user growth.", icon: Server, stat: "Horizontal Scaling" },
+  { title: "Accountable Delivery", desc: "We operate with complete transparency. As an extension of your internal teams, we share the responsibility for the outcomes of your technology investments.", icon: Shield, stat: "Transparent Partnerships" },
+  { title: "Outcome-Driven Focus", desc: "We don't just write code; we build digital products that drive business value. Our solutions align directly with your organizational KPIs and market objectives.", icon: Globe2, stat: "Measurable Results" }
 ];
 
 export default function Home() {
@@ -188,12 +188,12 @@ export default function Home() {
           <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
             <div className="w-full max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
               <div>
-                <h2 className="text-4xl md:text-5xl font-black tracking-tighter">Core Infrastructure.</h2>
-                <p className="text-slate-400 font-light mt-2">Engineered for absolute resilience.</p>
+                <h2 className="text-4xl md:text-5xl font-black tracking-tighter">Core Services.</h2>
+                <p className="text-slate-400 font-light mt-2">Delivering reliable, scalable, and high-performance software systems.</p>
               </div>
               <div className="hidden md:flex gap-2">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-xs uppercase tracking-widest text-primary font-bold">System Nominal</span>
+                <span className="text-xs uppercase tracking-widest text-primary font-bold">Global Technology Partner</span>
               </div>
             </div>
 
@@ -309,7 +309,7 @@ export default function Home() {
                   </motion.div>
 
                   <MagneticButton className="w-full py-4 bg-white text-black rounded-xl font-bold uppercase tracking-widest text-sm hover:scale-[1.02] transition-transform">
-                    Access Control Panel
+                    Start a Conversation
                   </MagneticButton>
                 </div>
               </div>
@@ -336,10 +336,10 @@ export default function Home() {
             className="relative z-10 text-center flex flex-col items-center"
           >
             <h2 className="text-7xl md:text-9xl font-black tracking-tighter mb-8 leading-[0.9] text-white mix-blend-difference">
-              Initiate <br /> SEQUENCE.
+              Start <br /> Building.
             </h2>
             <MagneticButton className="px-16 py-6 bg-white text-black rounded-full font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white border-2 border-transparent hover:border-white transition-colors duration-300">
-              Deploy Now
+              Partner With Us
             </MagneticButton>
           </motion.div>
         </section>
