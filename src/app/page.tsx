@@ -112,17 +112,16 @@ export default function Home() {
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         </div>
 
-        {/* --- HERO 3D SCENE --- */}
-        <motion.div
-          style={{ y: yHero3D, scale: scaleHero3D, opacity: opacityHero3D }}
-          className="fixed top-0 bottom-0 right-0 left-0 lg:left-1/3 z-0 h-screen w-full lg:w-2/3 pointer-events-auto"
-        >
-          {mounted && isHeroInView && (
-            <Canvas shadows camera={{ position: [0, 0, 8], fov: 45 }} dpr={[1, 2]}>
-              <Scene />
-            </Canvas>
+        {/* --- HERO 3D SCENE (Persists across the entire scroll) --- */}
+        <div className="fixed top-0 bottom-0 right-0 left-0 z-[1] pointer-events-none">
+          {mounted && (
+            <div className="w-full h-full">
+              <Canvas shadows camera={{ position: [0, 0, 8], fov: 45 }} dpr={[1, 2]}>
+                <Scene />
+              </Canvas>
+            </div>
           )}
-        </motion.div>
+        </div>
 
         {/* --- HERO SECTION --- */}
         <section ref={heroRef} className="relative h-screen flex items-center z-10">
@@ -277,24 +276,24 @@ export default function Home() {
                 </div>
               </GlowCard>
 
-              <GlowCard className="md:col-span-2 p-12 min-h-[350px] flex flex-col md:flex-row justify-between items-center gap-12">
-                <div className="w-full md:w-1/2">
-                  <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-8">
+              {/* THE 3RD GLOW CARD (DIAMOND DESTINATION) */}
+              <GlowCard className="md:col-span-2 p-12 min-h-[550px] flex justify-end items-center relative overflow-visible border-primary/20 bg-gradient-to-br from-[#0A0A0F] to-[#141226]">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(99,102,241,0.1)_0%,transparent_60%)]" />
+
+                {/* EMPTY LEFT SIDE FOR THE 3D DIAMOND TO LAND */}
+                <div className="w-1/2 h-full absolute top-0 left-0 hidden md:block"></div>
+
+                {/* TEXT CONTENT ON THE RIGHT */}
+                <div className="w-full md:w-1/2 relative z-10 flex flex-col justify-center bg-[#050505]/50 backdrop-blur-xl border border-white/5 p-12 rounded-3xl shadow-2xl">
+                  <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-8 shadow-[0_0_20px_rgba(99,102,241,0.5)]">
                     <Zap className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-4xl font-bold mb-4">Hyper-Fast Pipelines</h3>
-                  <p className="text-slate-400 leading-relaxed font-light">CI/CD integrations pushing massive codebase updates across thousands of nodes in fractional milliseconds.</p>
-                </div>
-                {/* Decorative interactive graphic */}
-                <div className="w-full md:w-1/2 h-full bg-black/40 border border-white/5 rounded-2xl relative overflow-hidden flex items-center justify-center p-8">
-                  <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(99,102,241,0.2)_50%,transparent_100%)] w-[200%] animate-[slide_3s_linear_infinite]" />
-                  <Code className="w-24 h-24 text-white/20 relative z-10" />
-                  <style jsx>{`
-                      @keyframes slide {
-                        0% { transform: translateX(-100%); }
-                        100% { transform: translateX(50%); }
-                      }
-                    `}</style>
+                  <h3 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-br from-white to-white/50">Core Rendering &<br /> Hyper-Pipelines.</h3>
+                  <p className="text-slate-400 leading-relaxed font-light text-lg mb-8">We construct completely isolated render environments and deploy continuous integration pipelines capable of updating millions of nodes globally instantly.</p>
+
+                  <MagneticButton className="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black font-semibold transition-all w-max shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                    Examine Infrastructure
+                  </MagneticButton>
                 </div>
               </GlowCard>
             </div>
