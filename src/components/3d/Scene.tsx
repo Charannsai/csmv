@@ -61,9 +61,9 @@ export function Scene() {
 
     return (
         <>
-            <ambientLight intensity={0.5} />
-            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1.5} color="#A855F7" />
-            <pointLight position={[-10, -10, -10]} intensity={1} color="#38BDF8" />
+            <ambientLight intensity={0.6} />
+            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} color="#FFFFFF" />
+            <pointLight position={[-10, -10, -10]} intensity={1} color="#94A3B8" />
 
             {/* Group to control global position/scale via scroll */}
             <group ref={groupRef}>
@@ -73,7 +73,7 @@ export function Scene() {
                     polar={[-Math.PI / 3, Math.PI / 3]}
                     azimuth={[-Math.PI / 1.4, Math.PI / 2]}
                 >
-                    <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
+                    <Float speed={1.5} rotationIntensity={1} floatIntensity={1}>
                         <mesh ref={meshRef} castShadow receiveShadow>
                             <icosahedronGeometry args={[2, 0]} />
                             <MeshTransmissionMaterial
@@ -81,20 +81,20 @@ export function Scene() {
                                 samples={16}
                                 resolution={1024}
                                 transmission={1}
-                                roughness={0.05}
+                                roughness={0.15}
                                 thickness={0.5}
-                                ior={1.5}
-                                chromaticAberration={0.1}
-                                anisotropy={1}
-                                distortion={0.5}
-                                distortionScale={1}
-                                temporalDistortion={0.2}
-                                color="#6366F1"
+                                ior={1.3}
+                                chromaticAberration={0.05}
+                                anisotropy={0.5}
+                                distortion={0.2}
+                                distortionScale={0.5}
+                                temporalDistortion={0.05}
+                                color="#FFFFFF"
                             />
                         </mesh>
                         <mesh castShadow receiveShadow scale={0.9}>
                             <icosahedronGeometry args={[2, 1]} />
-                            <meshStandardMaterial color="#0A0A0F" wireframe wireframeLinewidth={2} transparent opacity={0.3} />
+                            <meshStandardMaterial color="#FFFFFF" wireframe wireframeLinewidth={1} transparent opacity={0.1} />
                         </mesh>
                     </Float>
                 </PresentationControls>
