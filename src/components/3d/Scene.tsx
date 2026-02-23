@@ -121,8 +121,8 @@ export function Scene() {
                                 color="#FFFFFF"
                             />
                         </mesh>
-                        <mesh castShadow receiveShadow scale={0.75}>
-                            <octahedronGeometry args={[1.4, 0]} />
+                        <mesh castShadow receiveShadow scale={0.9}>
+                            <icosahedronGeometry args={[2, 1]} />
                             <meshStandardMaterial color="#FFFFFF" wireframe wireframeLinewidth={1} transparent opacity={0.1} />
                         </mesh>
                     </Float>
