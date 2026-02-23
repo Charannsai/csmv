@@ -142,21 +142,23 @@ export default function Home() {
           {/* SEC 1: HERO */}
           <motion.div
             style={{ opacity: heroOpacity, scale: heroScale }}
-            className="absolute top-[15vh] w-full flex flex-col items-center justify-center text-center px-6"
+            className="absolute inset-0 flex flex-col justify-center px-6 md:px-20 lg:px-32 w-full"
           >
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter leading-none mb-6">
-              <span className="text-white">CSMV.</span><br />
-              <span className="text-[#86868B]">Systems that last.</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-[#86868B] font-medium max-w-2xl mt-4">
-              Pro-grade software engineering. Uncompromising scale.
-            </p>
+            <div className="max-w-4xl">
+              <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-semibold tracking-tighter leading-[0.9] mb-8">
+                <span className="text-white">CSMV.</span><br />
+                <span className="text-[#86868B]">Built to last.</span>
+              </h1>
+              <p className="text-xl md:text-3xl text-[#86868B] font-medium max-w-2xl">
+                Pro-grade software engineering. Uncompromising scale.
+              </p>
+            </div>
           </motion.div>
 
           {/* SEC 2: FIRST STATEMENT */}
           <motion.div
             style={{ opacity: s1Opacity, y: s1Y }}
-            className="absolute left-[10%] w-full md:w-1/3 flex flex-col text-left px-6"
+            className="absolute right-[10%] w-full md:w-1/3 flex flex-col text-left px-6"
           >
             <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-[1.05]">
               Flawless <br /> Architecture.
@@ -169,7 +171,7 @@ export default function Home() {
           {/* SEC 3: SECOND STATEMENT */}
           <motion.div
             style={{ opacity: s2Opacity, y: s2Y }}
-            className="absolute right-[10%] w-full md:w-1/3 flex flex-col text-left px-6"
+            className="absolute left-[10%] w-full md:w-1/3 flex flex-col text-left px-6"
           >
             <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-[1.05]">
               Boundless <br /> Scale.
