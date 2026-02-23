@@ -219,67 +219,80 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- INTERACTIVE GLOW CARDS (High Engagement) --- */}
-        <section className="relative z-20 py-40 bg-[#050505]">
+        {/* --- INTERACTIVE ACCORDION SHOWCASE (Redesigned Section 3) --- */}
+        <section className="relative z-20 py-40 bg-[#050505] overflow-hidden">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-24 text-center">
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/30">
-                Interactive Systems.
-              </h2>
-              <p className="text-slate-400 font-light text-xl">Hover over the modules to see the underlying architecture respond.</p>
+            <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12">
+              <div>
+                <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-primary mb-4 flex items-center gap-2">
+                  <Activity className="w-4 h-4" /> Operational Matrix
+                </h2>
+                <h3 className="text-5xl md:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 leading-none">
+                  Absolute <br /> Control.
+                </h3>
+              </div>
+              <p className="text-slate-400 font-light text-lg max-w-sm">
+                Precision engineering requires absolute transparency. Interact with our modules to understand the core architecture.
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 group/grid">
-              <GlowCard className="p-12 min-h-[400px] flex flex-col justify-between">
-                <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-8">
-                  <Cpu className="w-8 h-8 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-3xl font-bold mb-4">Neural Resource Allocation</h3>
-                  <p className="text-slate-400 leading-relaxed font-light">AI-driven auto-scaling instantly provisions compute parameters based on unpredictable traffic spikes.</p>
-                </div>
-                {/* Decorative UI element inside card */}
-                <div className="absolute top-12 right-12 flex gap-2">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <div className="text-[10px] uppercase tracking-widest text-emerald-400 font-bold">Online</div>
-                </div>
-              </GlowCard>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-6">
 
-              <GlowCard className="p-12 min-h-[400px] flex flex-col justify-between">
-                <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-8">
-                  <Shield className="w-8 h-8 text-accent" />
-                </div>
-                <div>
-                  <h3 className="text-3xl font-bold mb-4">Quantum-Resistant Vaults</h3>
-                  <p className="text-slate-400 leading-relaxed font-light">Data rest encryption using algorithms designed to withstand attacks from future quantum computing arrays.</p>
-                </div>
-                <div className="absolute top-12 right-12 flex gap-1">
-                  {[1, 2, 3, 4].map(i => (
-                    <motion.div key={i} animate={{ h: ["8px", "24px", "8px"] }} transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }} className="w-1 bg-accent/50 rounded-full" />
-                  ))}
-                </div>
-              </GlowCard>
+              {/* Left Side: Massive Interactive Accordion / List */}
+              <div className="lg:col-span-7 flex flex-col gap-4">
+                {[
+                  { title: "Neural Resource Allocation", desc: "Our AI-driven auto-scaling engines continuously monitor traffic load and instantly provision compute parameters based on unpredictable spikes, guaranteeing zero downtime.", icon: Cpu, stat: "0.2ms Compute Latency" },
+                  { title: "Quantum-Resistant Vaults", desc: "Data rest encryption utilizing post-quantum cryptographic algorithms. We secure your most sensitive intellectual property against attacks from future quantum computing arrays.", icon: Shield, stat: "Post-RSA Ready" },
+                  { title: "Hyper-Fast CI/CD Pipelines", desc: "Custom integrations pushing massive codebase updates across thousands of nodes globally in fractional milliseconds. Deployment is continuous and flawless.", icon: Zap, stat: "Zero Downtime Deployments" },
+                  { title: "Isolated Render Engines", desc: "Constructing completely isolated, mathematically perfect environments for your backend architecture, ensuring maximum system integrity.", icon: Layers, stat: "100% Isolation Matrix" }
+                ].map((step, idx) => (
+                  <div key={idx} className="group relative overflow-hidden bg-[#0A0A0F] border border-white/5 rounded-[2rem] p-8 md:p-10 cursor-pointer cursor-crosshair hover:bg-[#12121B] hover:border-white/20 transition-all duration-500">
+                    <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-transparent via-primary/0 to-transparent group-hover:via-primary/50 transition-colors duration-500" />
 
-              {/* THE 3RD GLOW CARD (DIAMOND DESTINATION) */}
-              <GlowCard className="md:col-span-2 p-12 min-h-[550px] flex justify-end items-center relative overflow-visible border-primary/20 bg-gradient-to-br from-[#0A0A0F] to-[#141226]">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(99,102,241,0.1)_0%,transparent_60%)]" />
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+                      <div className="flex items-center gap-6">
+                        <div className="w-16 h-16 rounded-2xl bg-black/50 border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors shadow-2xl">
+                          <step.icon className="w-8 h-8 text-white/50 group-hover:text-primary transition-colors" />
+                        </div>
+                        <h4 className="text-2xl md:text-3xl font-bold tracking-tight text-white/70 group-hover:text-white transition-colors">{step.title}</h4>
+                      </div>
 
-                {/* EMPTY LEFT SIDE FOR THE 3D DIAMOND TO LAND */}
-                <div className="w-1/2 h-full absolute top-0 left-0 hidden md:block"></div>
+                      <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300 md:ml-auto shrink-0">
+                        <ChevronRight className="w-5 h-5 text-white/50 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                      </div>
+                    </div>
 
-                {/* TEXT CONTENT ON THE RIGHT */}
-                <div className="w-full md:w-1/2 relative z-10 flex flex-col justify-center bg-[#050505]/50 backdrop-blur-xl border border-white/5 p-12 rounded-3xl shadow-2xl">
-                  <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-8 shadow-[0_0_20px_rgba(99,102,241,0.5)]">
-                    <Zap className="w-8 h-8 text-white" />
+                    {/* Expandable hidden content simulation */}
+                    <div className="mt-0 h-0 opacity-0 group-hover:mt-8 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 ease-out overflow-hidden md:pl-22">
+                      <p className="text-slate-400 font-light text-lg leading-relaxed max-w-2xl mb-6">{step.desc}</p>
+                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/40 border border-white/5">
+                        <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                        <span className="text-xs font-bold uppercase tracking-widest text-slate-300">{step.stat}</span>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-br from-white to-white/50">Core Rendering &<br /> Hyper-Pipelines.</h3>
-                  <p className="text-slate-400 leading-relaxed font-light text-lg mb-8">We construct completely isolated render environments and deploy continuous integration pipelines capable of updating millions of nodes globally instantly.</p>
+                ))}
+              </div>
 
-                  <MagneticButton className="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black font-semibold transition-all w-max shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-                    Examine Infrastructure
+              {/* Right Side: The Diamond Dock (Massive Vertical Target) */}
+              <div className="lg:col-span-5 relative w-full h-[600px] lg:h-auto rounded-[3rem] bg-gradient-to-br from-[#101018] to-[#0A0A0F] border border-primary/20 overflow-hidden flex flex-col justify-end p-12">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.1)_0%,transparent_70%)]" />
+
+                {/* Empty space at the top reserved for the scrolling 3D Diamond to land */}
+                <div className="absolute top-0 right-0 w-full h-2/3 pointer-events-none" />
+
+                <div className="relative z-10 w-full backdrop-blur-md bg-black/40 border border-white/10 p-8 rounded-3xl mt-auto shadow-2xl">
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className="flex h-3 w-3"><span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-primary opacity-75"></span><span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span></span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-primary">System Integrity: 100%</span>
+                  </div>
+                  <h4 className="text-3xl font-black mb-4 tracking-tighter leading-none">Architectural <br /> Convergence.</h4>
+                  <MagneticButton className="w-full mt-4 py-4 bg-white text-black rounded-xl font-bold uppercase tracking-widest text-sm hover:scale-[1.02] transition-transform">
+                    Access Control Panel
                   </MagneticButton>
                 </div>
-              </GlowCard>
+              </div>
+
             </div>
           </div>
         </section>

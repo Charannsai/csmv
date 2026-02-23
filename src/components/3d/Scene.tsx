@@ -43,11 +43,11 @@ export function Scene() {
                 targetScale = THREE.MathUtils.lerp(0.8, 0.5, t);
                 targetRotationZ = THREE.MathUtils.lerp(0, Math.PI, t);
             } else {
-                // Section 3: Interactive Glow Cards - landing in the 3rd Card area
+                // Section 3: Interactive Accordion - landing in the right-side docking container
                 const t = Math.min((scroll - 0.6) / 0.2, 1);
-                targetX = THREE.MathUtils.lerp(-2, -2.5, t);
-                targetY = THREE.MathUtils.lerp(-1, -0.2, t);
-                targetScale = THREE.MathUtils.lerp(0.5, 1.4, t);
+                targetX = THREE.MathUtils.lerp(-2, 2.5, t); // Move back toward right side
+                targetY = THREE.MathUtils.lerp(-1, 0, t);  // Center vertically relatively
+                targetScale = THREE.MathUtils.lerp(0.5, 1.3, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI, Math.PI * 2, t);
             }
 
