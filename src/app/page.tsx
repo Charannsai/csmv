@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useInView, Variants } from "framer-motion";
 import { Shield, ChevronRight, Server, Code, Layers, Cpu, Compass, Globe2, Activity } from "lucide-react";
 import { Canvas } from "@react-three/fiber";
 import { Scene } from "@/components/3d/Scene";
@@ -10,7 +10,7 @@ import { ReactLenis } from "lenis/react";
 import Marquee from "react-fast-marquee";
 
 // --- ANIMATION VARIANTS FOR CLASSY AGENCY FEEL ---
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -18,7 +18,7 @@ const staggerContainer = {
   }
 };
 
-const fadeUpSpring = {
+const fadeUpSpring: Variants = {
   hidden: { opacity: 0, y: 50, scale: 0.95 },
   show: {
     opacity: 1,
@@ -269,12 +269,12 @@ export default function Home() {
               { step: "03", title: "Stealth Deployment", desc: "Zero-downtime migration protocols executed in isolated environments." },
               { step: "04", title: "Continuous Ops", desc: "24/7 AI-monitored load balancing and active threat mitigation." }
             ].map((flow, idx) => (
-              <div key={idx} className="w-[400px] sm:w-[500px] h-[350px] bg-[#0A0A0F] border border-white/10 rounded-3xl p-12 flex flex-col justify-between shrink-0 relative overflow-hidden group hover:border-accent/40 transition-colors duration-500">
-                <div className="text-6xl font-black text-white/5 group-hover:text-white/10 transition-colors absolute top-8 right-8">{flow.step}</div>
-                <div className="w-12 h-12 bg-white flex items-center justify-center rounded-full text-black font-black text-xl mb-6 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+              <div key={idx} className="w-[400px] sm:w-[500px] h-[350px] bg-[#0A0A0F] border border-white/10 rounded-[2rem] p-12 flex flex-col justify-between shrink-0 relative overflow-hidden group hover:border-accent/40 transition-colors duration-500">
+                <div className="text-8xl font-black text-white/5 group-hover:text-white/10 transition-colors absolute -top-4 -right-4">{flow.step}</div>
+                <div className="w-16 h-16 bg-white flex items-center justify-center rounded-full text-black font-black text-xl mb-6 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                   {flow.step}
                 </div>
-                <div>
+                <div className="z-10 relative">
                   <h4 className="text-3xl font-bold mb-4">{flow.title}</h4>
                   <p className="text-slate-400 text-lg leading-relaxed font-light">{flow.desc}</p>
                 </div>
