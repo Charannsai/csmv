@@ -203,9 +203,9 @@ export default function Home() {
               className="flex gap-8 w-max pl-6 pr-6 lg:pl-[calc(50vw-616px)] lg:pr-[50vw]"
             >
               {[
-                { i: Server, t: "Global Edge Cloud", d: "Zero latency globally. We architect horizontally scalable servers that replicate in real-time instantly.", c: "from-[#12121A] to-[#0A0A0F]", b: "border-white/10" },
-                { i: Globe2, t: "Geo-Redundant Matrix", d: "Failovers are a thing of the past. Our multi-cloud architecture dynamically routes connections mathematically.", c: "from-[#0F171A] to-[#0A0F12]", b: "border-accent/20" },
-                { i: Fingerprint, t: "Cryptographic Mesh", d: "End-to-end military-grade network encryption layered over internal zero-trust architecture.", c: "from-[#1A0F1A] to-[#120A12]", b: "border-purple-500/20" }
+                { i: Layers, t: "Product Engineering", d: "From early-stage concepts to enterprise-grade platforms, we build intuitive and scalable digital products.", c: "from-[#12121A] to-[#0A0A0F]", b: "border-white/10" },
+                { i: Zap, t: "Tech Modernization", d: "We strengthen legacy infrastructure, optimizing for performance, security, and future horizontal scaling.", c: "from-[#0F171A] to-[#0A0F12]", b: "border-accent/20" },
+                { i: Activity, t: "Dedicated Teams", d: "Working as a seamless extension of your organization, combining technical depth and long-term partnership.", c: "from-[#1A0F1A] to-[#120A12]", b: "border-purple-500/20" }
               ].map((item, idx) => (
                 <div key={idx} className={`w-[80vw] lg:w-[800px] shrink-0 h-[450px] bg-gradient-to-br ${item.c} border ${item.b} rounded-[2rem] p-12 relative overflow-hidden group`}>
                   <div className="absolute -top-32 -right-32 w-96 h-96 bg-white/5 rounded-full blur-[100px] group-hover:scale-150 transition-transform duration-1000" />
@@ -233,14 +233,14 @@ export default function Home() {
             <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12">
               <div>
                 <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-primary mb-4 flex items-center gap-2">
-                  <Activity className="w-4 h-4" /> Operational Matrix
+                  <Activity className="w-4 h-4" /> The CSMV Approach
                 </h2>
                 <h3 className="text-5xl md:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 leading-none">
-                  Absolute <br /> Control.
+                  Outcomes, <br /> Not Just Code.
                 </h3>
               </div>
               <p className="text-slate-400 font-light text-lg max-w-sm">
-                Precision engineering requires absolute transparency. Interact with our modules to understand the core architecture.
+                We combine technical depth with structured execution to build highly reliable platforms for ambitious organizations.
               </p>
             </div>
 
