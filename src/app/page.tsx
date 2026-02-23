@@ -142,13 +142,13 @@ export default function Home() {
           {/* SEC 1: HERO */}
           <motion.div
             style={{ opacity: heroOpacity, scale: heroScale }}
-            className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
+            className="absolute top-[15vh] w-full flex flex-col items-center justify-center text-center px-6"
           >
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter leading-none mb-6">
               <span className="text-white">CSMV.</span><br />
               <span className="text-[#86868B]">Systems that last.</span>
             </h1>
-            <p className="text-xl md:text-3xl text-[#86868B] font-medium max-w-2xl">
+            <p className="text-xl md:text-2xl text-[#86868B] font-medium max-w-2xl mt-4">
               Pro-grade software engineering. Uncompromising scale.
             </p>
           </motion.div>

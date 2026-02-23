@@ -30,10 +30,10 @@ export function Scene() {
             let targetRotationZ = 0;
 
             if (scroll < 0.1) {
-                // Hero: Centered and massive
+                // Hero: Centered, lower, and slightly smaller
                 targetX = 0;
-                targetY = 0;
-                targetScale = 1.2;
+                targetY = -1.2;
+                targetScale = 1;
                 targetRotationZ = 0;
             } else if (scroll >= 0.1 && scroll < 0.2) {
                 // Transition to Statement 1
