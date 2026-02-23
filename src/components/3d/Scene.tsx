@@ -8,6 +8,8 @@ import * as THREE from "three";
 export function Scene() {
     const groupRef = useRef<THREE.Group>(null);
     const meshRef = useRef<THREE.Mesh>(null);
+    const matRef = useRef<any>(null);
+    const innerMatRef = useRef<THREE.MeshStandardMaterial>(null);
 
     // Creates an authentic brilliant-cut diamond profile
     const diamondPoints = useMemo(() => [
@@ -18,113 +20,116 @@ export function Scene() {
     ], []);
 
     useFrame((state, delta) => {
-        // Calculate precise scroll progress via window inner height
         const scrollVH = window.scrollY / window.innerHeight;
 
         if (groupRef.current) {
-            // Base rotation for the diamond
             groupRef.current.rotation.y += 0.003;
             if (meshRef.current) {
                 meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime / 4) * 0.2;
             }
 
-            // --- CHOREOGRAPHY OF THE DIAMOND ALONG SCROLL ---
             let targetX = 0;
             let targetY = 0;
             let targetScale = 1;
             let targetRotationZ = 0;
 
+            // Material Targets
+            let targetRoughness = 0.15;
+            let targetTransmission = 1;
+            let targetThickness = 0.5;
+            let targetOuterOpacity = 1;
+            let targetInnerOpacity = 0.1;
+            let targetColor = new THREE.Color("#FFFFFF");
+            let targetInnerColor = new THREE.Color("#FFFFFF");
+
             if (scrollVH < 0.5) {
-                // Hero: Diamond cleanly on the right
+                // Hero
                 targetX = 3.5;
                 targetY = 0;
                 targetScale = 0.9;
                 targetRotationZ = 0;
             } else if (scrollVH >= 0.5 && scrollVH < 1.0) {
-                // Transition to Statement 1 (Text Right, Diamond Left)
+                // Statement 1
                 const t = (scrollVH - 0.5) / 0.5;
                 targetX = THREE.MathUtils.lerp(3.5, -3.5, t);
                 targetY = 0;
                 targetScale = THREE.MathUtils.lerp(0.9, 0.7, t);
                 targetRotationZ = THREE.MathUtils.lerp(0, Math.PI / 2, t);
             } else if (scrollVH >= 1.0 && scrollVH < 1.5) {
-                // Steady at Statement 1: Diamond on LEFT
-                targetX = -3.5;
-                targetY = 0;
-                targetScale = 0.7;
-                targetRotationZ = Math.PI / 2;
-            } else if (scrollVH >= 1.5 && scrollVH < 2.0) {
-                // Transition to Statement 2 (Text Left, Diamond Right)
-                const t = (scrollVH - 1.5) / 0.5;
+                // Statement 2
+                const t = (scrollVH - 1.0) / 0.5;
                 targetX = THREE.MathUtils.lerp(-3.5, 3.5, t);
                 targetY = 0;
                 targetScale = 0.7;
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI / 2, Math.PI, t);
-            } else if (scrollVH >= 2.0 && scrollVH < 3.0) {
-                // Steady at Statement 2: Diamond on RIGHT
-                targetX = 3.5;
-                targetY = 0;
-                targetScale = 0.7;
-                targetRotationZ = Math.PI;
-            } else if (scrollVH >= 3.0 && scrollVH < 4.0) {
-                // Bento Box Start: Fly up and shrink to overlook the grid like a guiding star
-                const t = (scrollVH - 3.0) / 1.0;
+            } else if (scrollVH >= 1.5 && scrollVH < 2.5) {
+                // Bento Grid
+                const t = Math.min((scrollVH - 1.5) / 0.5, 1);
                 targetX = THREE.MathUtils.lerp(3.5, 0, t);
                 targetY = THREE.MathUtils.lerp(0, 3.5, t);
                 targetScale = THREE.MathUtils.lerp(0.7, 0.4, t);
-                targetRotationZ = Math.PI;
-            } else if (scrollVH >= 4.0 && scrollVH < 5.0) {
-                // Steady over Bento Box
-                targetX = 0;
-                targetY = 3.5;
-                targetScale = 0.4;
-                targetRotationZ = Math.PI;
-            } else if (scrollVH >= 5.0 && scrollVH < 5.5) {
-                // Transition to Horizontal Panning Gallery: Fly down to intercept tracking cards
-                const t = (scrollVH - 5.0) / 0.5;
-                targetX = THREE.MathUtils.lerp(0, -3.2, t);
-                targetY = THREE.MathUtils.lerp(3.5, 0, t);
-                targetScale = THREE.MathUtils.lerp(0.4, 0.8, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI, Math.PI * 1.5, t);
-            } else if (scrollVH >= 5.5 && scrollVH < 8.0) {
-                // Steady during Horizontal Panning: Sit confidently on the left as cards rush by
-                targetX = -3.2;
-                targetY = 0;
-                targetScale = 0.8;
-                targetRotationZ = Math.PI * 1.5;
-            } else if (scrollVH >= 8.0 && scrollVH < 8.7) {
-                // Transition to Accordion Area: Dive perfectly into the Right-Side Dark Dock Container
-                const t = (scrollVH - 8.0) / 0.7;
-                targetX = THREE.MathUtils.lerp(-3.2, 2.5, t);
-                targetY = THREE.MathUtils.lerp(0, 0.5, t);
-                targetScale = THREE.MathUtils.lerp(0.8, 0.55, t);
+                targetInnerColor.set("#86868B");
+            } else if (scrollVH >= 2.5 && scrollVH < 3.5) {
+                // The Hologram Core (Wireframe Mode)
+                const t = Math.min((scrollVH - 2.5) / 0.5, 1);
+                targetX = THREE.MathUtils.lerp(0, 3.5, t);
+                targetY = THREE.MathUtils.lerp(3.5, 0, t);
+                targetScale = THREE.MathUtils.lerp(0.4, 1.4, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 1.5, Math.PI * 2, t);
-            } else if (scrollVH >= 8.7 && scrollVH < 9.5) {
-                // Steady inside the Accordion Dock
-                targetX = 2.5;
-                targetY = 0.5;
-                targetScale = 0.55;
-                targetRotationZ = Math.PI * 2;
-            } else if (scrollVH >= 9.5 && scrollVH < 10.2) {
-                // Transition to Final Footer CTA: Expand massively as an end cap
-                const t = (scrollVH - 9.5) / 0.7;
-                targetX = THREE.MathUtils.lerp(2.5, 0, t);
-                targetY = THREE.MathUtils.lerp(0.5, 0, t);
-                targetScale = THREE.MathUtils.lerp(0.55, 2.5, t);
-                targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2, Math.PI * 2.5, t);
-            } else {
-                // Majestic massive steady state right behind "Start Building"
-                targetX = 0;
+
+                // Material shifts to pure wireframe
+                targetTransmission = 0;
+                targetOuterOpacity = 0.05;
+                targetInnerOpacity = 0.5;
+                targetInnerColor.set("#38BDF8"); // Sky blue core
+            } else if (scrollVH >= 3.5 && scrollVH < 4.5) {
+                // The Vault (Monolith Mode)
+                const t = Math.min((scrollVH - 3.5) / 0.5, 1);
+                targetX = THREE.MathUtils.lerp(3.5, -3.5, t);
                 targetY = 0;
-                targetScale = 2.5;
-                targetRotationZ = Math.PI * 2.5;
+                targetScale = 1.4;
+                targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2, Math.PI * 2.5, t);
+
+                // Material hardens
+                targetTransmission = 0;
+                targetRoughness = 0.4;
+                targetOuterOpacity = 0.95;
+                targetThickness = 5;
+                targetInnerOpacity = 0;
+                targetColor.set("#050505");
+            } else if (scrollVH >= 4.5) {
+                // Footer CTA (Massive Crystal)
+                const t = Math.min((scrollVH - 4.5) / 0.5, 1);
+                targetX = THREE.MathUtils.lerp(-3.5, 0, t);
+                targetY = 0;
+                targetScale = THREE.MathUtils.lerp(1.4, 2.8, t);
+                targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2.5, Math.PI * 3.5, t);
+
+                targetRoughness = 0.05;
+                targetInnerOpacity = 0.1;
+                targetColor.set("#FFFFFF");
             }
 
-            // Smoothly Damp towards the targets using framerate-independent easing
+            // Apply transformations
             groupRef.current.position.x = THREE.MathUtils.damp(groupRef.current.position.x, targetX, 5, delta);
             groupRef.current.position.y = THREE.MathUtils.damp(groupRef.current.position.y, targetY, 5, delta);
-            groupRef.current.scale.setScalar(THREE.MathUtils.damp(groupRef.current.scale.x, targetScale, 5, delta));
-            groupRef.current.rotation.z = THREE.MathUtils.damp(groupRef.current.rotation.z, targetRotationZ, 5, delta);
+            groupRef.current.scale.setScalar(THREE.MathUtils.damp(groupRef.current.scale.x, targetScale, 4, delta));
+            groupRef.current.rotation.z = THREE.MathUtils.damp(groupRef.current.rotation.z, targetRotationZ, 4, delta);
+
+            // Apply Material Morphing
+            if (matRef.current) {
+                matRef.current.roughness = THREE.MathUtils.damp(matRef.current.roughness, targetRoughness, 4, delta);
+                matRef.current.transmission = THREE.MathUtils.damp(matRef.current.transmission, targetTransmission, 4, delta);
+                matRef.current.thickness = THREE.MathUtils.damp(matRef.current.thickness, targetThickness, 4, delta);
+                matRef.current.opacity = THREE.MathUtils.damp(matRef.current.opacity, targetOuterOpacity, 4, delta);
+                matRef.current.transparent = targetOuterOpacity < 1;
+                matRef.current.color.lerp(targetColor, delta * 4);
+            }
+            if (innerMatRef.current) {
+                innerMatRef.current.opacity = THREE.MathUtils.damp(innerMatRef.current.opacity, targetInnerOpacity, 4, delta);
+                innerMatRef.current.color.lerp(targetInnerColor, delta * 4);
+            }
         }
     });
 
@@ -148,6 +153,7 @@ export function Scene() {
                                 args={[diamondPoints, 8]}
                             />
                             <MeshTransmissionMaterial
+                                ref={matRef}
                                 backside
                                 samples={16}
                                 resolution={1024}
@@ -165,7 +171,7 @@ export function Scene() {
                         </mesh>
                         <mesh castShadow receiveShadow scale={0.9}>
                             <icosahedronGeometry args={[2, 1]} />
-                            <meshStandardMaterial color="#FFFFFF" wireframe wireframeLinewidth={1} transparent opacity={0.1} />
+                            <meshStandardMaterial ref={innerMatRef} color="#FFFFFF" wireframe wireframeLinewidth={1} transparent opacity={0.1} />
                         </mesh>
                     </Float>
                 </PresentationControls>

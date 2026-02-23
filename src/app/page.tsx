@@ -101,22 +101,18 @@ export default function Home() {
 
   const smoothY = useSpring(scrollYProgress, { stiffness: 40, damping: 20 });
 
-  // SCROLL CHOREOGRAPHY (Apple-like sticky fades)
-  // Hero (0% -> 15%)
-  const heroOpacity = useTransform(smoothY, [0, 0.1, 0.15], [1, 1, 0]);
-  const heroScale = useTransform(smoothY, [0, 0.15], [1, 0.95]);
+  // SCROLL CHOREOGRAPHY
+  // Hero (0% -> 30%)
+  const heroOpacity = useTransform(smoothY, [0, 0.2, 0.3], [1, 1, 0]);
+  const heroScale = useTransform(smoothY, [0, 0.3], [1, 0.95]);
 
-  // Statement 1 (18% -> 35%)
-  const s1Opacity = useTransform(smoothY, [0.15, 0.22, 0.3, 0.35], [0, 1, 1, 0]);
-  const s1Y = useTransform(smoothY, [0.15, 0.35], [50, -50]);
+  // Statement 1 (30% -> 60%)
+  const s1Opacity = useTransform(smoothY, [0.2, 0.3, 0.5, 0.6], [0, 1, 1, 0]);
+  const s1Y = useTransform(smoothY, [0.2, 0.6], [50, -50]);
 
-  // Statement 2 (38% -> 55%)
-  const s2Opacity = useTransform(smoothY, [0.35, 0.42, 0.5, 0.55], [0, 1, 1, 0]);
-  const s2Y = useTransform(smoothY, [0.35, 0.55], [50, -50]);
-
-  // Bento Box Entrance (60% -> 100%)
-  const bentoOpacity = useTransform(smoothY, [0.6, 0.7], [0, 1]);
-  const bentoY = useTransform(smoothY, [0.6, 0.7], [100, 0]);
+  // Statement 2 (60% -> 100%)
+  const s2Opacity = useTransform(smoothY, [0.5, 0.6, 0.9, 1], [0, 1, 1, 0]);
+  const s2Y = useTransform(smoothY, [0.5, 1], [50, -50]);
   return (
     <ReactLenis root options={{ smoothWheel: true, lerp: 0.08 }}>
       <div className="relative bg-[#000000] text-white selection:bg-white selection:text-black">
@@ -137,8 +133,8 @@ export default function Home() {
           )}
         </div>
 
-        {/* --- SECTION 1: STICKY HERO (400vh) --- */}
-        <div ref={stickyRef} className="h-[400vh] relative z-10">
+        {/* --- SECTION 1: STICKY HERO (250vh removes the gap) --- */}
+        <div ref={stickyRef} className="h-[250vh] relative z-10">
           <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden pointer-events-none">
 
             {/* SEC 1: HERO */}
@@ -187,18 +183,23 @@ export default function Home() {
 
         </div>
 
-        {/* --- SECTION 2: BENTO BOX GRID --- */}
-        <div className="relative z-20 w-full bg-black py-32 px-6">
+        {/* --- SECTION 2: BENTO GRID --- */}
+        <div className="relative z-20 w-full bg-black py-32 px-6 border-t border-white/5">
           <div className="w-full max-w-6xl mx-auto">
-            <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
+            >
               <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6">
                 Everything you need. <br /> <span className="text-[#86868B]">Nothing you don't.</span>
               </h2>
-            </div>
-            {/* THE GRID */}
+            </motion.div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
-              {/* Large feature 1 */}
-              <div className="md:col-span-2 rounded-[2rem] bg-[#111111] border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors relative overflow-hidden group">
+              <div className="md:col-span-2 rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors relative overflow-hidden group">
                 <div className="relative z-10">
                   <Code className="w-10 h-10 text-white mb-6" />
                   <h3 className="text-3xl font-semibold text-white tracking-tight mb-2">Product Engineering</h3>
@@ -207,8 +208,8 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              {/* Square feature */}
-              <div className="rounded-[2rem] bg-[#111111] border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors">
+
+              <div className="rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors">
                 <Server className="w-10 h-10 text-white mb-6" />
                 <div>
                   <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">Tech Modernization</h3>
@@ -217,8 +218,8 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              {/* Square feature */}
-              <div className="rounded-[2rem] bg-[#111111] border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors">
+
+              <div className="rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors">
                 <Shield className="w-10 h-10 text-white mb-6" />
                 <div>
                   <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">Accountability</h3>
@@ -227,8 +228,8 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              {/* Large feature 2 */}
-              <div className="md:col-span-2 rounded-[2rem] bg-[#111111] border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors relative overflow-hidden group">
+
+              <div className="md:col-span-2 rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors relative overflow-hidden group">
                 <div className="relative z-10">
                   <Activity className="w-10 h-10 text-white mb-6" />
                   <h3 className="text-3xl font-semibold text-white tracking-tight mb-2">Dedicated Teams</h3>
@@ -241,125 +242,55 @@ export default function Home() {
           </div>
         </div>
 
-        {/* --- SECTION 3: HORIZONTAL PANNING GALLERY --- */}
-        <section ref={containerRef} className="relative z-20 w-full h-[300vh] bg-black">
-          <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
-            <div className="w-full max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
-              <div>
-                <h2 className="text-4xl md:text-5xl font-black tracking-tighter">Core Services.</h2>
-                <p className="text-[#86868B] font-medium mt-2">Delivering reliable, scalable, and high-performance software systems.</p>
-              </div>
-            </div>
+        {/* --- SECTION 3: THE HOLOGRAM CORE (Code/System view) --- */}
+        <section className="relative w-full h-screen bg-black flex items-center overflow-hidden border-t border-white/5">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,_var(--tw-gradient-stops))] from-white/[0.03] via-black to-black"></div>
 
-            <motion.div
-              style={{ x: useTransform(useSpring(useScroll({ target: containerRef }).scrollYProgress, { stiffness: 40, damping: 20 }), [0.1, 0.5], ["0%", "-66%"]) }}
-              className="flex gap-8 w-max pl-6 pr-6 lg:pl-[calc(50vw-616px)] lg:pr-[50vw]"
-            >
-              {[
-                { i: Layers, t: "Product Engineering", d: "From early-stage concepts to enterprise-grade platforms, we build intuitive and scalable digital products." },
-                { i: Zap, t: "Tech Modernization", d: "We strengthen legacy infrastructure, optimizing for performance, security, and future horizontal scaling." },
-                { i: Activity, t: "Dedicated Teams", d: "Working as a seamless extension of your organization, combining technical depth and long-term partnership." }
-              ].map((item, idx) => (
-                <div key={idx} className={`w-[80vw] lg:w-[800px] shrink-0 h-[450px] bg-[#111111] border border-white/5 hover:border-white/10 rounded-[2rem] p-12 relative overflow-hidden group transition-colors duration-500`}>
-                  <div className="flex flex-col justify-between h-full relative z-10">
-                    <div className="flex justify-between items-start">
-                      <div className="w-20 h-20 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-center backdrop-blur-md">
-                        <item.i className="w-10 h-10 text-white" />
-                      </div>
-                      <h2 className="text-8xl font-black text-white/5 group-hover:text-white/10 transition-colors">0{idx + 1}</h2>
-                    </div>
-                    <div>
-                      <h3 className="text-3xl font-semibold mb-2">{item.t}</h3>
-                      <p className="text-[#86868B] text-lg max-w-md leading-snug">{item.d}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
+          <div className="w-full max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2">
+            <div className="flex flex-col justify-center">
+              <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-4">The Hologram Core</h2>
+              <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-none">
+                Absolute <br /> Transparency.
+              </h3>
+              <p className="text-xl text-[#86868B] font-medium leading-relaxed max-w-md">
+                Watch as the diamond drops its frosted glass shell and reveals the wireframe beneath. We treat your infrastructure exactly the same way. No black boxes. No hidden dependencies.
+              </p>
+            </div>
+            {/* The right side is intentionally implicitly empty to allow the 3D Hologram Diamond to shine here */}
           </div>
         </section>
 
-        {/* --- SECTION 4: INTERACTIVE ACCORDION SHOWCASE --- */}
-        <section className="relative z-20 py-40 bg-black overflow-hidden border-t border-white/5">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12">
-              <div>
-                <h2 className="text-sm font-semibold tracking-[0.3em] uppercase text-[#86868B] mb-4 flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-white/50" /> The CSMV Approach
-                </h2>
-                <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white leading-none">
-                  Outcomes, <br /> Not Just Code.
-                </h3>
-              </div>
-              <p className="text-[#86868B] text-lg max-w-sm font-medium">
-                We combine technical depth with structured execution to build highly reliable platforms for ambitious organizations.
+        {/* --- SECTION 4: THE VAULT (Security/Robustness view) --- */}
+        <section className="relative w-full h-screen bg-black flex items-center overflow-hidden border-t border-white/5">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.08] mix-blend-overlay"></div>
+
+          <div className="w-full max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-end text-right">
+            <div className="max-w-md">
+              <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-4 flex items-center justify-end gap-2 text-right">
+                <Lock className="w-4 h-4" /> Zero-Trust Security
+              </h2>
+              <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-none">
+                The <br /> Vault.
+              </h3>
+              <p className="text-xl text-[#86868B] font-medium leading-relaxed">
+                Notice the diamond harden into an impenetrable, chromatic monolith? Our systems enforce military-grade security layers automatically at the edge before a single packet drops payload internally.
               </p>
             </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-6">
-              {/* Left Side: Interactive List */}
-              <div className="lg:col-span-7 flex flex-col gap-4">
-                {featuresList.map((step, idx) => {
-                  const isActive = activeFeature === idx;
-                  return (
-                    <div
-                      key={idx}
-                      onMouseEnter={() => setActiveFeature(idx)}
-                      className={`group relative overflow-hidden bg-[#111111] border rounded-[2rem] p-8 md:p-10 cursor-pointer transition-all duration-500
-                      ${isActive ? 'border-white/20 bg-[#161616]' : 'border-white/5 hover:border-white/10'}
-                    `}
-                    >
-                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
-                        <div className="flex items-center gap-6">
-                          <div className={`w-16 h-16 rounded-2xl bg-black border flex items-center justify-center transition-colors shrink-0
-                            ${isActive ? 'border-white/30' : 'border-white/5'}
-                         `}>
-                            <step.icon className={`w-8 h-8 transition-colors ${isActive ? 'text-white' : 'text-[#86868B]'}`} />
-                          </div>
-                          <h4 className={`text-2xl md:text-3xl font-semibold tracking-tight transition-colors ${isActive ? 'text-white' : 'text-[#86868B]'}`}>
-                            {step.title}
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-
-              {/* Right Side: The Focus Dock */}
-              <div className="lg:col-span-5 relative w-full h-[600px] lg:h-auto rounded-[3rem] bg-[#111111] border border-white/5 flex flex-col justify-end p-10 md:p-12 overflow-hidden">
-                <div className="relative z-10 w-full bg-black/80 border border-white/10 p-8 rounded-3xl mt-auto shadow-xl transition-all duration-500 backdrop-blur-md">
-                  <div className="mb-4 flex items-center gap-3">
-                    <span className="flex h-3 w-3"><span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-white opacity-75"></span><span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span></span>
-                    <span className="text-xs font-semibold uppercase tracking-widest text-white">{featuresList[activeFeature].stat}</span>
-                  </div>
-
-                  <motion.div
-                    key={activeFeature}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h4 className="text-3xl font-semibold mb-4 tracking-tighter leading-tight text-white">{featuresList[activeFeature].title}</h4>
-                    <p className="text-[#86868B] leading-relaxed mb-8">{featuresList[activeFeature].desc}</p>
-                  </motion.div>
-
-                  <MagneticButton className="w-full py-4 bg-white text-black rounded-xl font-semibold uppercase tracking-widest text-sm hover:scale-[1.02] transition-transform">
-                    Start a Conversation
-                  </MagneticButton>
-                </div>
-              </div>
-            </div>
+            {/* The left side is open for the dark monolith diamond */}
           </div>
         </section>
 
         {/* --- SECTION 5: FOOTER CTA --- */}
-        <section className="relative z-20 h-screen bg-black overflow-hidden flex items-center justify-center border-t border-white/5">
-          <div className="text-center flex flex-col items-center z-10">
-            <h2 className="text-7xl md:text-9xl font-semibold tracking-tighter mb-8 leading-[0.9] text-white">
-              Start <br /> Building.
+        <section className="relative z-20 h-[80vh] bg-black overflow-hidden flex items-center justify-center border-t border-white/5">
+          <div className="absolute inset-0 flex items-center justify-center">
+            {/* Creates a subtle glow behind the massive footer diamond */}
+            <div className="w-[800px] h-[800px] bg-white/5 rounded-full blur-[120px]"></div>
+          </div>
+          <div className="text-center flex flex-col items-center z-10 mix-blend-difference">
+            <h2 className="text-[6rem] md:text-[10rem] font-semibold tracking-tighter mb-8 leading-[0.8] text-white">
+              Start.
             </h2>
-            <MagneticButton className="px-16 py-6 border border-white text-white rounded-full font-semibold uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-colors duration-300">
+            <MagneticButton className="px-12 py-5 border border-white/20 bg-white/10 backdrop-blur-xl text-white rounded-full font-semibold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300">
               Partner With Us
             </MagneticButton>
           </div>
