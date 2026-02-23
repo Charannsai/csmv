@@ -122,13 +122,13 @@ export function Scene() {
                                 color="#FFFFFF"
                             />
                         </mesh>
-                        <mesh castShadow receiveShadow scale={0.9}>
-                            <icosahedronGeometry args={[2, 1]} />
+                        <mesh castShadow receiveShadow scale={0.75}>
+                            <octahedronGeometry args={[1.4, 0]} />
                             <meshStandardMaterial color="#FFFFFF" wireframe wireframeLinewidth={1} transparent opacity={0.1} />
                         </mesh>
                     </Float>
                 </PresentationControls>
-                <ContactShadows position={[0, -3.5, 0]} opacity={0.5} scale={15} blur={2.5} far={4.5} color="#6366F1" />
+                <ContactShadows position={[0, -3.5, 0]} opacity={0.5} scale={15} blur={2.5} far={4.5} color="#FFFFFF" />
             </group>
 
             <Environment preset="city" />
