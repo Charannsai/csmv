@@ -1,13 +1,21 @@
 "use client";
 
 import { useFrame } from "@react-three/fiber";
-import { Float, Environment, ContactShadows, PresentationControls, MeshTransmissionMaterial } from "@react-three/drei";
-import { useRef } from "react";
+import { Float, PresentationControls, MeshTransmissionMaterial } from "@react-three/drei";
+import { useRef, useMemo } from "react";
 import * as THREE from "three";
 
 export function Scene() {
     const groupRef = useRef<THREE.Group>(null);
     const meshRef = useRef<THREE.Mesh>(null);
+
+    // Creates an authentic brilliant-cut diamond profile
+    const diamondPoints = useMemo(() => [
+        new THREE.Vector2(0, -1.2),    // Culet (bottom point)
+        new THREE.Vector2(1.2, 0),     // Girdle (widest edge)
+        new THREE.Vector2(0.7, 0.5),   // Table edge (top angled cut)
+        new THREE.Vector2(0, 0.5)      // Table center (flat top)
+    ], []);
 
     useFrame((state, delta) => {
         // Calculate precise scroll progress (0 to 1)
@@ -93,8 +101,11 @@ export function Scene() {
                     azimuth={[-Math.PI / 1.4, Math.PI / 2]}
                 >
                     <Float speed={1.5} rotationIntensity={1} floatIntensity={1}>
-                        <mesh ref={meshRef} castShadow receiveShadow scale={[1, 1.4, 1]}>
-                            <octahedronGeometry args={[1.5, 0]} />
+                        <mesh ref={meshRef} castShadow receiveShadow scale={[0.8, 0.8, 0.8]}>
+                            <latheGeometry
+                                args={[diamondPoints, 8]}
+                                onUpdate={geom => geom.computeFlatVertexNormals()}
+                            />
                             <MeshTransmissionMaterial
                                 backside
                                 samples={16}
