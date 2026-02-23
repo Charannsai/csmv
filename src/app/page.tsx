@@ -232,10 +232,10 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12">
               <div>
-                <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-primary mb-4 flex items-center gap-2">
-                  <Activity className="w-4 h-4" /> The CSMV Approach
+                <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-slate-300 mb-4 flex items-center gap-2">
+                  <Activity className="w-4 h-4 text-white/50" /> The CSMV Approach
                 </h2>
-                <h3 className="text-5xl md:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 leading-none">
+                <h3 className="text-5xl md:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500 leading-none">
                   Outcomes, <br /> Not Just Code.
                 </h3>
               </div>
@@ -254,30 +254,30 @@ export default function Home() {
                     <div
                       key={idx}
                       onMouseEnter={() => setActiveFeature(idx)}
-                      className={`group relative overflow-hidden bg-[#0A0A0F] border rounded-[2rem] p-8 md:p-10 cursor-pointer cursor-crosshair transition-all duration-500
-                      ${isActive ? 'bg-[#12121B] border-white/20' : 'border-white/5 hover:bg-[#12121B] hover:border-white/20'}
+                      className={`group relative overflow-hidden bg-[#0A0A0A] border rounded-[2rem] p-8 md:p-10 cursor-pointer transition-all duration-500
+                      ${isActive ? 'border-white/20' : 'border-white/5 hover:border-white/10'}
                     `}
                     >
-                      <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b transition-colors duration-500
-                       ${isActive ? 'from-transparent via-primary/50 to-transparent' : 'from-transparent via-primary/0 to-transparent group-hover:via-primary/50'}
+                      <div className={`absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b transition-colors duration-500
+                       ${isActive ? 'from-transparent via-white/50 to-transparent' : 'from-transparent via-white/0 to-transparent group-hover:via-white/20'}
                     `} />
 
                       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
                         <div className="flex items-center gap-6">
-                          <div className={`w-16 h-16 rounded-2xl bg-black/50 border flex items-center justify-center transition-colors shadow-2xl shrink-0
-                            ${isActive ? 'border-primary/50' : 'border-white/10 group-hover:border-primary/50'}
+                          <div className={`w-16 h-16 rounded-2xl bg-black/40 border flex items-center justify-center transition-colors shrink-0 backdrop-blur-md
+                            ${isActive ? 'border-white/30' : 'border-white/5 group-hover:border-white/20'}
                          `}>
-                            <step.icon className={`w-8 h-8 transition-colors ${isActive ? 'text-primary' : 'text-white/50 group-hover:text-primary'}`} />
+                            <step.icon className={`w-8 h-8 transition-colors ${isActive ? 'text-white' : 'text-slate-500 group-hover:text-slate-300'}`} />
                           </div>
-                          <h4 className={`text-2xl md:text-3xl font-bold tracking-tight transition-colors ${isActive ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
+                          <h4 className={`text-2xl md:text-3xl font-bold tracking-tight transition-colors ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'}`}>
                             {step.title}
                           </h4>
                         </div>
 
                         <div className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 md:ml-auto shrink-0 hidden md:flex
-                         ${isActive ? 'bg-primary border-primary' : 'border-white/10 group-hover:bg-primary group-hover:border-primary'}
+                         ${isActive ? 'bg-white text-black border-white' : 'border-white/10 text-white/50 group-hover:border-white/30 group-hover:text-white'}
                       `}>
-                          <ChevronRight className={`w-5 h-5 transition-all ${isActive ? 'text-white' : 'text-white/50 group-hover:text-white group-hover:translate-x-1'}`} />
+                          <ChevronRight className={`w-5 h-5 transition-all ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`} />
                         </div>
                       </div>
                     </div>
@@ -286,16 +286,16 @@ export default function Home() {
               </div>
 
               {/* Right Side: The Diamond Dock (Massive Vertical Target) */}
-              <div className="lg:col-span-5 relative w-full h-[600px] lg:h-auto rounded-[3rem] bg-gradient-to-br from-[#101018] to-[#0A0A0F] border border-primary/20 overflow-hidden flex flex-col justify-end p-10 md:p-12">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.1)_0%,transparent_70%)]" />
+              <div className="lg:col-span-5 relative w-full h-[600px] lg:h-auto rounded-[3rem] bg-[#0A0A0A] border border-white/5 hover:border-white/10 transition-colors duration-500 overflow-hidden flex flex-col justify-end p-10 md:p-12">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.03)_0%,transparent_70%)]" />
 
                 {/* Empty space at the top reserved for the scrolling 3D Diamond to land */}
                 <div className="absolute top-0 right-0 w-full h-1/2 pointer-events-none" />
 
-                <div className="relative z-10 w-full backdrop-blur-md bg-black/40 border border-white/10 p-8 rounded-3xl mt-auto shadow-2xl transition-all duration-500">
+                <div className="relative z-10 w-full backdrop-blur-md bg-black/40 border border-white/5 p-8 rounded-3xl mt-auto shadow-xl transition-all duration-500">
                   <div className="mb-4 flex items-center gap-3">
-                    <span className="flex h-3 w-3"><span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-primary opacity-75"></span><span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span></span>
-                    <span className="text-xs font-bold uppercase tracking-widest text-primary">{featuresList[activeFeature].stat}</span>
+                    <span className="flex h-3 w-3"><span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-white/50 opacity-75"></span><span className="relative inline-flex rounded-full h-3 w-3 bg-white/80"></span></span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-slate-400">{featuresList[activeFeature].stat}</span>
                   </div>
 
                   <motion.div
@@ -325,7 +325,7 @@ export default function Home() {
               scale: useTransform(smoothY, [0.8, 1], [0.1, 3]),
               opacity: useTransform(smoothY, [0.8, 0.9], [0, 1])
             }}
-            className="absolute w-[800px] h-[800px] bg-primary rounded-full blur-[100px] opacity-30 mix-blend-screen"
+            className="absolute w-[800px] h-[800px] bg-white rounded-full blur-[120px] opacity-10 mix-blend-screen"
           />
 
           <motion.div
