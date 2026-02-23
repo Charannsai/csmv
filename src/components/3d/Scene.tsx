@@ -18,10 +18,8 @@ export function Scene() {
     ], []);
 
     useFrame((state, delta) => {
-        // Calculate precise scroll progress (0 to 1)
-        const scrollY = window.scrollY;
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        const scroll = maxScroll > 0 ? scrollY / maxScroll : 0;
+        // Calculate precise scroll progress via window inner height
+        const scrollVH = window.scrollY / window.innerHeight;
 
         if (groupRef.current) {
             // Base rotation for the diamond
@@ -31,51 +29,95 @@ export function Scene() {
             }
 
             // --- CHOREOGRAPHY OF THE DIAMOND ALONG SCROLL ---
-            // We interpolate the target position and scale based on scroll percentage.
             let targetX = 0;
             let targetY = 0;
             let targetScale = 1;
             let targetRotationZ = 0;
 
-            if (scroll < 0.1) {
-                // Hero: Diamond cleanly on the right, much smaller
+            if (scrollVH < 0.5) {
+                // Hero: Diamond cleanly on the right
                 targetX = 3.5;
                 targetY = 0;
                 targetScale = 0.9;
                 targetRotationZ = 0;
-            } else if (scroll >= 0.1 && scroll < 0.2) {
+            } else if (scrollVH >= 0.5 && scrollVH < 1.0) {
                 // Transition to Statement 1 (Text Right, Diamond Left)
-                const t = (scroll - 0.1) / 0.1;
+                const t = (scrollVH - 0.5) / 0.5;
                 targetX = THREE.MathUtils.lerp(3.5, -3.5, t);
                 targetY = 0;
                 targetScale = THREE.MathUtils.lerp(0.9, 0.7, t);
                 targetRotationZ = THREE.MathUtils.lerp(0, Math.PI / 2, t);
-            } else if (scroll >= 0.2 && scroll < 0.28) {
+            } else if (scrollVH >= 1.0 && scrollVH < 1.5) {
                 // Steady at Statement 1: Diamond on LEFT
                 targetX = -3.5;
                 targetY = 0;
                 targetScale = 0.7;
                 targetRotationZ = Math.PI / 2;
-            } else if (scroll >= 0.28 && scroll < 0.38) {
+            } else if (scrollVH >= 1.5 && scrollVH < 2.0) {
                 // Transition to Statement 2 (Text Left, Diamond Right)
-                const t = (scroll - 0.28) / 0.1;
+                const t = (scrollVH - 1.5) / 0.5;
                 targetX = THREE.MathUtils.lerp(-3.5, 3.5, t);
                 targetY = 0;
                 targetScale = 0.7;
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI / 2, Math.PI, t);
-            } else if (scroll >= 0.38 && scroll < 0.52) {
+            } else if (scrollVH >= 2.0 && scrollVH < 3.0) {
                 // Steady at Statement 2: Diamond on RIGHT
                 targetX = 3.5;
                 targetY = 0;
                 targetScale = 0.7;
                 targetRotationZ = Math.PI;
-            } else {
-                // Bento Box section: Diamond moves up and away as we scroll past it
-                const t = Math.min((scroll - 0.52) / 0.15, 1);
+            } else if (scrollVH >= 3.0 && scrollVH < 4.0) {
+                // Bento Box Start: Fly up and shrink to overlook the grid like a guiding star
+                const t = (scrollVH - 3.0) / 1.0;
                 targetX = THREE.MathUtils.lerp(3.5, 0, t);
-                targetY = THREE.MathUtils.lerp(0, 5, t); // Fly upwards
+                targetY = THREE.MathUtils.lerp(0, 3.5, t);
                 targetScale = THREE.MathUtils.lerp(0.7, 0.4, t);
+                targetRotationZ = Math.PI;
+            } else if (scrollVH >= 4.0 && scrollVH < 5.0) {
+                // Steady over Bento Box
+                targetX = 0;
+                targetY = 3.5;
+                targetScale = 0.4;
+                targetRotationZ = Math.PI;
+            } else if (scrollVH >= 5.0 && scrollVH < 5.5) {
+                // Transition to Horizontal Panning Gallery: Fly down to intercept tracking cards
+                const t = (scrollVH - 5.0) / 0.5;
+                targetX = THREE.MathUtils.lerp(0, -3.2, t);
+                targetY = THREE.MathUtils.lerp(3.5, 0, t);
+                targetScale = THREE.MathUtils.lerp(0.4, 0.8, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI, Math.PI * 1.5, t);
+            } else if (scrollVH >= 5.5 && scrollVH < 8.0) {
+                // Steady during Horizontal Panning: Sit confidently on the left as cards rush by
+                targetX = -3.2;
+                targetY = 0;
+                targetScale = 0.8;
+                targetRotationZ = Math.PI * 1.5;
+            } else if (scrollVH >= 8.0 && scrollVH < 8.7) {
+                // Transition to Accordion Area: Dive perfectly into the Right-Side Dark Dock Container
+                const t = (scrollVH - 8.0) / 0.7;
+                targetX = THREE.MathUtils.lerp(-3.2, 2.5, t);
+                targetY = THREE.MathUtils.lerp(0, 0.5, t);
+                targetScale = THREE.MathUtils.lerp(0.8, 0.55, t);
+                targetRotationZ = THREE.MathUtils.lerp(Math.PI * 1.5, Math.PI * 2, t);
+            } else if (scrollVH >= 8.7 && scrollVH < 9.5) {
+                // Steady inside the Accordion Dock
+                targetX = 2.5;
+                targetY = 0.5;
+                targetScale = 0.55;
+                targetRotationZ = Math.PI * 2;
+            } else if (scrollVH >= 9.5 && scrollVH < 10.2) {
+                // Transition to Final Footer CTA: Expand massively as an end cap
+                const t = (scrollVH - 9.5) / 0.7;
+                targetX = THREE.MathUtils.lerp(2.5, 0, t);
+                targetY = THREE.MathUtils.lerp(0.5, 0, t);
+                targetScale = THREE.MathUtils.lerp(0.55, 2.5, t);
+                targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2, Math.PI * 2.5, t);
+            } else {
+                // Majestic massive steady state right behind "Start Building"
+                targetX = 0;
+                targetY = 0;
+                targetScale = 2.5;
+                targetRotationZ = Math.PI * 2.5;
             }
 
             // Smoothly Damp towards the targets using framerate-independent easing
