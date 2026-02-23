@@ -77,12 +77,20 @@ function MagneticButton({ children, className = "" }: { children: React.ReactNod
   );
 }
 
+const featuresList = [
+  { title: "Neural Resource Allocation", desc: "Our AI-driven auto-scaling engines continuously monitor traffic load and instantly provision compute parameters based on unpredictable spikes, guaranteeing zero downtime.", icon: Cpu, stat: "0.2ms Compute Latency" },
+  { title: "Quantum-Resistant Vaults", desc: "Data rest encryption utilizing post-quantum cryptographic algorithms. We secure your most sensitive intellectual property against attacks from future quantum computing arrays.", icon: Shield, stat: "Post-RSA Ready" },
+  { title: "Hyper-Fast CI/CD Pipelines", desc: "Custom integrations pushing massive codebase updates across thousands of nodes globally in fractional milliseconds. Deployment is continuous and flawless.", icon: Zap, stat: "Zero Downtime Deployments" },
+  { title: "Isolated Render Engines", desc: "Constructing completely isolated, mathematically perfect environments for your backend architecture, ensuring maximum system integrity.", icon: Layers, stat: "100% Isolation Matrix" }
+];
+
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const isHeroInView = useInView(heroRef, { margin: "0px 0px 500px 0px" });
 
   const [mounted, setMounted] = useState(false);
+  const [activeFeature, setActiveFeature] = useState(0);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
