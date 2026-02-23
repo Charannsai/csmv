@@ -1,7 +1,7 @@
 "use client";
 
 import { useFrame } from "@react-three/fiber";
-import { Float, PresentationControls, MeshTransmissionMaterial } from "@react-three/drei";
+import { Float, Environment, ContactShadows, PresentationControls, MeshTransmissionMaterial } from "@react-three/drei";
 import { useRef, useMemo } from "react";
 import * as THREE from "three";
 
