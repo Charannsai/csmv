@@ -177,7 +177,7 @@ export default function Home() {
 
         {/* --- HORIZONTAL PANNING GALLERY (Redesigned Section 2) --- */}
         <section className="relative z-20 w-full h-[300vh] bg-[#050505]">
-          <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+          <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
             <div className="w-full max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
               <div>
                 <h2 className="text-4xl md:text-5xl font-black tracking-tighter">Core Infrastructure.</h2>
@@ -192,7 +192,7 @@ export default function Home() {
             {/* Horizontal Track */}
             <motion.div
               style={{ x: useTransform(smoothY, [0.1, 0.5], ["0%", "-66%"]) }}
-              className="flex gap-8 px-6 w-[300vw] lg:w-[200vw]"
+              className="flex gap-8 w-max pl-6 pr-6 lg:pl-[calc(50vw-616px)] lg:pr-[50vw]"
             >
               {[
                 { i: Server, t: "Global Edge Cloud", d: "Zero latency globally. We architect horizontally scalable servers that replicate in real-time instantly.", c: "from-[#12121A] to-[#0A0A0F]", b: "border-white/10" },
