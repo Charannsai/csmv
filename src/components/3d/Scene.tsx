@@ -104,7 +104,6 @@ export function Scene() {
                         <mesh ref={meshRef} castShadow receiveShadow scale={[0.8, 0.8, 0.8]}>
                             <latheGeometry
                                 args={[diamondPoints, 8]}
-                                onUpdate={geom => geom.computeFlatVertexNormals()}
                             />
                             <MeshTransmissionMaterial
                                 backside
