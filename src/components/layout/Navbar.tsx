@@ -54,7 +54,7 @@ export default function Navbar() {
             className={cn(
                 "fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b",
                 scrolled
-                    ? "bg-[#050505]/80 backdrop-blur-xl border-white/10"
+                    ? "bg-black/40 backdrop-blur-2xl border-white/10"
                     : "bg-transparent border-transparent"
             )}
         >
@@ -86,7 +86,7 @@ export default function Navbar() {
                                 {/* Dropdown menu */}
                                 {link.subItems && (
                                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 pointer-events-none group-hover/navitem:opacity-100 group-hover/navitem:pointer-events-auto transition-all duration-300 w-[420px]">
-                                        <div className="bg-[#050505]/95 border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-xl">
+                                        <div className="bg-black/60 border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-2xl">
                                             {link.subItems.map((sub, idx) => (
                                                 <Link
                                                     key={idx}
@@ -134,7 +134,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="md:hidden border-t border-white/10 bg-[#050505]/95 backdrop-blur-2xl overflow-hidden"
+                        className="md:hidden border-t border-white/10 bg-black/60 backdrop-blur-3xl overflow-hidden"
                     >
                         <div className="pt-2 pb-3 space-y-1">
                             {links.map((link) => (
