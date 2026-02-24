@@ -284,10 +284,10 @@ export default function Home() {
         <section id="section-footer" className="relative z-20 min-h-screen bg-transparent overflow-hidden flex items-center justify-center border-t border-white/5">
           <div className="absolute inset-0 flex items-center justify-center">
             {/* Creates a subtle glow behind the massive footer diamond */}
-            <div className="w-[800px] h-[800px] bg-white/5 rounded-full blur-[120px]"></div>
+            <div className="w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-white/5 rounded-full blur-[80px] md:blur-[120px]"></div>
           </div>
-          <div className="text-center flex flex-col items-center z-10 mix-blend-difference">
-            <h2 className="text-[6rem] md:text-[10rem] font-semibold tracking-tighter mb-8 leading-[0.8] text-white">
+          <div className="text-center flex flex-col items-center z-10 mix-blend-difference px-6">
+            <h2 className="text-[4rem] sm:text-[6rem] md:text-[10rem] font-semibold tracking-tighter mb-8 leading-[0.8] text-white">
               Start.
             </h2>
             <MagneticButton className="px-12 py-5 border border-white/20 bg-white/10 backdrop-blur-xl text-white rounded-full font-semibold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300">
