@@ -105,15 +105,15 @@ export function Scene() {
             if (scrollVH < 0.3) {
                 // Hero
                 targetX = isMobile ? 0 : 3.5;
-                targetY = isMobile ? 2.5 : 0;
-                targetScale = isMobile ? 0.6 : 0.9;
+                targetY = isMobile ? 1.0 : 0;
+                targetScale = isMobile ? 0.8 : 0.9;
                 targetRotationZ = 0;
             } else if (scrollVH >= 0.3 && scrollVH < 0.45) {
                 // Transition to Statement 1
                 const t = (scrollVH - 0.3) / 0.15;
                 targetX = isMobile ? 0 : THREE.MathUtils.lerp(3.5, -3.5, t);
-                targetY = isMobile ? THREE.MathUtils.lerp(2.5, -2.5, t) : 0;
-                targetScale = isMobile ? THREE.MathUtils.lerp(0.6, 0.5, t) : THREE.MathUtils.lerp(0.9, 0.7, t);
+                targetY = isMobile ? THREE.MathUtils.lerp(1.0, -2.5, t) : 0;
+                targetScale = isMobile ? THREE.MathUtils.lerp(0.8, 0.5, t) : THREE.MathUtils.lerp(0.9, 0.7, t);
                 targetRotationZ = THREE.MathUtils.lerp(0, Math.PI / 2, t);
             } else if (scrollVH >= 0.45 && scrollVH < 0.75) {
                 // Statement 1 (Hold Left/Top)
