@@ -82,9 +82,6 @@ export function Scene() {
 
         if (groupRef.current) {
             groupRef.current.rotation.y += 0.003;
-            if (meshRef.current) {
-                meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime / 4) * 0.2;
-            }
 
             let targetX = 0;
             let targetY = 0;
