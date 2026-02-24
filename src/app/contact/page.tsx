@@ -1,112 +1,120 @@
-import { Building2, Mail, Phone } from "lucide-react";
+import { Metadata } from "next";
+import { Building2, Mail, Phone, ArrowRight } from "lucide-react";
 
-export const metadata = {
-    title: "Contact | Aura IT",
-    description: "Get in touch with enterprise IT consultants.",
+export const metadata: Metadata = {
+    title: "Contact | CSMV",
+    description: "Get in touch with enterprise IT consultants and software engineers.",
 };
 
 export default function ContactPage() {
     return (
-        <div className="bg-white min-h-screen">
-            <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
-                <div className="mx-auto max-w-2xl lg:mx-0">
-                    <h2 className="text-3xl font-bold tracking-tight text-slate-900">Let's craft your technological backbone.</h2>
-                    <p className="mt-6 text-lg leading-8 text-slate-600">
-                        Reach out for IT consulting, cloud migrations, vulnerability assessments, or custom engineering projects. Our senior architects normally respond within 24 hours.
+        <div className="min-h-screen bg-[#050505] pt-32 pb-24 relative overflow-hidden">
+            {/* Background elements */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/[0.03] blur-[120px] rounded-full pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+                <div className="max-w-3xl lg:mx-0 mb-20 md:mb-32">
+                    <p className="text-xs font-bold tracking-[0.2em] uppercase text-white/40 mb-4">Contact Us</p>
+                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-none">
+                        Let's build <br className="hidden sm:block" /> your backbone.
+                    </h1>
+                    <p className="text-lg md:text-xl text-[#86868B] leading-relaxed">
+                        Reach out for product engineering, infrastructure migrations, risk assessments, or team extension. Our technical leaders normally respond within 24 hours.
                     </p>
                 </div>
-                <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-                    <div>
-                        <h3 className="border-l border-primary pl-6 font-semibold text-slate-900">Global Headquarters</h3>
-                        <address className="border-l border-slate-200 pl-6 pt-2 not-italic text-slate-600">
-                            <p>404 Tech Innovation Park</p>
-                            <p>Suite 200, Enterprise Avenue</p>
-                            <p>San Francisco, CA 94107</p>
-                        </address>
-                    </div>
-                    <div>
-                        <h3 className="border-l border-primary pl-6 font-semibold text-slate-900">EMEA Hub</h3>
-                        <address className="border-l border-slate-200 pl-6 pt-2 not-italic text-slate-600">
-                            <p>12 Digital Square</p>
-                            <p>London</p>
-                            <p>EC1A 1BB, UK</p>
-                        </address>
-                    </div>
-                </div>
 
-                <div className="mt-16 bg-slate-50 rounded-2xl p-8 sm:p-12 lg:p-16 ring-1 ring-slate-200">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                        <div className="lg:col-span-1 border-b pb-8 lg:border-b-0 lg:border-r border-slate-200 lg:pr-8">
-                            <h3 className="text-xl font-bold tracking-tight text-slate-900">How can we help?</h3>
-                            <dl className="mt-8 space-y-6 text-base leading-7 text-slate-600">
-                                <div className="flex gap-x-4 items-center">
-                                    <dt className="flex-none text-primary">
-                                        <span className="sr-only">Telephone</span>
-                                        <Phone className="h-6 w-6" aria-hidden="true" />
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+                    {/* Contact Info (Side) */}
+                    <div className="lg:col-span-5 flex flex-col gap-16">
+                        {/* Direct Contacts */}
+                        <div className="space-y-8">
+                            <h3 className="text-2xl font-semibold tracking-tight text-white mb-6">Direct Inquiries</h3>
+                            <dl className="space-y-6">
+                                <div className="flex gap-x-4 items-center p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+                                    <dt className="flex-none p-3 rounded-full bg-white/5 text-blue-400">
+                                        <Mail className="h-5 w-5" />
                                     </dt>
-                                    <dd>
-                                        <a className="hover:text-slate-900" href="tel:+1(555)123-4567">
+                                    <dd className="flex flex-col">
+                                        <span className="text-xs uppercase tracking-wider text-[#86868B] font-semibold mb-1">Email</span>
+                                        <a className="text-white hover:text-blue-400 transition-colors" href="mailto:consulting@csmv.com">
+                                            consulting@csmv.com
+                                        </a>
+                                    </dd>
+                                </div>
+                                <div className="flex gap-x-4 items-center p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+                                    <dt className="flex-none p-3 rounded-full bg-white/5 text-blue-400">
+                                        <Phone className="h-5 w-5" />
+                                    </dt>
+                                    <dd className="flex flex-col">
+                                        <span className="text-xs uppercase tracking-wider text-[#86868B] font-semibold mb-1">Telephone</span>
+                                        <a className="text-white hover:text-blue-400 transition-colors" href="tel:+1(555)123-4567">
                                             +1 (555) 123-4567
                                         </a>
-                                    </dd>
-                                </div>
-                                <div className="flex gap-x-4 items-center">
-                                    <dt className="flex-none text-primary">
-                                        <span className="sr-only">Email</span>
-                                        <Mail className="h-6 w-6" aria-hidden="true" />
-                                    </dt>
-                                    <dd>
-                                        <a className="hover:text-slate-900" href="mailto:consulting@aurait.com">
-                                            consulting@aurait.com
-                                        </a>
-                                    </dd>
-                                </div>
-                                <div className="flex gap-x-4 items-start">
-                                    <dt className="flex-none text-primary mt-1">
-                                        <span className="sr-only">Office</span>
-                                        <Building2 className="h-6 w-6" aria-hidden="true" />
-                                    </dt>
-                                    <dd>
-                                        Monday-Friday<br />
-                                        9:00 AM - 6:00 PM EST
                                     </dd>
                                 </div>
                             </dl>
                         </div>
 
-                        <form action="#" method="POST" className="lg:col-span-2">
-                            <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
-                                <div>
-                                    <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-slate-900">First name</label>
-                                    <div className="mt-2.5">
-                                        <input type="text" name="first-name" id="first-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
-                                    </div>
+                        {/* Offices */}
+                        <div className="space-y-8 border-t border-white/10 pt-10">
+                            <h3 className="text-xl font-semibold tracking-tight text-white">Global Offices</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
+                                <div className="pl-6 border-l-2 border-white/10 hover:border-blue-400 transition-colors">
+                                    <h4 className="text-sm tracking-[0.1em] uppercase text-white/70 font-bold mb-3 flex items-center gap-2">
+                                        <Building2 className="w-4 h-4 text-[#86868B]" /> Headquarters
+                                    </h4>
+                                    <address className="not-italic text-[#86868B] leading-relaxed">
+                                        404 Tech Innovation Park<br />
+                                        Suite 200, Enterprise Avenue<br />
+                                        San Francisco, CA 94107
+                                    </address>
                                 </div>
-                                <div>
-                                    <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-slate-900">Last name</label>
-                                    <div className="mt-2.5">
-                                        <input type="text" name="last-name" id="last-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
-                                    </div>
-                                </div>
-                                <div className="sm:col-span-2">
-                                    <label htmlFor="email" className="block text-sm font-medium leading-6 text-slate-900">Email</label>
-                                    <div className="mt-2.5">
-                                        <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3.5 py-2 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
-                                    </div>
-                                </div>
-                                <div className="sm:col-span-2">
-                                    <label htmlFor="message" className="block text-sm font-medium leading-6 text-slate-900">Message</label>
-                                    <div className="mt-2.5">
-                                        <textarea name="message" id="message" rows={4} className="block w-full rounded-md border-0 px-3.5 py-2 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" defaultValue={""} />
-                                    </div>
+                                <div className="pl-6 border-l-2 border-white/10 hover:border-blue-400 transition-colors">
+                                    <h4 className="text-sm tracking-[0.1em] uppercase text-white/70 font-bold mb-3 flex items-center gap-2">
+                                        <Building2 className="w-4 h-4 text-[#86868B]" /> EMEA Hub
+                                    </h4>
+                                    <address className="not-italic text-[#86868B] leading-relaxed">
+                                        12 Digital Square<br />
+                                        London<br />
+                                        EC1A 1BB, UK
+                                    </address>
                                 </div>
                             </div>
-                            <div className="mt-8 flex justify-end">
-                                <button type="button" className="rounded-md bg-primary px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors">
-                                    Send Inquiry
-                                </button>
-                            </div>
-                        </form>
+                        </div>
+                    </div>
+
+                    {/* Contact Form Container (Main) */}
+                    <div className="lg:col-span-7">
+                        <div className="bg-[#111] border border-white/10 rounded-[2rem] p-8 sm:p-12 relative overflow-hidden group h-full">
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+
+                            <form action="#" method="POST" className="relative z-10 flex flex-col justify-between h-full gap-8">
+                                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                                    <div>
+                                        <label htmlFor="first-name" className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-3">First name</label>
+                                        <input type="text" name="first-name" id="first-name" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-[#86868B] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" placeholder="John" />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="last-name" className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-3">Last name</label>
+                                        <input type="text" name="last-name" id="last-name" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-[#86868B] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" placeholder="Doe" />
+                                    </div>
+                                    <div className="sm:col-span-2">
+                                        <label htmlFor="email" className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-3">Work Email</label>
+                                        <input type="email" name="email" id="email" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-[#86868B] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" placeholder="john@enterprise.com" />
+                                    </div>
+                                    <div className="sm:col-span-2">
+                                        <label htmlFor="message" className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-3">Project Details</label>
+                                        <textarea name="message" id="message" rows={5} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-[#86868B] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all resize-none" placeholder="Tell us about your technical requirements..." />
+                                    </div>
+                                </div>
+                                <div className="mt-4">
+                                    <button type="button" className="group/btn flex items-center gap-3 w-full sm:w-auto justify-center bg-white text-black px-8 py-4 rounded-full font-semibold tracking-wide hover:bg-transparent hover:text-white border border-transparent hover:border-white transition-all duration-300">
+                                        Send Transmission
+                                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,74 +1,88 @@
 import { Metadata } from "next";
-import { Cloud, Server, ShieldCheck, Database, FileCode, Search, Terminal } from "lucide-react";
+import { Code2, Network, Users } from "lucide-react";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Services | Aura IT Consulting",
-    description: "Comprehensive IT consulting, cloud solutions, and software engineering services.",
+    title: "Services | CSMV",
+    description: "Pro-grade software engineering, infrastructure modernization, and elite team extension.",
 };
 
 const services = [
     {
-        name: "Cloud Architecture & Migration",
-        description: "Design, deploy, and execute seamless migrations to AWS, Azure, and Google Cloud with optimized cost infrastructures.",
-        icon: Cloud,
+        title: "We Design and Deliver Reliable Software Systems",
+        category: "Software Engineering",
+        description: "From product engineering to massive web applications and full-scale SaaS development, we build uncompromising, high-performance systems designed to scale perfectly.",
+        icon: Code2,
+        href: "/services/software-systems",
+        tags: ["Product Engineering", "Web Applications", "SaaS Development"]
     },
     {
-        name: "Enterprise Software Engineering",
-        description: "End-to-end custom software development. We build scalable backend systems, CRMs, and highly interactive user interfaces.",
-        icon: FileCode,
+        title: "We Strengthen and Modernize Technology Infrastructure",
+        category: "Infrastructure & Architecture",
+        description: "We audit, optimize, and fortify your tech stack. Through deep architecture advisory and precise cloud strategy, we ensure zero-trust security and flawless resilience.",
+        icon: Network,
+        href: "/services/infrastructure",
+        tags: ["Architecture Advisory", "Cloud Strategy", "Audits & Optimization"]
     },
     {
-        name: "Cybersecurity & Risk Management",
-        description: "Identify vulnerabilities before they happen. Pen testing, security audits, and SOC 2 / HIPAA compliance consulting.",
-        icon: ShieldCheck,
-    },
-    {
-        name: "Data Engineering & Analytics",
-        description: "Transform raw data into strategic assets. Data pipelines, warehouse optimization, and AI model deployments.",
-        icon: Database,
-    },
-    {
-        name: "DevOps & Infrastructure",
-        description: "Establish robust CI/CD pipelines, containerization with Kubernetes, and Infrastructure as Code using Terraform.",
-        icon: Terminal,
-    },
-    {
-        name: "System Audits & Optimization",
-        description: "Consultative deep-dives into your current tech stack. Identifying bottlenecks and proposing high ROI architectural shifts.",
-        icon: Search,
+        title: "We Extend Your Engineering Team with Proven Talent",
+        category: "Team Extension",
+        description: "Scale your engineering velocity instantly. We provide elite, fully-vetted developers and flexible embedded teams that integrate seamlessly with your internal operations.",
+        icon: Users,
+        href: "/services/engineering-team",
+        tags: ["Vetted Developers", "Embedded Teams", "Flexible Staffing"]
     },
 ];
 
 export default function ServicesPage() {
     return (
-        <div className="bg-slate-50 min-h-screen pt-24 pb-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center max-w-3xl mx-auto">
-                    <h1 className="text-sm font-semibold tracking-wide uppercase text-primary">Capabilities</h1>
-                    <p className="mt-2 text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl">
-                        Technical Expertise. <br /> Delivered at Scale.
-                    </p>
-                    <p className="mt-4 text-xl text-slate-500">
-                        We operate at the intersection of business strategy and high-end software execution.
+        <div className="min-h-screen bg-[#050505] pt-32 pb-24 relative overflow-hidden">
+            {/* Background elements */}
+            <div className="absolute top-0 left-0 w-full h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/[0.05] via-transparent to-transparent pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+                <div className="text-center max-w-3xl mx-auto mb-20 md:mb-32">
+                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-none">
+                        Uncompromising <br className="hidden md:block" /> Expertise.
+                    </h1>
+                    <p className="text-lg md:text-xl text-[#86868B] font-medium leading-relaxed">
+                        We operate at the absolute highest standard of software execution, delivering elite systems and teams for ambitious enterprises.
                     </p>
                 </div>
 
-                <div className="mt-20">
-                    <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-x-16 lg:gap-y-16">
-                        {services.map((service) => (
-                            <div key={service.name} className="relative bg-white rounded-2xl shadow-sm border border-slate-200 p-8 hover:shadow-md transition-shadow">
-                                <div className="absolute h-12 w-12 flex items-center justify-center rounded-xl bg-primary shadow-sm text-white">
-                                    <service.icon className="h-6 w-6" aria-hidden="true" />
-                                </div>
-                                <div className="ml-16">
-                                    <h3 className="text-xl font-semibold leading-7 text-slate-900">{service.name}</h3>
-                                    <p className="mt-3 text-base leading-7 text-slate-600">
-                                        {service.description}
-                                    </p>
+                <div className="grid grid-cols-1 gap-8 md:gap-12">
+                    {services.map((service, index) => (
+                        <Link
+                            href={service.href}
+                            key={index}
+                            className="group relative flex flex-col md:flex-row items-center gap-8 md:gap-16 p-8 md:p-12 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500 overflow-hidden"
+                        >
+                            {/* Hover glow effect target */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                            <div className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-[#111111] border border-white/10 flex items-center justify-center text-white relative z-10 group-hover:scale-105 transition-transform duration-500 shadow-2xl">
+                                <service.icon className="w-10 h-10 md:w-12 md:h-12 opacity-80" />
+                            </div>
+
+                            <div className="flex-1 relative z-10 text-center md:text-left w-full">
+                                <p className="text-xs font-bold tracking-[0.2em] uppercase text-white/40 mb-3">{service.category}</p>
+                                <h2 className="text-2xl md:text-4xl font-semibold tracking-tight text-white mb-4 leading-snug group-hover:text-blue-400 transition-colors duration-300">
+                                    {service.title}
+                                </h2>
+                                <p className="text-base md:text-lg text-[#86868B] leading-relaxed mb-6 max-w-2xl mx-auto md:mx-0">
+                                    {service.description}
+                                </p>
+
+                                <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                                    {service.tags.map((tag, tagIndex) => (
+                                        <span key={tagIndex} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-white/70 font-medium whitespace-nowrap">
+                                            {tag}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </Link>
+                    ))}
                 </div>
             </div>
         </div>
