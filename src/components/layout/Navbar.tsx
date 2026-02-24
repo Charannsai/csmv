@@ -2,14 +2,34 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
     { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
+    {
+        href: "/services",
+        label: "Services",
+        subItems: [
+            {
+                title: "We Design and Deliver Reliable Software Systems",
+                description: "Product engineering, web applications, SaaS development",
+                href: "/services/software-systems"
+            },
+            {
+                title: "We Strengthen and Modernize Technology Infrastructure",
+                description: "Architecture advisory, cloud strategy, audits, optimization",
+                href: "/services/infrastructure"
+            },
+            {
+                title: "We Extend Your Engineering Team with Proven Talent",
+                description: "Vetted developers, embedded teams, flexible staffing",
+                href: "/services/engineering-team"
+            }
+        ]
+    },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
 ];
@@ -18,6 +38,7 @@ export default function Navbar() {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
     // Handle scroll state for navbar blur
     useEffect(() => {
@@ -33,7 +54,7 @@ export default function Navbar() {
             className={cn(
                 "fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b",
                 scrolled
-                    ? "bg-black/60 backdrop-blur-xl border-white/10"
+                    ? "bg-[#050505]/80 backdrop-blur-xl border-white/10"
                     : "bg-transparent border-transparent"
             )}
         >
@@ -48,18 +69,38 @@ export default function Navbar() {
                     </div>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden md:flex space-x-8">
+                    <nav className="hidden md:flex space-x-6 lg:space-x-8 items-center">
                         {links.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className={cn(
-                                    "relative px-1 py-2 text-sm font-medium transition-colors hover:text-white",
-                                    pathname === link.href ? "text-white" : "text-[#86868B]"
+                            <div key={link.href} className="relative group/navitem h-full py-6">
+                                <Link
+                                    href={link.href}
+                                    className={cn(
+                                        "flex items-center gap-1.5 px-1 text-sm font-medium transition-colors hover:text-white",
+                                        pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href)) ? "text-white" : "text-[#86868B]"
+                                    )}
+                                >
+                                    {link.label}
+                                    {link.subItems && <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover/navitem:rotate-180" />}
+                                </Link>
+
+                                {/* Dropdown menu */}
+                                {link.subItems && (
+                                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 pointer-events-none group-hover/navitem:opacity-100 group-hover/navitem:pointer-events-auto transition-all duration-300 w-[420px]">
+                                        <div className="bg-[#050505]/95 border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-xl">
+                                            {link.subItems.map((sub, idx) => (
+                                                <Link
+                                                    key={idx}
+                                                    href={sub.href}
+                                                    className="block p-4 rounded-xl hover:bg-white/5 transition-all duration-200 group/item"
+                                                >
+                                                    <h4 className="text-white text-sm font-semibold mb-1.5 leading-snug group-hover/item:text-blue-400 transition-colors">{sub.title}</h4>
+                                                    <p className="text-[#86868B] text-xs leading-relaxed">{sub.description}</p>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
                                 )}
-                            >
-                                {link.label}
-                            </Link>
+                            </div>
                         ))}
                     </nav>
 
@@ -93,31 +134,71 @@ export default function Navbar() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="md:hidden border-t border-white/10 bg-black/95 backdrop-blur-2xl overflow-hidden"
+                        className="md:hidden border-t border-white/10 bg-[#050505]/95 backdrop-blur-2xl overflow-hidden"
                     >
                         <div className="pt-2 pb-3 space-y-1">
                             {links.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    onClick={() => setIsOpen(false)}
-                                    className={cn(
-                                        "block px-6 py-4 border-l-2 text-base font-medium transition-colors",
-                                        pathname === link.href
-                                            ? "bg-primary/10 border-primary text-primary"
-                                            : "border-transparent text-slate-400 hover:bg-white/5 hover:border-slate-700 hover:text-white"
+                                <div key={link.href}>
+                                    {link.subItems ? (
+                                        <>
+                                            <button
+                                                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                                                className={cn(
+                                                    "w-full flex items-center justify-between px-6 py-4 border-l-2 text-base font-medium transition-colors",
+                                                    pathname.startsWith(link.href)
+                                                        ? "border-white text-white"
+                                                        : "border-transparent text-slate-400 hover:bg-white/5 hover:border-slate-700 hover:text-white"
+                                                )}
+                                            >
+                                                <span>{link.label}</span>
+                                                <ChevronDown className={cn("w-5 h-5 transition-transform duration-300", mobileServicesOpen && "rotate-180")} />
+                                            </button>
+                                            <AnimatePresence>
+                                                {mobileServicesOpen && (
+                                                    <motion.div
+                                                        initial={{ height: 0, opacity: 0 }}
+                                                        animate={{ height: "auto", opacity: 1 }}
+                                                        exit={{ height: 0, opacity: 0 }}
+                                                        className="overflow-hidden bg-white/[0.02]"
+                                                    >
+                                                        {link.subItems.map((sub, idx) => (
+                                                            <Link
+                                                                key={idx}
+                                                                href={sub.href}
+                                                                onClick={() => setIsOpen(false)}
+                                                                className="block pl-10 pr-6 py-4 border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors"
+                                                            >
+                                                                <h4 className="text-white text-sm font-semibold mb-1 leading-snug">{sub.title}</h4>
+                                                                <p className="text-[#86868B] text-xs leading-relaxed">{sub.description}</p>
+                                                            </Link>
+                                                        ))}
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </>
+                                    ) : (
+                                        <Link
+                                            href={link.href}
+                                            onClick={() => setIsOpen(false)}
+                                            className={cn(
+                                                "block px-6 py-4 border-l-2 text-base font-medium transition-colors",
+                                                pathname === link.href
+                                                    ? "border-white text-white"
+                                                    : "border-transparent text-slate-400 hover:bg-white/5 hover:border-slate-700 hover:text-white"
+                                            )}
+                                        >
+                                            {link.label}
+                                        </Link>
                                     )}
-                                >
-                                    {link.label}
-                                </Link>
+                                </div>
                             ))}
                             <div className="pt-6 pb-4 px-6">
                                 <Link
                                     href="/contact"
                                     onClick={() => setIsOpen(false)}
-                                    className="w-full flex items-center justify-center px-4 py-3 border border-primary/50 rounded-lg shadow-sm text-base font-medium text-white bg-primary/20 hover:bg-primary/30 shadow-[0_0_15px_rgba(139,92,246,0.2)]"
+                                    className="w-full flex items-center justify-center px-4 py-3 rounded-full border border-white text-base font-medium text-black bg-white hover:bg-transparent hover:text-white transition-colors"
                                 >
-                                    Consultation
+                                    Contact Us
                                 </Link>
                             </div>
                         </div>
