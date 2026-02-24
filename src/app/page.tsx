@@ -142,12 +142,12 @@ export default function Home() {
               style={{ opacity: heroOpacity, scale: heroScale }}
               className="absolute inset-0 flex flex-col justify-center px-6 md:px-20 lg:px-32 w-full"
             >
-              <div className="max-w-4xl">
-                <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-semibold tracking-tighter leading-[0.9] mb-8">
+              <div className="max-w-4xl text-center md:text-left">
+                <h1 className="text-[4rem] sm:text-6xl md:text-8xl lg:text-[10rem] font-semibold tracking-tighter leading-[0.9] mb-6 md:mb-8">
                   <span className="text-white">CSMV.</span><br />
                   <span className="text-[#86868B]">Built to last.</span>
                 </h1>
-                <p className="text-xl md:text-3xl text-[#86868B] font-medium max-w-2xl">
+                <p className="text-lg sm:text-xl md:text-3xl text-[#86868B] font-medium max-w-2xl mx-auto md:mx-0">
                   Pro-grade software engineering. Uncompromising scale.
                 </p>
               </div>
@@ -156,12 +156,12 @@ export default function Home() {
             {/* SEC 2: FIRST STATEMENT */}
             <motion.div
               style={{ opacity: s1Opacity, y: s1Y }}
-              className="absolute right-[10%] w-full md:w-1/3 flex flex-col text-left px-6"
+              className="absolute md:right-[10%] w-full md:w-1/3 flex flex-col text-center md:text-left px-6"
             >
-              <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-[1.05]">
-                Flawless <br /> Architecture.
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-4 md:mb-6 leading-[1.05]">
+                Flawless <br className="hidden md:block" /> Architecture.
               </h2>
-              <p className="text-2xl text-[#86868B] font-medium leading-snug">
+              <p className="text-lg sm:text-xl md:text-2xl text-[#86868B] font-medium leading-snug">
                 Every interface, database, and edge node meticulously designed for absolute resilience.
               </p>
             </motion.div>
@@ -169,12 +169,12 @@ export default function Home() {
             {/* SEC 3: SECOND STATEMENT */}
             <motion.div
               style={{ opacity: s2Opacity, y: s2Y }}
-              className="absolute left-[10%] w-full md:w-1/3 flex flex-col text-left px-6"
+              className="absolute md:left-[10%] w-full md:w-1/3 flex flex-col text-center md:text-left px-6"
             >
-              <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-[1.05]">
-                Boundless <br /> Scale.
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-4 md:mb-6 leading-[1.05]">
+                Boundless <br className="hidden md:block" /> Scale.
               </h2>
-              <p className="text-2xl text-[#86868B] font-medium leading-snug">
+              <p className="text-lg sm:text-xl md:text-2xl text-[#86868B] font-medium leading-snug">
                 Vertical and horizontal load balancing built to effortlessly absorb multi-million request spikes.
               </p>
             </motion.div>
@@ -246,13 +246,13 @@ export default function Home() {
         <section id="section-hologram" className="relative w-full min-h-[120vh] bg-transparent flex items-center overflow-hidden border-t border-white/5">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,_var(--tw-gradient-stops))] from-white/[0.03] to-transparent"></div>
 
-          <div className="w-full max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2">
-            <div className="flex flex-col justify-center">
-              <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-4">The Hologram Core</h2>
-              <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-none">
-                Absolute <br /> Transparency.
+          <div className="w-full max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 pt-[60vh] md:pt-0">
+            <div className="flex flex-col justify-center text-center md:text-left">
+              <h2 className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-4">The Hologram Core</h2>
+              <h3 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-4 md:mb-6 leading-none">
+                Absolute <br className="hidden md:block" /> Transparency.
               </h3>
-              <p className="text-xl text-[#86868B] font-medium leading-relaxed max-w-md">
+              <p className="text-lg sm:text-xl text-[#86868B] font-medium leading-relaxed max-w-md mx-auto md:mx-0">
                 Watch as the diamond drops its frosted glass shell and reveals the wireframe beneath. We treat your infrastructure exactly the same way. No black boxes. No hidden dependencies.
               </p>
             </div>
@@ -264,15 +264,15 @@ export default function Home() {
         <section id="section-vault" className="relative w-full min-h-[120vh] bg-transparent flex items-center overflow-hidden border-t border-white/5">
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.08] mix-blend-overlay"></div>
 
-          <div className="w-full max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-end text-right">
+          <div className="w-full max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center md:items-end text-center md:text-right pt-[60vh] md:pt-0">
             <div className="max-w-md">
-              <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-4 flex items-center justify-end gap-2 text-right">
+              <h2 className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-4 flex items-center justify-center md:justify-end gap-2">
                 <Lock className="w-4 h-4" /> Zero-Trust Security
               </h2>
-              <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-none">
-                The <br /> Vault.
+              <h3 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-4 md:mb-6 leading-none">
+                The <br className="hidden md:block" /> Vault.
               </h3>
-              <p className="text-xl text-[#86868B] font-medium leading-relaxed">
+              <p className="text-lg sm:text-xl text-[#86868B] font-medium leading-relaxed">
                 Notice the diamond harden into an impenetrable, chromatic monolith? Our systems enforce military-grade security layers automatically at the edge before a single packet drops payload internally.
               </p>
             </div>

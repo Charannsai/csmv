@@ -91,6 +91,8 @@ export function Scene() {
             let targetScale = 1;
             let targetRotationZ = 0;
 
+            const isMobile = window.innerWidth < 768;
+
             // Material Targets
             let targetRoughness = 0.0;
             let targetTransmission = 1;
@@ -102,50 +104,50 @@ export function Scene() {
 
             if (scrollVH < 0.3) {
                 // Hero
-                targetX = 3.5;
-                targetY = 0;
-                targetScale = 0.9;
+                targetX = isMobile ? 0 : 3.5;
+                targetY = isMobile ? 2.5 : 0;
+                targetScale = isMobile ? 0.6 : 0.9;
                 targetRotationZ = 0;
             } else if (scrollVH >= 0.3 && scrollVH < 0.45) {
                 // Transition to Statement 1
                 const t = (scrollVH - 0.3) / 0.15;
-                targetX = THREE.MathUtils.lerp(3.5, -3.5, t);
-                targetY = 0;
-                targetScale = THREE.MathUtils.lerp(0.9, 0.7, t);
+                targetX = isMobile ? 0 : THREE.MathUtils.lerp(3.5, -3.5, t);
+                targetY = isMobile ? THREE.MathUtils.lerp(2.5, -2.5, t) : 0;
+                targetScale = isMobile ? THREE.MathUtils.lerp(0.6, 0.5, t) : THREE.MathUtils.lerp(0.9, 0.7, t);
                 targetRotationZ = THREE.MathUtils.lerp(0, Math.PI / 2, t);
             } else if (scrollVH >= 0.45 && scrollVH < 0.75) {
-                // Statement 1 (Hold Left)
-                targetX = -3.5;
-                targetY = 0;
-                targetScale = 0.7;
+                // Statement 1 (Hold Left/Top)
+                targetX = isMobile ? 0 : -3.5;
+                targetY = isMobile ? -2.5 : 0;
+                targetScale = isMobile ? 0.5 : 0.7;
                 targetRotationZ = Math.PI / 2;
             } else if (scrollVH >= 0.75 && scrollVH < 0.9) {
                 // Transition to Statement 2
                 const t = (scrollVH - 0.75) / 0.15;
-                targetX = THREE.MathUtils.lerp(-3.5, 3.5, t);
-                targetY = 0;
-                targetScale = 0.7;
+                targetX = isMobile ? 0 : THREE.MathUtils.lerp(-3.5, 3.5, t);
+                targetY = isMobile ? THREE.MathUtils.lerp(-2.5, -2.5, t) : 0;
+                targetScale = isMobile ? 0.5 : 0.7;
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI / 2, Math.PI, t);
             } else if (scrollVH >= 0.9 && scrollVH < 1.5) {
-                // Statement 2 (Hold Right)
-                targetX = 3.5;
-                targetY = 0;
-                targetScale = 0.7;
+                // Statement 2 (Hold Right/Top)
+                targetX = isMobile ? 0 : 3.5;
+                targetY = isMobile ? -2.5 : 0;
+                targetScale = isMobile ? 0.5 : 0.7;
                 targetRotationZ = Math.PI;
             } else if (scrollVH >= 1.5 && scrollVH < 2.5) {
                 // Bento Grid
                 const t = Math.min((scrollVH - 1.5) / 0.5, 1);
-                targetX = THREE.MathUtils.lerp(3.5, 0, t);
-                targetY = THREE.MathUtils.lerp(0, 3.5, t);
-                targetScale = THREE.MathUtils.lerp(0.7, 0.4, t);
+                targetX = isMobile ? 0 : THREE.MathUtils.lerp(3.5, 0, t);
+                targetY = isMobile ? THREE.MathUtils.lerp(-2.5, 2.5, t) : THREE.MathUtils.lerp(0, 3.5, t);
+                targetScale = isMobile ? THREE.MathUtils.lerp(0.5, 0.3, t) : THREE.MathUtils.lerp(0.7, 0.4, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI, Math.PI * 1.5, t);
                 targetInnerColor.set("#86868B");
             } else if (scrollVH >= 2.5 && scrollVH < 3.5) {
                 // The Hologram Core (Wireframe Mode)
                 const t = Math.min((scrollVH - 2.5) / 0.5, 1);
-                targetX = THREE.MathUtils.lerp(0, 3.5, t);
-                targetY = THREE.MathUtils.lerp(3.5, 0, t);
-                targetScale = THREE.MathUtils.lerp(0.4, 1.4, t);
+                targetX = isMobile ? 0 : THREE.MathUtils.lerp(0, 3.5, t);
+                targetY = isMobile ? THREE.MathUtils.lerp(2.5, -2, t) : THREE.MathUtils.lerp(3.5, 0, t);
+                targetScale = isMobile ? THREE.MathUtils.lerp(0.3, 0.8, t) : THREE.MathUtils.lerp(0.4, 1.4, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 1.5, Math.PI * 2, t);
 
                 // Material shifts to pure wireframe
@@ -156,9 +158,9 @@ export function Scene() {
             } else if (scrollVH >= 3.5 && scrollVH < 4.5) {
                 // The Vault (Monolith Mode)
                 const t = Math.min((scrollVH - 3.5) / 0.5, 1);
-                targetX = THREE.MathUtils.lerp(3.5, -3.5, t);
-                targetY = 0;
-                targetScale = 1.4;
+                targetX = isMobile ? 0 : THREE.MathUtils.lerp(3.5, -3.5, t);
+                targetY = isMobile ? -2 : 0;
+                targetScale = isMobile ? 0.8 : 1.4;
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2, Math.PI * 2.5, t);
 
                 // Material hardens into opaque dark vault
@@ -171,9 +173,9 @@ export function Scene() {
             } else if (scrollVH >= 4.5) {
                 // Footer CTA (Massive Crystal)
                 const t = Math.min((scrollVH - 4.5) / 0.5, 1);
-                targetX = THREE.MathUtils.lerp(-3.5, 0, t);
+                targetX = isMobile ? 0 : THREE.MathUtils.lerp(-3.5, 0, t);
                 targetY = 0;
-                targetScale = THREE.MathUtils.lerp(1.4, 2.8, t);
+                targetScale = isMobile ? THREE.MathUtils.lerp(0.8, 1.5, t) : THREE.MathUtils.lerp(1.4, 2.8, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2.5, Math.PI * 3.5, t);
 
                 targetRoughness = 0.0;
