@@ -2,7 +2,7 @@
 
 import { useFrame } from "@react-three/fiber";
 import { Float, Environment, ContactShadows, PresentationControls, MeshTransmissionMaterial } from "@react-three/drei";
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import * as THREE from "three";
 
 export function Scene() {
@@ -10,6 +10,37 @@ export function Scene() {
     const meshRef = useRef<THREE.Mesh>(null);
     const matRef = useRef<any>(null);
     const innerMatRef = useRef<THREE.MeshStandardMaterial>(null);
+
+    // Caching section heights to avoid layout thrashing
+    const sectionHeights = useRef<number[]>([0, 0, 0, 0, 0]);
+
+    useEffect(() => {
+        const updateHeights = () => {
+            const s1 = document.getElementById("section-hero");
+            const s2 = document.getElementById("section-bento");
+            const s3 = document.getElementById("section-hologram");
+            const s4 = document.getElementById("section-vault");
+            const s5 = document.getElementById("section-footer");
+            if (s1 && s2 && s3 && s4 && s5) {
+                sectionHeights.current = [
+                    s1.offsetTop,
+                    s2.offsetTop,
+                    s3.offsetTop,
+                    s4.offsetTop,
+                    s5.offsetTop
+                ];
+            }
+        };
+        // Initial call + slight delay to ensure fonts/layout settled
+        updateHeights();
+        setTimeout(updateHeights, 100);
+        setTimeout(updateHeights, 500);
+
+        window.addEventListener('resize', updateHeights);
+        return () => {
+            window.removeEventListener('resize', updateHeights);
+        };
+    }, []);
 
     // Creates an authentic brilliant-cut diamond profile
     const diamondPoints = useMemo(() => [
@@ -20,7 +51,34 @@ export function Scene() {
     ], []);
 
     useFrame((state, delta) => {
-        const scrollVH = window.scrollY / window.innerHeight;
+        let scrollVH = window.scrollY / window.innerHeight;
+
+        const wh = window.innerHeight;
+        const scrollY = window.scrollY;
+        const [, h2, h3, h4, h5] = sectionHeights.current;
+
+        if (h2 > 0) {
+            const r2_top = h2 - scrollY;
+            const r3_top = h3 - scrollY;
+            const r4_top = h4 - scrollY;
+            const r5_top = h5 - scrollY;
+
+            if (r2_top > 0) {
+                scrollVH = 2.5 - (r2_top / wh);
+            } else if (r3_top > wh) {
+                scrollVH = 2.5;
+            } else if (r3_top > 0) {
+                scrollVH = 3.5 - (r3_top / wh);
+            } else if (r4_top > wh) {
+                scrollVH = 3.5;
+            } else if (r4_top > 0) {
+                scrollVH = 4.5 - (r4_top / wh);
+            } else if (r5_top > wh) {
+                scrollVH = 4.5;
+            } else {
+                scrollVH = 5.5 - (r5_top / wh);
+            }
+        }
 
         if (groupRef.current) {
             groupRef.current.rotation.y += 0.003;
@@ -39,29 +97,41 @@ export function Scene() {
             let targetThickness = 0.5;
             let targetOuterOpacity = 1;
             let targetInnerOpacity = 0.1;
-            let targetColor = new THREE.Color("#FFFFFF");
-            let targetInnerColor = new THREE.Color("#FFFFFF");
+            const targetColor = new THREE.Color("#FFFFFF");
+            const targetInnerColor = new THREE.Color("#FFFFFF");
 
-            if (scrollVH < 0.5) {
+            if (scrollVH < 0.3) {
                 // Hero
                 targetX = 3.5;
                 targetY = 0;
                 targetScale = 0.9;
                 targetRotationZ = 0;
-            } else if (scrollVH >= 0.5 && scrollVH < 1.0) {
-                // Statement 1
-                const t = (scrollVH - 0.5) / 0.5;
+            } else if (scrollVH >= 0.3 && scrollVH < 0.45) {
+                // Transition to Statement 1
+                const t = (scrollVH - 0.3) / 0.15;
                 targetX = THREE.MathUtils.lerp(3.5, -3.5, t);
                 targetY = 0;
                 targetScale = THREE.MathUtils.lerp(0.9, 0.7, t);
                 targetRotationZ = THREE.MathUtils.lerp(0, Math.PI / 2, t);
-            } else if (scrollVH >= 1.0 && scrollVH < 1.5) {
-                // Statement 2
-                const t = (scrollVH - 1.0) / 0.5;
+            } else if (scrollVH >= 0.45 && scrollVH < 0.75) {
+                // Statement 1 (Hold Left)
+                targetX = -3.5;
+                targetY = 0;
+                targetScale = 0.7;
+                targetRotationZ = Math.PI / 2;
+            } else if (scrollVH >= 0.75 && scrollVH < 0.9) {
+                // Transition to Statement 2
+                const t = (scrollVH - 0.75) / 0.15;
                 targetX = THREE.MathUtils.lerp(-3.5, 3.5, t);
                 targetY = 0;
                 targetScale = 0.7;
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI / 2, Math.PI, t);
+            } else if (scrollVH >= 0.9 && scrollVH < 1.5) {
+                // Statement 2 (Hold Right)
+                targetX = 3.5;
+                targetY = 0;
+                targetScale = 0.7;
+                targetRotationZ = Math.PI;
             } else if (scrollVH >= 1.5 && scrollVH < 2.5) {
                 // Bento Grid
                 const t = Math.min((scrollVH - 1.5) / 0.5, 1);
@@ -155,8 +225,8 @@ export function Scene() {
                             <MeshTransmissionMaterial
                                 ref={matRef}
                                 backside
-                                samples={16}
-                                resolution={1024}
+                                samples={4}
+                                resolution={256}
                                 transmission={1}
                                 roughness={0.15}
                                 thickness={0.5}
