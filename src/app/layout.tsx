@@ -22,9 +22,20 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
       <body
-        className={`${inter.variable} font-sans bg-[#050505] text-slate-200 antialiased min-h-screen flex flex-col`}
+        className={`${inter.variable} font-sans text-slate-200 antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
+        {/* Global Film Grain Background */}
+        <div className="fixed inset-0 z-[-1] pointer-events-none bg-black">
+          <div
+            className="absolute inset-0 opacity-[0.25] mix-blend-screen"
+            style={{
+              backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')",
+              backgroundSize: "150px 150px"
+            }}
+          ></div>
+        </div>
+
         <Navbar />
         <main className="flex-1 overflow-visible">
           {children}

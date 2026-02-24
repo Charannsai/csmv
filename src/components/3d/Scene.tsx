@@ -144,10 +144,6 @@ export function Scene() {
                 targetY = isMobile ? THREE.MathUtils.lerp(2.5, -2, t) : THREE.MathUtils.lerp(3.5, 0, t);
                 targetScale = isMobile ? THREE.MathUtils.lerp(0.3, 0.8, t) : THREE.MathUtils.lerp(0.4, 1.4, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 1.5, Math.PI * 2, t);
-
-                // "Absolute Transparency" - drops the frosted shell, reveals the wireframe
-                targetOpacity = 0.0;
-                targetInnerOpacity = 1.0;
             } else if (scrollVH >= 3.5 && scrollVH < 4.5) {
                 // The Vault (Monolith Mode)
                 const t = Math.min((scrollVH - 3.5) / 0.5, 1);

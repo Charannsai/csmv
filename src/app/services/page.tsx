@@ -36,7 +36,7 @@ const services = [
 
 export default function ServicesPage() {
     return (
-        <div className="min-h-screen bg-[#050505] pt-32 pb-24 relative overflow-hidden">
+        <div className="min-h-screen bg-transparent pt-32 pb-24 relative overflow-hidden">
             {/* Background elements */}
             <div className="absolute top-0 left-0 w-full h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/[0.05] via-transparent to-transparent pointer-events-none"></div>
 

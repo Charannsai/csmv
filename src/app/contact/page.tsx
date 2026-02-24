@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
     return (
-        <div className="min-h-screen bg-[#050505] pt-32 pb-24 relative overflow-hidden">
+        <div className="min-h-screen bg-transparent pt-32 pb-24 relative overflow-hidden">
             {/* Background elements */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/[0.03] blur-[120px] rounded-full pointer-events-none"></div>
 

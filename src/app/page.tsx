@@ -115,12 +115,8 @@ export default function Home() {
   const s2Y = useTransform(smoothY, [0.5, 1], [50, -50]);
   return (
     <ReactLenis root options={{ smoothWheel: true, lerp: 0.08 }}>
-      <div className="relative bg-[#000000] text-white selection:bg-white selection:text-black">
+      <div className="relative bg-transparent text-white selection:bg-white selection:text-black">
 
-        {/* Apple-style pure black background with ultra-subtle grain */}
-        <div className="fixed inset-0 z-0 pointer-events-none bg-black">
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.06] mix-blend-overlay"></div>
-        </div>
 
         {/* 3D SCENE: Sticky & Background */}
         <div className="fixed top-0 bottom-0 right-0 left-0 z-[1] pointer-events-none">
