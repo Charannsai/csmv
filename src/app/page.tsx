@@ -180,7 +180,7 @@ export default function Home() {
         </div>
 
         {/* --- SECTION 2: BENTO GRID --- */}
-        <div id="section-bento" className="relative z-20 w-full bg-transparent min-h-[120vh] flex flex-col justify-center py-32 px-6 border-t border-white/5">
+        <div id="section-bento" className="relative z-20 w-full bg-transparent min-h-[120vh] flex flex-col justify-center py-32 px-6">
           <div className="w-full max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -239,7 +239,7 @@ export default function Home() {
         </div>
 
         {/* --- SECTION 3: THE HOLOGRAM CORE (Code/System view) --- */}
-        <section id="section-hologram" className="relative w-full min-h-[120vh] bg-transparent flex items-center overflow-hidden border-t border-white/5">
+        <section id="section-hologram" className="relative w-full min-h-[120vh] bg-transparent flex items-center overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,_var(--tw-gradient-stops))] from-white/[0.03] to-transparent"></div>
 
           <div className="w-full max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 pt-[60vh] md:pt-0">
@@ -257,7 +257,7 @@ export default function Home() {
         </section>
 
         {/* --- SECTION 4: THE VAULT (Security/Robustness view) --- */}
-        <section id="section-vault" className="relative w-full min-h-[120vh] bg-transparent flex items-center overflow-hidden border-t border-white/5">
+        <section id="section-vault" className="relative w-full min-h-[120vh] bg-transparent flex items-center overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.08] mix-blend-overlay"></div>
 
           <div className="w-full max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center md:items-end text-center md:text-right pt-[60vh] md:pt-0">
@@ -277,7 +277,7 @@ export default function Home() {
         </section>
 
         {/* --- SECTION 5: FOOTER CTA --- */}
-        <section id="section-footer" className="relative z-20 min-h-screen bg-transparent overflow-hidden flex items-center justify-center border-t border-white/5">
+        <section id="section-footer" className="relative z-20 min-h-screen bg-transparent overflow-hidden flex items-center justify-center">
           <div className="absolute inset-0 flex items-center justify-center">
             {/* Creates a subtle glow behind the massive footer diamond */}
             <div className="w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-white/5 rounded-full blur-[80px] md:blur-[120px]"></div>
