@@ -94,6 +94,7 @@ export function Scene() {
             let targetRoughness = 0.05;
             let targetMetalness = 1.0;
             let targetInnerOpacity = 0.1;
+            let targetOpacity = 1;
             const targetColor = new THREE.Color("#050505");
             const targetInnerColor = new THREE.Color("#FFFFFF");
 
@@ -143,6 +144,10 @@ export function Scene() {
                 targetY = isMobile ? THREE.MathUtils.lerp(2.5, -2, t) : THREE.MathUtils.lerp(3.5, 0, t);
                 targetScale = isMobile ? THREE.MathUtils.lerp(0.3, 0.8, t) : THREE.MathUtils.lerp(0.4, 1.4, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 1.5, Math.PI * 2, t);
+
+                // "Absolute Transparency" - drops the frosted shell, reveals the wireframe
+                targetOpacity = 0.0;
+                targetInnerOpacity = 1.0;
             } else if (scrollVH >= 3.5 && scrollVH < 4.5) {
                 // The Vault (Monolith Mode)
                 const t = Math.min((scrollVH - 3.5) / 0.5, 1);
@@ -169,6 +174,7 @@ export function Scene() {
             if (matRef.current) {
                 matRef.current.roughness = THREE.MathUtils.damp(matRef.current.roughness, targetRoughness, 4, delta);
                 matRef.current.metalness = THREE.MathUtils.damp(matRef.current.metalness, targetMetalness, 4, delta);
+                matRef.current.opacity = THREE.MathUtils.damp(matRef.current.opacity, targetOpacity, 4, delta);
                 matRef.current.color.lerp(targetColor, delta * 4);
             }
             if (innerMatRef.current) {
@@ -204,6 +210,7 @@ export function Scene() {
                                 color="#050505"
                                 flatShading={true}
                                 envMapIntensity={1.5}
+                                transparent={true}
                             />
                         </mesh>
                         <mesh scale={0.95}>
