@@ -9,7 +9,9 @@ export default function ContactForm() {
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setResult("Sending....");
-        const formData = new FormData(event.currentTarget);
+
+        const form = event.target as HTMLFormElement;
+        const formData = new FormData(form);
         formData.append("access_key", "8d575560-0d8d-40b6-acae-b06e198b622e");
 
         try {
@@ -21,7 +23,7 @@ export default function ContactForm() {
             const data = await response.json();
             if (data.success) {
                 setResult("Form Submitted Successfully");
-                event.currentTarget.reset();
+                form.reset();
             } else {
                 setResult(data.message || "Error submitting form.");
             }
