@@ -91,10 +91,10 @@ export function Scene() {
             const isMobile = window.innerWidth < 768;
 
             // Material Targets
-            let targetRoughness = 0.15;
-            let targetMetalness = 0.8;
+            let targetRoughness = 0.05;
+            let targetMetalness = 1.0;
             let targetInnerOpacity = 0.1;
-            const targetColor = new THREE.Color("#e4e4e7");
+            const targetColor = new THREE.Color("#050505");
             const targetInnerColor = new THREE.Color("#FFFFFF");
 
             if (scrollVH < 0.3) {
@@ -136,9 +136,6 @@ export function Scene() {
                 targetY = isMobile ? THREE.MathUtils.lerp(-2.5, 2.5, t) : THREE.MathUtils.lerp(0, 3.5, t);
                 targetScale = isMobile ? THREE.MathUtils.lerp(0.5, 0.3, t) : THREE.MathUtils.lerp(0.7, 0.4, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI, Math.PI * 1.5, t);
-                targetMetalness = 0.9;
-                targetColor.set("#d4d4d8");
-                targetInnerColor.set("#86868B");
             } else if (scrollVH >= 2.5 && scrollVH < 3.5) {
                 // The Hologram Core (Solid Silver Mode)
                 const t = Math.min((scrollVH - 2.5) / 0.5, 1);
@@ -146,12 +143,6 @@ export function Scene() {
                 targetY = isMobile ? THREE.MathUtils.lerp(2.5, -2, t) : THREE.MathUtils.lerp(3.5, 0, t);
                 targetScale = isMobile ? THREE.MathUtils.lerp(0.3, 0.8, t) : THREE.MathUtils.lerp(0.4, 1.4, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 1.5, Math.PI * 2, t);
-
-                targetRoughness = 0.1;
-                targetMetalness = 0.9;
-                targetColor.set("#e4e4e7");
-                targetInnerOpacity = 0.8;
-                targetInnerColor.set("#38BDF8"); // Sky blue core
             } else if (scrollVH >= 3.5 && scrollVH < 4.5) {
                 // The Vault (Monolith Mode)
                 const t = Math.min((scrollVH - 3.5) / 0.5, 1);
@@ -159,12 +150,6 @@ export function Scene() {
                 targetY = isMobile ? -2 : 0;
                 targetScale = isMobile ? 0.8 : 1.4;
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2, Math.PI * 2.5, t);
-
-                // Material hardens into opaque dark vault
-                targetRoughness = 0.3;
-                targetMetalness = 0.8;
-                targetColor.set("#171717");
-                targetInnerOpacity = 0;
             } else if (scrollVH >= 4.5) {
                 // Footer CTA (Massive Crystal)
                 const t = Math.min((scrollVH - 4.5) / 0.5, 1);
@@ -172,11 +157,6 @@ export function Scene() {
                 targetY = 0;
                 targetScale = isMobile ? THREE.MathUtils.lerp(0.8, 1.5, t) : THREE.MathUtils.lerp(1.4, 2.8, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2.5, Math.PI * 3.5, t);
-
-                targetRoughness = 0.1;
-                targetMetalness = 0.6;
-                targetColor.set("#ffffff");
-                targetInnerOpacity = 0.1;
             }
 
             // Apply transformations
@@ -219,9 +199,9 @@ export function Scene() {
                             />
                             <meshStandardMaterial
                                 ref={matRef}
-                                metalness={0.8}
-                                roughness={0.15}
-                                color="#e4e4e7"
+                                metalness={1.0}
+                                roughness={0.05}
+                                color="#050505"
                                 flatShading={true}
                                 envMapIntensity={1.5}
                             />
