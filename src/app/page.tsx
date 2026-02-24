@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence, useMotionValueEvent } from "framer-motion";
 import { Shield, ChevronRight, Server, Code, Layers, Cpu, Globe2, Activity, Fingerprint, Lock, Zap, Users } from "lucide-react";
 import { Canvas } from "@react-three/fiber";
 import { Scene } from "@/components/3d/Scene";
@@ -77,18 +77,18 @@ function MagneticButton({ children, className = "" }: { children: React.ReactNod
   );
 }
 
-const featuresList = [
-  { title: "Build Systems That Last", desc: "We focus on long-term architecture over quick fixes. Our engineering practices ensure that your platform remains robust, maintainable, and adaptable as your business evolves.", icon: Code, stat: "Sustainable Engineering" },
-  { title: "Performance & Scale", desc: "Designed for high-load environments. We construct scalable cloud infrastructure and optimize codebases to efficiently handle exponential user growth.", icon: Server, stat: "Horizontal Scaling" },
-  { title: "Accountable Delivery", desc: "We operate with complete transparency. As an extension of your internal teams, we share the responsibility for the outcomes of your technology investments.", icon: Shield, stat: "Transparent Partnerships" },
-  { title: "Outcome-Driven Focus", desc: "We don't just write code; we build digital products that drive business value. Our solutions align directly with your organizational KPIs and market objectives.", icon: Globe2, stat: "Measurable Results" }
+const servicesList = [
+  { id: "01", title: "Systems Engineering", icon: Code, color: "text-blue-400", glow: "bg-blue-500/20", desc: "We architect scalable backend systems and high-throughput web applications that serve as the indestructible backbone of your digital business." },
+  { id: "02", title: "Cloud Infrastructure", icon: Server, color: "text-purple-400", glow: "bg-purple-500/20", desc: "Tear down monolithic bottlenecks. We design, migrate, and deploy resilient, auto-scaling cloud microservices." },
+  { id: "03", title: "Security & Audits", icon: Shield, color: "text-emerald-400", glow: "bg-emerald-500/20", desc: "Complete technological reviews. We identify vulnerabilities and optimize architectures for peak security." },
+  { id: "04", title: "Dedicated Teams", icon: Users, color: "text-orange-400", glow: "bg-orange-500/20", desc: "Instantly scale your development velocity. Embed our fully-vetted, high-performing senior developers directly into your internal core teams." },
 ];
 
 export default function Home() {
   const stickyRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
-  const [activeFeature, setActiveFeature] = useState(0);
+  const [activeService, setActiveService] = useState(0);
 
   useEffect(() => {
     setMounted(true);
@@ -101,7 +101,7 @@ export default function Home() {
 
   const smoothY = useSpring(scrollYProgress, { stiffness: 40, damping: 20 });
 
-  // SCROLL CHOREOGRAPHY
+  // Tracking for the new natural scroll layout
   // Hero (0% -> 30%)
   const heroOpacity = useTransform(smoothY, [0, 0.2, 0.3], [1, 1, 0]);
   const heroScale = useTransform(smoothY, [0, 0.3], [1, 0.95]);
@@ -179,62 +179,108 @@ export default function Home() {
 
         </div>
 
-        {/* --- SECTION 2: BENTO GRID --- */}
-        <div id="section-bento" className="relative z-20 w-full bg-transparent min-h-[120vh] flex flex-col justify-center py-32 px-6">
-          <div className="w-full max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6">
-                End-to-End <br /> <span className="text-[#86868B]">IT Solutions.</span>
-              </h2>
-            </motion.div>
+        {/* --- SECTION 2: NATURAL SCROLL BENTO --- */}
+        <div id="section-bento" className="relative z-20 w-full bg-transparent">
+          <div className="w-full max-w-7xl mx-auto px-6 py-32 flex flex-col lg:flex-row items-start gap-12 lg:gap-24 relative">
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
-              <div className="md:col-span-2 rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors relative overflow-hidden group">
-                <div className="relative z-10">
-                  <Code className="w-10 h-10 text-white mb-6" />
-                  <h3 className="text-3xl font-semibold text-white tracking-tight mb-2">Systems Engineering</h3>
-                  <p className="text-[#86868B] text-lg max-w-md leading-snug">
-                    We don't just write code. We architect scalable backend systems and high-throughput web applications that serve as the indestructible backbone of your digital business.
-                  </p>
-                </div>
+            {/* Sticky Left Typography List */}
+            <div className="lg:sticky lg:top-[30vh] flex-[1] flex flex-col justify-start w-full z-10 pt-20 relative lg:pt-0">
+              {/* Move the title so it floats statically above the scrolling texts */}
+              <div className="absolute top-0 lg:-top-20 left-0 opacity-60 mb-10 hidden lg:block">
+                <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-white">End-to-End IT Solutions //</h2>
               </div>
 
-              <div className="rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors">
-                <Server className="w-10 h-10 text-white mb-6" />
-                <div>
-                  <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">Cloud Infrastructure</h3>
-                  <p className="text-[#86868B] text-base leading-snug">
-                    Tear down monolithic bottlenecks. We design, migrate, and deploy resilient, auto-scaling cloud microservices.
-                  </p>
-                </div>
-              </div>
-
-              <div className="rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors">
-                <Shield className="w-10 h-10 text-white mb-6" />
-                <div>
-                  <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">Security & Audits</h3>
-                  <p className="text-[#86868B] text-base leading-snug">
-                    Complete technological reviews. We identify vulnerabilities and optimize architectures for peak security.
-                  </p>
-                </div>
-              </div>
-
-              <div className="md:col-span-2 rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors relative overflow-hidden group">
-                <div className="relative z-10">
-                  <Users className="w-10 h-10 text-white mb-6" />
-                  <h3 className="text-3xl font-semibold text-white tracking-tight mb-2">Dedicated Engineering Teams</h3>
-                  <p className="text-[#86868B] text-lg max-w-md leading-snug">
-                    Scale your development velocity instantly. Embed our fully-vetted, high-performing senior developers directly into your internal teams to execute complex technical roadmaps.
-                  </p>
-                </div>
+              {/* The container translates upwards perfectly so the active item is always at the top line of sight! */}
+              <div className="relative w-full">
+                <motion.div
+                  initial={false}
+                  animate={{ y: `-${activeService * 25}%` }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col w-full"
+                >
+                  {servicesList.map((svc, idx) => {
+                    const isActive = activeService === idx;
+                    return (
+                      <div
+                        key={idx}
+                        className="relative flex flex-col justify-center h-[120px] sm:h-[140px] md:h-[180px]"
+                      >
+                        <motion.div
+                          animate={{
+                            opacity: isActive ? 1 : 0.2,
+                            scale: isActive ? 1 : 0.8,
+                            x: isActive ? 0 : -10,
+                          }}
+                          transition={{ duration: 0.5, ease: "easeOut" }}
+                          className="origin-left flex flex-col"
+                        >
+                          <AnimatePresence>
+                            {isActive && (
+                              <motion.span
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className={`text-sm md:text-xl font-mono mb-2 block tracking-widest ${svc.color}`}
+                              >
+                                [{svc.id}]
+                              </motion.span>
+                            )}
+                          </AnimatePresence>
+                          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tighter leading-none">
+                            {svc.title}
+                          </h3>
+                        </motion.div>
+                      </div>
+                    )
+                  })}
+                </motion.div>
               </div>
             </div>
+
+            {/* Actually Scrolling Right Content Cards */}
+            <div className="flex-[1.2] w-full flex flex-col gap-[20vh] pb-[20vh] md:pb-[40vh] mt-20 lg:mt-0 xl:gap-[30vh]">
+              {servicesList.map((svc, idx) => {
+                return (
+                  <motion.div
+                    key={idx}
+                    onViewportEnter={() => setActiveService(idx)}
+                    viewport={{ amount: 0.4, margin: "0px 0px -40% 0px" }}
+                    className="relative w-full rounded-[2.5rem] md:rounded-[3rem] bg-[#0A0A0F] border border-white/5 overflow-hidden flex flex-col justify-between p-8 sm:p-10 md:p-14 shadow-2xl min-h-[400px] lg:min-h-[500px]"
+                  >
+                    {/* Deep noise texture inside the card */}
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.25] mix-blend-overlay z-0 pointer-events-none"></div>
+
+                    {/* Abstract sweeping gradient behind the card content */}
+                    <div className={`absolute -top-1/4 -right-1/4 w-[150%] h-[150%] rounded-full blur-[100px] md:blur-[140px] ${svc.glow} opacity-[0.15] z-0 pointer-events-none`}></div>
+
+                    <div className="relative z-10 flex items-center justify-between mb-16">
+                      <div className="w-20 h-20 md:w-28 md:h-28 rounded-[2rem] bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-2xl shadow-xl overflow-hidden group">
+                        {/* Shimmer inside icon box */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50"></div>
+                        {(() => {
+                          const Icon = svc.icon;
+                          const currentClassName = `w-10 h-10 md:w-14 md:h-14 relative z-10 ${svc.color} drop-shadow-[0_0_15px_currentColor]`;
+                          return <Icon className={currentClassName} />
+                        })()}
+                      </div>
+
+                      <div className={`text-right opacity-30 ${svc.color}`}>
+                        <h4 className="text-4xl md:text-6xl font-bold font-mono tracking-tighter">
+                          {svc.id}
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div className="relative z-10 mt-auto">
+                      <p className="text-lg sm:text-xl md:text-2xl lg:text-[1.75rem] text-[#D1D1D6] leading-[1.5] font-medium tracking-tight">
+                        {svc.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </div>
+
           </div>
         </div>
 
