@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
-import { Shield, ChevronRight, Server, Code, Layers, Cpu, Globe2, Activity, Fingerprint, Lock, Zap } from "lucide-react";
+import { Shield, ChevronRight, Server, Code, Layers, Cpu, Globe2, Activity, Fingerprint, Lock, Zap, Users } from "lucide-react";
 import { Canvas } from "@react-three/fiber";
 import { Scene } from "@/components/3d/Scene";
 import { ReactLenis } from "lenis/react";
@@ -145,10 +145,10 @@ export default function Home() {
               <div className="max-w-4xl text-center md:text-left">
                 <h1 className="text-[4rem] sm:text-6xl md:text-8xl lg:text-[10rem] font-semibold tracking-tighter leading-[0.9] mb-6 md:mb-8">
                   <span className="text-white">CSMV.</span><br />
-                  <span className="text-[#86868B]">Built to last.</span>
+                  <span className="text-[#86868B]">Engineering Excellence.</span>
                 </h1>
                 <p className="text-lg sm:text-xl md:text-3xl text-[#86868B] font-medium max-w-2xl mx-auto md:mx-0">
-                  Pro-grade software engineering. Uncompromising scale.
+                  Elite software engineering, robust infrastructure, and dedicated tech teams for ambitious enterprises.
                 </p>
               </div>
             </motion.div>
@@ -159,10 +159,10 @@ export default function Home() {
               className="absolute md:right-[10%] w-full md:w-1/3 flex flex-col text-center md:text-left px-6"
             >
               <h2 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-4 md:mb-6 leading-[1.05]">
-                Flawless <br className="hidden md:block" /> Architecture.
+                Custom <br className="hidden md:block" /> Software.
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl text-[#86868B] font-medium leading-snug">
-                Every interface, database, and edge node meticulously designed for absolute resilience.
+                From high-performance SaaS platforms to complex enterprise applications, we build resilient systems designed to scale perfectly from day one.
               </p>
             </motion.div>
 
@@ -172,10 +172,10 @@ export default function Home() {
               className="absolute md:left-[10%] w-full md:w-1/3 flex flex-col text-center md:text-left px-6"
             >
               <h2 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-4 md:mb-6 leading-[1.05]">
-                Boundless <br className="hidden md:block" /> Scale.
+                Cloud <br className="hidden md:block" /> Architecture.
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl text-[#86868B] font-medium leading-snug">
-                Vertical and horizontal load balancing built to effortlessly absorb multi-million request spikes.
+                We audit, modernize, and fortify your cloud infrastructure—guaranteeing zero-trust security and flawless uptime under exponential load.
               </p>
             </motion.div>
 
@@ -194,7 +194,7 @@ export default function Home() {
               className="text-center mb-16"
             >
               <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6">
-                Everything you need. <br /> <span className="text-[#86868B]">Nothing you don't.</span>
+                End-to-End <br /> <span className="text-[#86868B]">IT Solutions.</span>
               </h2>
             </motion.div>
 
@@ -202,9 +202,9 @@ export default function Home() {
               <div className="md:col-span-2 rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors relative overflow-hidden group">
                 <div className="relative z-10">
                   <Code className="w-10 h-10 text-white mb-6" />
-                  <h3 className="text-3xl font-semibold text-white tracking-tight mb-2">Product Engineering</h3>
+                  <h3 className="text-3xl font-semibold text-white tracking-tight mb-2">Systems Engineering</h3>
                   <p className="text-[#86868B] text-lg max-w-md leading-snug">
-                    We don't just build software. We craft digital products from zero to one, ensuring market-fit usability intertwined with enterprise-level stability.
+                    We don't just write code. We architect scalable backend systems and high-throughput web applications that serve as the indestructible backbone of your digital business.
                   </p>
                 </div>
               </div>
@@ -212,9 +212,9 @@ export default function Home() {
               <div className="rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors">
                 <Server className="w-10 h-10 text-white mb-6" />
                 <div>
-                  <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">Tech Modernization</h3>
+                  <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">Cloud Infrastructure</h3>
                   <p className="text-[#86868B] text-base leading-snug">
-                    Tear down monolithic legacy code. Rebuild on unshakeable microservice foundations.
+                    Tear down monolithic bottlenecks. We design, migrate, and deploy resilient, auto-scaling cloud microservices.
                   </p>
                 </div>
               </div>
@@ -222,19 +222,19 @@ export default function Home() {
               <div className="rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors">
                 <Shield className="w-10 h-10 text-white mb-6" />
                 <div>
-                  <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">Accountability</h3>
+                  <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">Security & Audits</h3>
                   <p className="text-[#86868B] text-base leading-snug">
-                    We operate transparently. Your outcomes are our direct responsibility.
+                    Complete technological reviews. We identify vulnerabilities and optimize architectures for peak security.
                   </p>
                 </div>
               </div>
 
               <div className="md:col-span-2 rounded-[2rem] bg-[#111111]/80 backdrop-blur-xl border border-white/5 p-10 flex flex-col justify-between hover:bg-[#161616] transition-colors relative overflow-hidden group">
                 <div className="relative z-10">
-                  <Activity className="w-10 h-10 text-white mb-6" />
-                  <h3 className="text-3xl font-semibold text-white tracking-tight mb-2">Dedicated Teams</h3>
+                  <Users className="w-10 h-10 text-white mb-6" />
+                  <h3 className="text-3xl font-semibold text-white tracking-tight mb-2">Dedicated Engineering Teams</h3>
                   <p className="text-[#86868B] text-lg max-w-md leading-snug">
-                    Embed elite engineers directly into your current processes. We scale alongside you, instantly adapting to your technical roadmap.
+                    Scale your development velocity instantly. Embed our fully-vetted, high-performing senior developers directly into your internal teams to execute complex technical roadmaps.
                   </p>
                 </div>
               </div>
@@ -248,12 +248,12 @@ export default function Home() {
 
           <div className="w-full max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 pt-[60vh] md:pt-0">
             <div className="flex flex-col justify-center text-center md:text-left">
-              <h2 className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-4">The Hologram Core</h2>
+              <h2 className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-4">Engineering Process</h2>
               <h3 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-4 md:mb-6 leading-none">
                 Absolute <br className="hidden md:block" /> Transparency.
               </h3>
               <p className="text-lg sm:text-xl text-[#86868B] font-medium leading-relaxed max-w-md mx-auto md:mx-0">
-                Watch as the diamond drops its frosted glass shell and reveals the wireframe beneath. We treat your infrastructure exactly the same way. No black boxes. No hidden dependencies.
+                There are no black boxes in our delivery. We treat your infrastructure with total clarity—delivering fully documented, test-driven systems where every deployment, dependency, and architectural decision is openly accessible to your team.
               </p>
             </div>
             {/* The right side is intentionally implicitly empty to allow the 3D Hologram Diamond to shine here */}
@@ -273,7 +273,7 @@ export default function Home() {
                 The <br className="hidden md:block" /> Vault.
               </h3>
               <p className="text-lg sm:text-xl text-[#86868B] font-medium leading-relaxed">
-                Notice the diamond harden into an impenetrable, chromatic monolith? Our systems enforce military-grade security layers automatically at the edge before a single packet drops payload internally.
+                Our infrastructure designs enforce military-grade security layers at the edge. We fortify your tech stack against vulnerabilities before a single packet drops payload internally, guaranteeing impenetrable digital assets for your enterprise.
               </p>
             </div>
             {/* The left side is open for the dark monolith diamond */}
