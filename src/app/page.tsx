@@ -140,7 +140,7 @@ export default function Home() {
             {/* SEC 1: HERO */}
             <motion.div
               style={{ opacity: heroOpacity, scale: heroScale }}
-              className="absolute inset-0 flex flex-col justify-center px-6 md:px-20 lg:px-32 w-full"
+              className="absolute inset-0 flex flex-col justify-end md:justify-center pb-28 md:pb-0 px-6 md:px-20 lg:px-32 w-full"
             >
               <div className="max-w-4xl text-center md:text-left">
                 <h1 className="text-[4rem] sm:text-6xl md:text-8xl lg:text-[10rem] font-semibold tracking-tighter leading-[0.9] mb-6 md:mb-8">
