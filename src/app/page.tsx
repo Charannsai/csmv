@@ -143,9 +143,9 @@ export default function Home() {
               className="absolute inset-0 flex flex-col justify-end md:justify-center pb-28 md:pb-0 px-6 md:px-20 lg:px-32 w-full"
             >
               <div className="max-w-4xl text-center md:text-left">
-                <h1 className="text-[4rem] sm:text-6xl md:text-8xl lg:text-[10rem] font-semibold tracking-tighter leading-[0.9] mb-6 md:mb-8">
-                  <span className="text-white">CSMV.</span><br />
-                  <span className="text-[#86868B]">Engineering Excellence.</span>
+                <h1 className="text-[4rem] sm:text-6xl md:text-8xl lg:text-[9rem] font-semibold tracking-tighter leading-[0.9] mb-6 md:mb-8 -ml-1">
+                  <span className="text-white">Logic into</span><br />
+                  <span className="text-[#86868B]">Legacy.</span>
                 </h1>
                 <p className="text-lg sm:text-xl md:text-3xl text-[#86868B] font-medium max-w-2xl mx-auto md:mx-0">
                   Elite software engineering, robust infrastructure, and dedicated tech teams for ambitious enterprises.
