@@ -92,7 +92,7 @@ export function Scene() {
             let targetRotationZ = 0;
 
             // Material Targets
-            let targetRoughness = 0.15;
+            let targetRoughness = 0.0;
             let targetTransmission = 1;
             let targetThickness = 0.5;
             let targetOuterOpacity = 1;
@@ -161,9 +161,9 @@ export function Scene() {
                 targetScale = 1.4;
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2, Math.PI * 2.5, t);
 
-                // Material hardens
+                // Material hardens into opaque dark vault
                 targetTransmission = 0;
-                targetRoughness = 0.4;
+                targetRoughness = 0.2;
                 targetOuterOpacity = 0.95;
                 targetThickness = 5;
                 targetInnerOpacity = 0;
@@ -176,7 +176,7 @@ export function Scene() {
                 targetScale = THREE.MathUtils.lerp(1.4, 2.8, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2.5, Math.PI * 3.5, t);
 
-                targetRoughness = 0.05;
+                targetRoughness = 0.0;
                 targetInnerOpacity = 0.1;
                 targetColor.set("#FFFFFF");
             }
@@ -225,18 +225,22 @@ export function Scene() {
                             <MeshTransmissionMaterial
                                 ref={matRef}
                                 backside
-                                samples={4}
-                                resolution={256}
+                                samples={6}
+                                resolution={512}
                                 transmission={1}
-                                roughness={0.15}
-                                thickness={0.5}
-                                ior={1.3}
-                                chromaticAberration={0.05}
-                                anisotropy={0.5}
-                                distortion={0.2}
-                                distortionScale={0.5}
-                                temporalDistortion={0.05}
+                                roughness={0.0}
+                                thickness={1.5}
+                                ior={2.4}
+                                chromaticAberration={0.06}
+                                anisotropy={0.1}
+                                distortion={0.0}
+                                distortionScale={0.0}
+                                temporalDistortion={0.0}
                                 color="#FFFFFF"
+                                clearcoat={1}
+                                clearcoatRoughness={0.0}
+                                attenuationColor="#ffffff"
+                                attenuationDistance={2}
                             />
                         </mesh>
                         <mesh castShadow receiveShadow scale={0.9}>
