@@ -1,7 +1,7 @@
 "use client";
 
 import { useFrame } from "@react-three/fiber";
-import { Float, Environment, ContactShadows, PresentationControls, MeshTransmissionMaterial } from "@react-three/drei";
+import { Float, Environment, ContactShadows, PresentationControls } from "@react-three/drei";
 import { useRef, useMemo, useEffect } from "react";
 import * as THREE from "three";
 
@@ -91,12 +91,10 @@ export function Scene() {
             const isMobile = window.innerWidth < 768;
 
             // Material Targets
-            let targetRoughness = 0.0;
-            let targetTransmission = 1;
-            let targetThickness = 0.5;
-            let targetOuterOpacity = 1;
+            let targetRoughness = 0.15;
+            let targetMetalness = 0.8;
             let targetInnerOpacity = 0.1;
-            const targetColor = new THREE.Color("#FFFFFF");
+            const targetColor = new THREE.Color("#e4e4e7");
             const targetInnerColor = new THREE.Color("#FFFFFF");
 
             if (scrollVH < 0.3) {
@@ -138,19 +136,21 @@ export function Scene() {
                 targetY = isMobile ? THREE.MathUtils.lerp(-2.5, 2.5, t) : THREE.MathUtils.lerp(0, 3.5, t);
                 targetScale = isMobile ? THREE.MathUtils.lerp(0.5, 0.3, t) : THREE.MathUtils.lerp(0.7, 0.4, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI, Math.PI * 1.5, t);
+                targetMetalness = 0.9;
+                targetColor.set("#d4d4d8");
                 targetInnerColor.set("#86868B");
             } else if (scrollVH >= 2.5 && scrollVH < 3.5) {
-                // The Hologram Core (Wireframe Mode)
+                // The Hologram Core (Solid Silver Mode)
                 const t = Math.min((scrollVH - 2.5) / 0.5, 1);
                 targetX = isMobile ? 0 : THREE.MathUtils.lerp(0, 3.5, t);
                 targetY = isMobile ? THREE.MathUtils.lerp(2.5, -2, t) : THREE.MathUtils.lerp(3.5, 0, t);
                 targetScale = isMobile ? THREE.MathUtils.lerp(0.3, 0.8, t) : THREE.MathUtils.lerp(0.4, 1.4, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 1.5, Math.PI * 2, t);
 
-                // Material shifts to pure wireframe
-                targetTransmission = 0;
-                targetOuterOpacity = 0.05;
-                targetInnerOpacity = 0.5;
+                targetRoughness = 0.1;
+                targetMetalness = 0.9;
+                targetColor.set("#e4e4e7");
+                targetInnerOpacity = 0.8;
                 targetInnerColor.set("#38BDF8"); // Sky blue core
             } else if (scrollVH >= 3.5 && scrollVH < 4.5) {
                 // The Vault (Monolith Mode)
@@ -161,12 +161,10 @@ export function Scene() {
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2, Math.PI * 2.5, t);
 
                 // Material hardens into opaque dark vault
-                targetTransmission = 0;
-                targetRoughness = 0.2;
-                targetOuterOpacity = 0.95;
-                targetThickness = 5;
+                targetRoughness = 0.3;
+                targetMetalness = 0.8;
+                targetColor.set("#171717");
                 targetInnerOpacity = 0;
-                targetColor.set("#050505");
             } else if (scrollVH >= 4.5) {
                 // Footer CTA (Massive Crystal)
                 const t = Math.min((scrollVH - 4.5) / 0.5, 1);
@@ -175,9 +173,10 @@ export function Scene() {
                 targetScale = isMobile ? THREE.MathUtils.lerp(0.8, 1.5, t) : THREE.MathUtils.lerp(1.4, 2.8, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2.5, Math.PI * 3.5, t);
 
-                targetRoughness = 0.0;
+                targetRoughness = 0.1;
+                targetMetalness = 0.6;
+                targetColor.set("#ffffff");
                 targetInnerOpacity = 0.1;
-                targetColor.set("#FFFFFF");
             }
 
             // Apply transformations
@@ -189,10 +188,7 @@ export function Scene() {
             // Apply Material Morphing
             if (matRef.current) {
                 matRef.current.roughness = THREE.MathUtils.damp(matRef.current.roughness, targetRoughness, 4, delta);
-                matRef.current.transmission = THREE.MathUtils.damp(matRef.current.transmission, targetTransmission, 4, delta);
-                matRef.current.thickness = THREE.MathUtils.damp(matRef.current.thickness, targetThickness, 4, delta);
-                matRef.current.opacity = THREE.MathUtils.damp(matRef.current.opacity, targetOuterOpacity, 4, delta);
-                matRef.current.transparent = targetOuterOpacity < 1;
+                matRef.current.metalness = THREE.MathUtils.damp(matRef.current.metalness, targetMetalness, 4, delta);
                 matRef.current.color.lerp(targetColor, delta * 4);
             }
             if (innerMatRef.current) {
@@ -221,31 +217,18 @@ export function Scene() {
                             <latheGeometry
                                 args={[diamondPoints, 8]}
                             />
-                            <MeshTransmissionMaterial
+                            <meshStandardMaterial
                                 ref={matRef}
-                                backside
-                                samples={6}
-                                resolution={512}
-                                transmission={1}
-                                roughness={0.0}
-                                thickness={1.5}
-                                ior={2.4}
-                                chromaticAberration={0.06}
-                                anisotropy={0.1}
-                                distortion={0.0}
-                                distortionScale={0.0}
-                                temporalDistortion={0.0}
-                                color="#FFFFFF"
-                                clearcoat={1}
-                                clearcoatRoughness={0.0}
-                                attenuationColor="#ffffff"
-                                attenuationDistance={2}
+                                metalness={0.8}
+                                roughness={0.15}
+                                color="#e4e4e7"
                                 flatShading={true}
+                                envMapIntensity={1.5}
                             />
                         </mesh>
-                        <mesh castShadow receiveShadow scale={0.9}>
+                        <mesh scale={0.95}>
                             <icosahedronGeometry args={[2, 1]} />
-                            <meshStandardMaterial ref={innerMatRef} color="#FFFFFF" wireframe wireframeLinewidth={1} transparent opacity={0.1} />
+                            <meshStandardMaterial ref={innerMatRef} color="#FFFFFF" wireframe transparent opacity={0.1} depthWrite={false} />
                         </mesh>
                     </Float>
                 </PresentationControls>
