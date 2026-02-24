@@ -62,7 +62,7 @@ export default function ContactForm() {
 
             <div className="mt-4">
                 <button type="submit" suppressHydrationWarning disabled={result === "Sending...."} className="group/btn flex items-center gap-3 w-full sm:w-auto justify-center bg-white text-black px-8 py-4 rounded-full font-semibold tracking-wide hover:bg-transparent hover:text-white border border-transparent hover:border-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
-                    {result === "Sending...." ? "Transmitting..." : "Send Transmission"}
+                    {result === "Sending...." ? "Sending Request..." : "Send Request"}
                     {result !== "Sending...." && <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />}
                 </button>
             </div>
