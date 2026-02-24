@@ -241,6 +241,7 @@ export function Scene() {
                                 clearcoatRoughness={0.0}
                                 attenuationColor="#ffffff"
                                 attenuationDistance={2}
+                                flatShading={true}
                             />
                         </mesh>
                         <mesh castShadow receiveShadow scale={0.9}>
