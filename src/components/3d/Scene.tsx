@@ -158,6 +158,7 @@ export function Scene() {
                 targetY = 0;
                 targetScale = isMobile ? THREE.MathUtils.lerp(0.8, 1.5, t) : THREE.MathUtils.lerp(1.4, 2.8, t);
                 targetRotationZ = THREE.MathUtils.lerp(Math.PI * 2.5, Math.PI * 3.5, t);
+                targetInnerOpacity = 0.0;
             }
 
             // Apply transformations
