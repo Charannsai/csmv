@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence, useMotionValueEvent } from "framer-motion";
 import { Shield, ChevronRight, Server, Code, Layers, Cpu, Globe2, Activity, Fingerprint, Lock, Zap, Users } from "lucide-react";
 import { Canvas } from "@react-three/fiber";
@@ -78,10 +79,10 @@ function MagneticButton({ children, className = "" }: { children: React.ReactNod
 }
 
 const servicesList = [
-  { id: "01", title: "Systems Engineering", icon: Code, color: "text-blue-400", glow: "bg-blue-500/20", desc: "We architect scalable backend systems and high-throughput web applications that serve as the indestructible backbone of your digital business." },
-  { id: "02", title: "Cloud Infrastructure", icon: Server, color: "text-purple-400", glow: "bg-purple-500/20", desc: "Tear down monolithic bottlenecks. We design, migrate, and deploy resilient, auto-scaling cloud microservices." },
-  { id: "03", title: "Security & Audits", icon: Shield, color: "text-emerald-400", glow: "bg-emerald-500/20", desc: "Complete technological reviews. We identify vulnerabilities and optimize architectures for peak security." },
-  { id: "04", title: "Dedicated Teams", icon: Users, color: "text-orange-400", glow: "bg-orange-500/20", desc: "Instantly scale your development velocity. Embed our fully-vetted, high-performing senior developers directly into your internal core teams." },
+  { id: "01", title: "Systems Engineering", icon: Code, color: "text-blue-400", glow: "bg-blue-500/20", desc: "We architect scalable backend systems and high-throughput web applications that serve as the indestructible backbone of your digital business.", image: "/images/cards/systems_engineering.png" },
+  { id: "02", title: "Cloud Infrastructure", icon: Server, color: "text-purple-400", glow: "bg-purple-500/20", desc: "Tear down monolithic bottlenecks. We design, migrate, and deploy resilient, auto-scaling cloud microservices.", image: "/images/cards/cloud_infrastructure.png" },
+  { id: "03", title: "Security & Audits", icon: Shield, color: "text-emerald-400", glow: "bg-emerald-500/20", desc: "Complete technological reviews. We identify vulnerabilities and optimize architectures for peak security.", image: "/images/cards/security_audits.png" },
+  { id: "04", title: "Dedicated Teams", icon: Users, color: "text-orange-400", glow: "bg-orange-500/20", desc: "Instantly scale your development velocity. Embed our fully-vetted, high-performing senior developers directly into your internal core teams.", image: "/images/cards/dedicated_teams.png" },
 ];
 
 export default function Home() {
@@ -249,34 +250,47 @@ export default function Home() {
                     key={idx}
                     onViewportEnter={() => setActiveService(idx)}
                     viewport={{ amount: 0.4, margin: "0px 0px -40% 0px" }}
-                    className="relative w-full rounded-[2.5rem] md:rounded-[3rem] bg-[#0A0A0F] border border-white/5 overflow-hidden flex flex-col justify-between p-8 sm:p-10 md:p-14 shadow-2xl min-h-[400px] lg:min-h-[500px]"
+                    className="relative w-full rounded-[2.5rem] md:rounded-[3rem] bg-[#0A0A0F] border border-white/5 overflow-hidden flex flex-col justify-between p-8 sm:p-10 md:p-14 shadow-2xl min-h-[400px] lg:min-h-[500px] group cursor-default"
                   >
-                    {/* Deep noise texture inside the card */}
-                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.25] mix-blend-overlay z-0 pointer-events-none"></div>
+                    {/* Deep noise texture over everything */}
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.2] mix-blend-overlay pointer-events-none z-0"></div>
 
-                    {/* Abstract sweeping gradient behind the card content */}
-                    <div className={`absolute -top-1/4 -right-1/4 w-[150%] h-[150%] rounded-full blur-[100px] md:blur-[140px] ${svc.glow} opacity-[0.15] z-0 pointer-events-none`}></div>
+                    {/* Animated Geometric Background Grid */}
+                    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)]">
+                      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-10 group-hover:opacity-60 transition-all duration-1000 group-hover:scale-105" style={{ transformOrigin: "center" }}></div>
+                    </div>
 
+                    {/* Dynamic Moving Glowing Orbs inside the card */}
+                    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                      <div className={`absolute -top-[20%] -right-[10%] w-[60%] h-[60%] ${svc.glow} rounded-full blur-[100px] opacity-20 group-hover:opacity-50 transition-all duration-1000 group-hover:-translate-x-10 group-hover:translate-y-10`}></div>
+                      <div className={`absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%] ${svc.glow} rounded-full blur-[100px] opacity-10 group-hover:opacity-40 transition-all duration-1000 group-hover:translate-x-10 group-hover:-translate-y-10`}></div>
+                    </div>
+
+                    {/* Top Header Section */}
                     <div className="relative z-10 flex items-center justify-between mb-16">
-                      <div className="w-20 h-20 md:w-28 md:h-28 rounded-[2rem] bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-2xl shadow-xl overflow-hidden group">
+                      <div className="w-20 h-20 md:w-28 md:h-28 rounded-[2rem] bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-2xl shadow-xl overflow-hidden group-hover:scale-110 group-hover:rotate-[5deg] transition-all duration-500 ease-out">
                         {/* Shimmer inside icon box */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         {(() => {
                           const Icon = svc.icon;
-                          const currentClassName = `w-10 h-10 md:w-14 md:h-14 relative z-10 ${svc.color} drop-shadow-[0_0_15px_currentColor]`;
+                          const currentClassName = `w-10 h-10 md:w-14 md:h-14 relative z-10 ${svc.color} drop-shadow-[0_0_15px_currentColor] group-hover:scale-110 transition-transform duration-500`;
                           return <Icon className={currentClassName} />
                         })()}
                       </div>
 
-                      <div className={`text-right opacity-30 ${svc.color}`}>
+                      <div className={`text-right opacity-30 ${svc.color} group-hover:opacity-100 group-hover:-translate-x-4 transition-all duration-500 ease-out`}>
                         <h4 className="text-4xl md:text-6xl font-bold font-mono tracking-tighter">
                           {svc.id}
                         </h4>
                       </div>
                     </div>
 
-                    <div className="relative z-10 mt-auto">
-                      <p className="text-lg sm:text-xl md:text-2xl lg:text-[1.75rem] text-[#D1D1D6] leading-[1.5] font-medium tracking-tight">
+                    {/* Bottom Text Section */}
+                    <div className="relative z-10 mt-auto flex flex-col justify-end transform group-hover:-translate-y-2 transition-transform duration-500">
+                      <div className="overflow-hidden mb-2 hidden md:block h-0 group-hover:h-auto transition-all duration-500">
+                        <h3 className="text-2xl md:text-4xl font-semibold text-white opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">{svc.title}</h3>
+                      </div>
+                      <p className="text-lg sm:text-xl md:text-2xl lg:text-[1.75rem] text-[#86868B] group-hover:text-[#D1D1D6] transition-colors duration-500 leading-[1.5] font-medium tracking-tight">
                         {svc.desc}
                       </p>
                     </div>
