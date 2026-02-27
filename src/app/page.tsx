@@ -182,10 +182,16 @@ export default function Home() {
 
         {/* --- SECTION 2: NATURAL SCROLL BENTO --- */}
         <div id="section-bento" className="relative z-20 w-full bg-transparent">
-          <div className="w-full max-w-7xl mx-auto px-6 py-32 flex flex-col lg:flex-row items-start gap-12 lg:gap-24 relative">
+          <div className="w-full max-w-7xl mx-auto px-6 py-20 lg:py-32 flex flex-col lg:flex-row items-start gap-12 lg:gap-24 relative">
 
-            {/* Sticky Left Typography List */}
-            <div className="lg:sticky lg:top-[30vh] flex-[1] flex flex-col justify-start w-full z-10 pt-20 relative lg:pt-0">
+            {/* Mobile Header */}
+            <div className="lg:hidden w-full flex flex-col mb-4 z-10">
+              <h2 className="text-xs sm:text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-3">End-to-End IT Solutions //</h2>
+              <h3 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-white mb-2">Our Services.</h3>
+            </div>
+
+            {/* Sticky Left Typography List (Hidden on Mobile) */}
+            <div className="hidden lg:flex lg:sticky lg:top-[30vh] flex-[1] flex-col justify-start w-full z-10 relative">
               {/* Move the title so it floats statically above the scrolling texts */}
               <motion.div
                 animate={{ opacity: activeService === 0 ? 0.6 : 0 }}
@@ -243,14 +249,14 @@ export default function Home() {
             </div>
 
             {/* Actually Scrolling Right Content Cards */}
-            <div className="flex-[1.2] w-full flex flex-col gap-[20vh] pb-[20vh] md:pb-[40vh] mt-20 lg:mt-0 xl:gap-[30vh]">
+            <div className="flex-[1.2] w-full flex flex-col gap-12 lg:gap-[30vh] pb-10 lg:pb-[40vh]">
               {servicesList.map((svc, idx) => {
                 return (
                   <motion.div
                     key={idx}
                     onViewportEnter={() => setActiveService(idx)}
                     viewport={{ amount: 0.4, margin: "0px 0px -40% 0px" }}
-                    className="relative w-full rounded-[2.5rem] md:rounded-[3rem] bg-[#0A0A0F] border border-white/5 overflow-hidden flex flex-col justify-between p-8 sm:p-10 md:p-14 shadow-2xl min-h-[400px] lg:min-h-[500px] group cursor-default"
+                    className="relative w-full rounded-[2rem] md:rounded-[3rem] bg-[#0A0A0F] border border-white/5 overflow-hidden flex flex-col justify-between p-6 sm:p-10 md:p-14 shadow-2xl min-h-[350px] lg:min-h-[500px] group cursor-default"
                   >
                     {/* Deep noise texture over everything */}
                     <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.2] mix-blend-overlay pointer-events-none z-0"></div>
@@ -286,11 +292,11 @@ export default function Home() {
                     </div>
 
                     {/* Bottom Text Section */}
-                    <div className="relative z-10 mt-auto flex flex-col justify-end transform group-hover:-translate-y-2 transition-transform duration-500">
-                      <div className="overflow-hidden mb-2 hidden md:block h-0 group-hover:h-auto transition-all duration-500">
-                        <h3 className="text-2xl md:text-4xl font-semibold text-white opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">{svc.title}</h3>
+                    <div className="relative z-10 mt-auto flex flex-col justify-end transform lg:group-hover:-translate-y-2 transition-transform duration-500">
+                      <div className="overflow-hidden mb-3 lg:mb-2 lg:h-0 lg:group-hover:h-auto transition-all duration-500">
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white lg:opacity-0 lg:translate-y-8 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-500 ease-out">{svc.title}</h3>
                       </div>
-                      <p className="text-lg sm:text-xl md:text-2xl lg:text-[1.75rem] text-[#86868B] group-hover:text-[#D1D1D6] transition-colors duration-500 leading-[1.5] font-medium tracking-tight">
+                      <p className="text-base sm:text-xl md:text-2xl lg:text-[1.75rem] text-[#86868B] group-hover:text-[#D1D1D6] transition-colors duration-500 leading-[1.5] font-medium tracking-tight">
                         {svc.desc}
                       </p>
                     </div>
