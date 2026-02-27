@@ -186,9 +186,13 @@ export default function Home() {
             {/* Sticky Left Typography List */}
             <div className="lg:sticky lg:top-[30vh] flex-[1] flex flex-col justify-start w-full z-10 pt-20 relative lg:pt-0">
               {/* Move the title so it floats statically above the scrolling texts */}
-              <div className="absolute top-0 lg:-top-20 left-0 opacity-60 mb-10 hidden lg:block">
+              <motion.div
+                animate={{ opacity: activeService === 0 ? 0.6 : 0 }}
+                transition={{ duration: 0.4 }}
+                className="absolute top-0 lg:-top-20 left-0 mb-10 hidden lg:block pointer-events-none"
+              >
                 <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-white">End-to-End IT Solutions //</h2>
-              </div>
+              </motion.div>
 
               {/* The container translates upwards perfectly so the active item is always at the top line of sight! */}
               <div className="relative w-full">
