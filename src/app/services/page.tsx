@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Code2, Network, Users } from "lucide-react";
 import Link from "next/link";
+import SceneBackground from "@/components/3d/SceneBackground";
 
 export const metadata: Metadata = {
     title: "Services | CSMV",
@@ -37,8 +38,7 @@ const services = [
 export default function ServicesPage() {
     return (
         <div className="min-h-screen bg-transparent pt-32 pb-24 relative overflow-hidden">
-            {/* Background elements */}
-            <div className="absolute top-0 left-0 w-full h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/[0.05] via-transparent to-transparent pointer-events-none"></div>
+            <SceneBackground />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="text-center max-w-3xl mx-auto mb-20 md:mb-32">

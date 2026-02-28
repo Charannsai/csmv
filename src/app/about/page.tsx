@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Shield, Zap, Globe, Cpu } from "lucide-react";
+import SceneBackground from "@/components/3d/SceneBackground";
 
 export const metadata: Metadata = {
     title: "About Us | CSMV",
@@ -8,9 +9,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
     return (
-        <div className="min-h-screen bg-[#050505] pt-32 pb-24 relative overflow-hidden">
-            {/* Background elements */}
-            <div className="absolute top-0 right-0 w-full h-[600px] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/[0.05] via-transparent to-transparent pointer-events-none"></div>
+        <div className="min-h-screen bg-transparent pt-32 pb-24 relative overflow-hidden">
+            <SceneBackground />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="max-w-3xl lg:mx-0 mb-24">
