@@ -90,7 +90,6 @@ export function Scene() {
 
             const isMobile = window.innerWidth < 768;
 
-            // Material Targets
             let targetRoughness = 0.05;
             let targetMetalness = 1.0;
             let targetInnerOpacity = 0.1;
