@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Linkedin, Twitter, Github } from "lucide-react";
 
 export default function Footer() {
@@ -7,10 +8,8 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="xl:grid xl:grid-cols-4 xl:gap-8">
                     <div className="space-y-8 xl:col-span-1">
-                        <Link href="/" className="text-2xl font-semibold tracking-tighter text-white flex items-center gap-2">
-                            <span>
-                                <span className="text-[#D4AF37] drop-shadow-[0_0_15px_rgba(212,175,55,0.8)]">C</span>erprise.
-                            </span>
+                        <Link href="/" className="flex items-center gap-2">
+                            <Image src="/cerpriselogo.png" alt="Cerprise Logo" width={280} height={80} className="w-auto h-12 lg:h-14 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]" />
                         </Link>
                         <p className="text-sm leading-6 max-w-xs">
                             Product engineering, brand identity, technology architecture, and dedicated elite teams.

@@ -17,6 +17,15 @@ const orbitron = Orbitron({
 export const metadata: Metadata = {
   title: "Cerprise | End-To-End Growth Partner",
   description: "Delivering reliable branding, staffing, and high-performance software systems for growing businesses.",
+  icons: {
+    icon: [
+      { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon/favicon.ico', sizes: '48x48' },
+    ],
+    apple: '/favicon/apple-touch-icon.png',
+  },
+  manifest: '/favicon/site.webmanifest',
 };
 
 export default function RootLayout({

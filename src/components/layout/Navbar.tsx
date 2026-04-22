@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -66,10 +67,8 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     <div className="flex-shrink-0 flex items-center">
-                        <Link href="/" className="text-2xl font-semibold tracking-tighter text-white group flex items-center gap-3">
-                            <span>
-                                <span className="text-[#D4AF37] drop-shadow-[0_0_15px_rgba(212,175,55,0.8)]">C</span>erprise.
-                            </span>
+                        <Link href="/" className="flex items-center gap-3 group">
+                            <Image src="/cerpriselogo.png" alt="Cerprise Logo" width={280} height={80} priority className="w-auto h-12 lg:h-14 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]" />
                         </Link>
                     </div>
 
