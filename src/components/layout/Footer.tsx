@@ -65,12 +65,6 @@ export default function Footer() {
                     <p className="text-sm">
                         &copy; {new Date().getFullYear()} Cerprise Ecosystem. All rights reserved.
                     </p>
-                    <div className="mt-4 md:mt-0 flex items-center gap-2">
-                        <span className="relative flex h-2 w-2">
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-white/50"></span>
-                        </span>
-                        <span className="text-xs font-mono text-white/50">Global Systems Architecture</span>
-                    </div>
                 </div>
                 <div className="w-full flex justify-center items-end mt-16 md:mt-24 select-none pointer-events-none overflow-hidden pb-0 mb-[-2rem] md:mb-[-4rem]">
                     <h1 className="text-[14vw] font-black tracking-tighter leading-[0.7] text-transparent bg-clip-text opacity-[0.15] md:opacity-[0.25]" style={{ backgroundImage: "linear-gradient(180deg, #D4AF37 0%, #A38426 40%, transparent 100%)" }}>
