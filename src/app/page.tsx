@@ -139,14 +139,6 @@ export default function Home() {
               style={{ opacity: heroOpacity, scale: heroScale }}
               className="absolute inset-0 flex flex-col justify-end md:justify-center pb-28 md:pb-0 px-6 md:px-20 lg:px-32 w-full"
             >
-              {/* Massive 'C' Watermark Aesthetic */}
-              <div className="absolute left-[5%] top-[10%] md:top-[12%] text-[40rem] md:text-[65rem] font-black pointer-events-none opacity-[0.10] bg-clip-text text-transparent" 
-                   style={{ 
-                     backgroundImage: "linear-gradient(45deg, #0B0D10 0%, #D4AF37 30%, #A38426 50%, #0B0D10 100%)"
-                   }}>
-                C
-              </div>
-
               <div className="max-w-4xl text-center md:text-left relative z-10">
                 <h1 className="text-[4rem] sm:text-6xl md:text-8xl lg:text-[9rem] font-semibold tracking-tighter leading-[0.9] mb-6 md:mb-8 -ml-1">
                   <span className="text-white">The Only</span><br />

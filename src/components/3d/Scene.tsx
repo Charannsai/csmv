@@ -216,7 +216,6 @@ export function Scene() {
                         </mesh>
                     </Float>
                 </PresentationControls>
-                <ContactShadows position={[0, -3.5, 0]} opacity={0.5} scale={15} blur={2.5} far={4.5} color="#D4AF37" />
             </group>
 
             <Environment preset="city" />
