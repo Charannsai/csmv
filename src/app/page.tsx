@@ -79,10 +79,10 @@ function MagneticButton({ children, className = "" }: { children: React.ReactNod
 }
 
 const servicesList = [
-  { id: "01", title: "Software & SaaS", icon: Code, color: "text-blue-400", glow: "bg-blue-500/20", desc: "Building internal software solutions, multi-tenant B2B SaaS, and custom web applications to natively automate your entire operational flow.", image: "/images/cards/systems_engineering.png" },
-  { id: "02", title: "Cloud & Infrastructure", icon: Server, color: "text-purple-400", glow: "bg-purple-500/20", desc: "Tear down monolithic bottlenecks. We design, migrate, and deploy resilient, auto-scaling cloud architectures with zero-trust security.", image: "/images/cards/cloud_infrastructure.png" },
-  { id: "03", title: "Talent & Staffing", icon: Users, color: "text-emerald-400", glow: "bg-emerald-500/20", desc: "Instantly scale your velocity. We outfit your business with high-performing manpower, vetted developers, and embedded recruitment pipelines.", image: "/images/cards/security_audits.png" },
-  { id: "04", title: "Brand & Design", icon: Layers, color: "text-orange-400", glow: "bg-orange-500/20", desc: "Build massive visual authority from scratch. Comprehensive UX/UI, digital branding, and identity strategies mapped perfectly to your business goals.", image: "/images/cards/dedicated_teams.png" },
+  { id: "01", title: "Software & SaaS", icon: Code, color: "text-[#D4AF37]", glow: "bg-[#D4AF37]/20", desc: "Building internal software solutions, multi-tenant B2B SaaS, and custom web applications to natively automate your entire operational flow.", image: "/images/cards/systems_engineering.png" },
+  { id: "02", title: "Cloud & Infrastructure", icon: Server, color: "text-[#D4AF37]", glow: "bg-[#D4AF37]/20", desc: "Tear down monolithic bottlenecks. We design, migrate, and deploy resilient, auto-scaling cloud architectures with zero-trust security.", image: "/images/cards/cloud_infrastructure.png" },
+  { id: "03", title: "Talent & Staffing", icon: Users, color: "text-[#D4AF37]", glow: "bg-[#D4AF37]/20", desc: "Instantly scale your velocity. We outfit your business with high-performing manpower, vetted developers, and embedded recruitment pipelines.", image: "/images/cards/security_audits.png" },
+  { id: "04", title: "Brand & Design", icon: Layers, color: "text-[#D4AF37]", glow: "bg-[#D4AF37]/20", desc: "Build massive visual authority from scratch. Comprehensive UX/UI, digital branding, and identity strategies mapped perfectly to your business goals.", image: "/images/cards/dedicated_teams.png" },
 ];
 
 export default function Home() {
@@ -140,14 +140,17 @@ export default function Home() {
               className="absolute inset-0 flex flex-col justify-end md:justify-center pb-28 md:pb-0 px-6 md:px-20 lg:px-32 w-full"
             >
               {/* Massive 'C' Watermark Aesthetic */}
-              <div className="absolute left-[5%] top-[10%] md:top-[15%] text-[40rem] md:text-[60rem] font-black text-transparent bg-clip-text leading-none pointer-events-none opacity-20" style={{ backgroundImage: "linear-gradient(to bottom right, #3B82F6, #1e3a8a, transparent)" }}>
+              <div className="absolute left-[5%] top-[10%] md:top-[12%] text-[40rem] md:text-[65rem] font-black pointer-events-none opacity-[0.10] bg-clip-text text-transparent" 
+                   style={{ 
+                     backgroundImage: "linear-gradient(45deg, #0B0D10 0%, #D4AF37 30%, #A38426 50%, #0B0D10 100%)"
+                   }}>
                 C
               </div>
 
               <div className="max-w-4xl text-center md:text-left relative z-10">
                 <h1 className="text-[4rem] sm:text-6xl md:text-8xl lg:text-[9rem] font-semibold tracking-tighter leading-[0.9] mb-6 md:mb-8 -ml-1">
                   <span className="text-white">The Only</span><br />
-                  <span className="text-[#86868B]">Partner.</span>
+                  <span className="bg-clip-text text-transparent bg-[linear-gradient(to_right,#D4AF37,#FFF5C3,#D4AF37)]" style={{ backgroundSize: '200% auto', animation: 'shine 4s linear infinite' }}>Partner.</span>
                 </h1>
                 <p className="text-lg sm:text-xl md:text-3xl text-[#86868B] font-medium max-w-2xl mx-auto md:mx-0">
                   From foundational branding and elite staffing to scalable cloud architectures and custom SaaS. We engineer every facet of your growth.
@@ -261,14 +264,17 @@ export default function Home() {
                     key={idx}
                     onViewportEnter={() => setActiveService(idx)}
                     viewport={{ amount: 0.4, margin: "0px 0px -40% 0px" }}
-                    className="relative w-full rounded-[2rem] md:rounded-[3rem] bg-[#0A0A0F] border border-white/5 overflow-hidden flex flex-col justify-between p-6 sm:p-10 md:p-14 shadow-2xl min-h-[350px] lg:min-h-[500px] group cursor-default"
+                    className="relative w-full rounded-[2rem] md:rounded-[3rem] bg-[#0B0D10] border border-[#D4AF37]/10 overflow-hidden flex flex-col justify-between p-6 sm:p-10 md:p-14 min-h-[350px] lg:min-h-[500px] group cursor-default shadow-2xl hover:border-[#D4AF37]/40 hover:shadow-[0_0_60px_rgba(212,175,55,0.15)] transition-all duration-700"
                   >
                     {/* Deep noise texture over everything */}
                     <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.2] mix-blend-overlay pointer-events-none z-0"></div>
 
+                    {/* Animated Sweeping Glare */}
+                    <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(212,175,55,0.05)_50%,transparent_75%)] bg-[length:250%_250%] bg-[-150%_0] pointer-events-none z-0 opacity-0 group-hover:opacity-100 group-hover:bg-[150%_0] transition-all duration-1000"></div>
+
                     {/* Animated Geometric Background Grid */}
                     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)]">
-                      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-10 group-hover:opacity-60 transition-all duration-1000 group-hover:scale-105" style={{ transformOrigin: "center" }}></div>
+                      <div className="absolute inset-0 bg-[linear-gradient(rgba(212,175,55,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(212,175,55,0.05)_1px,transparent_1px)] bg-[size:40px_40px] opacity-10 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105" style={{ transformOrigin: "center" }}></div>
                     </div>
 
                     {/* Dynamic Moving Glowing Orbs inside the card */}
@@ -279,9 +285,9 @@ export default function Home() {
 
                     {/* Top Header Section */}
                     <div className="relative z-10 flex items-center justify-between mb-16">
-                      <div className="w-20 h-20 md:w-28 md:h-28 rounded-[2rem] bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-2xl shadow-xl overflow-hidden group-hover:scale-110 group-hover:rotate-[5deg] transition-all duration-500 ease-out">
+                      <div className="w-20 h-20 md:w-28 md:h-28 rounded-[2rem] bg-[#0B0D10] border border-[#D4AF37]/20 flex items-center justify-center backdrop-blur-2xl shadow-xl overflow-hidden group-hover:scale-110 group-hover:rotate-[5deg] transition-all duration-500 ease-out group-hover:border-[#D4AF37]/50 group-hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
                         {/* Shimmer inside icon box */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
                         {(() => {
                           const Icon = svc.icon;
                           const currentClassName = `w-10 h-10 md:w-14 md:h-14 relative z-10 ${svc.color} drop-shadow-[0_0_15px_currentColor] group-hover:scale-110 transition-transform duration-500`;
@@ -361,8 +367,9 @@ export default function Home() {
             <h2 className="text-[4rem] sm:text-[6rem] md:text-[10rem] font-semibold tracking-tighter mb-8 leading-[0.8] text-white">
               Start.
             </h2>
-            <MagneticButton className="px-12 py-5 border border-white/20 bg-white/10 backdrop-blur-xl text-white rounded-full font-semibold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300">
-              Partner With Us
+            <MagneticButton className="relative overflow-hidden group px-12 py-5 border border-[#D4AF37] bg-[#D4AF37]/10 backdrop-blur-xl text-[#FFDF73] rounded-full font-semibold uppercase tracking-[0.2em] transition-all duration-300">
+              <span className="relative z-10 group-hover:text-[#0B0D10] transition-colors duration-300">Partner With Us</span>
+              <div className="absolute inset-0 bg-[#D4AF37] translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out z-0"></div>
             </MagneticButton>
           </div>
         </section>

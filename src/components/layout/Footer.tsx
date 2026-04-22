@@ -9,7 +9,7 @@ export default function Footer() {
                     <div className="space-y-8 xl:col-span-1">
                         <Link href="/" className="text-2xl font-semibold tracking-tighter text-white flex items-center gap-2">
                             <span>
-                                <span className="text-blue-500 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">C</span>erprise.
+                                <span className="text-[#D4AF37] drop-shadow-[0_0_15px_rgba(212,175,55,0.8)]">C</span>erprise.
                             </span>
                         </Link>
                         <p className="text-sm leading-6 max-w-xs">

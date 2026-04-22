@@ -68,7 +68,7 @@ export default function Navbar() {
                     <div className="flex-shrink-0 flex items-center">
                         <Link href="/" className="text-2xl font-semibold tracking-tighter text-white group flex items-center gap-3">
                             <span>
-                                <span className="text-blue-500 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">C</span>erprise.
+                                <span className="text-[#D4AF37] drop-shadow-[0_0_15px_rgba(212,175,55,0.8)]">C</span>erprise.
                             </span>
                         </Link>
                     </div>
@@ -98,7 +98,7 @@ export default function Navbar() {
                                                     href={sub.href}
                                                     className="block p-4 rounded-xl hover:bg-white/5 transition-all duration-200 group/item"
                                                 >
-                                                    <h4 className="text-white text-sm font-semibold mb-1.5 leading-snug group-hover/item:text-blue-400 transition-colors">{sub.title}</h4>
+                                                    <h4 className="text-white text-sm font-semibold mb-1.5 leading-snug group-hover/item:text-[#D4AF37] transition-colors">{sub.title}</h4>
                                                     <p className="text-[#86868B] text-xs leading-relaxed">{sub.description}</p>
                                                 </Link>
                                             ))}

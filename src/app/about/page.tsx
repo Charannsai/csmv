@@ -42,28 +42,28 @@ export default function AboutPage() {
                     <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
                         <div className="border-t border-white/10 pt-6">
                             <div className="flex items-center gap-3 mb-4">
-                                <Globe className="w-5 h-5 text-blue-400" />
+                                <Globe className="w-5 h-5 text-[#D4AF37]" />
                                 <dt className="text-sm font-medium tracking-wide text-white/50 uppercase">Global Reach</dt>
                             </div>
                             <dd className="text-4xl font-semibold tracking-tight text-white">12<span className="text-2xl text-white/40 ml-1">Countries</span></dd>
                         </div>
                         <div className="border-t border-white/10 pt-6">
                             <div className="flex items-center gap-3 mb-4">
-                                <Cpu className="w-5 h-5 text-blue-400" />
+                                <Cpu className="w-5 h-5 text-[#D4AF37]" />
                                 <dt className="text-sm font-medium tracking-wide text-white/50 uppercase">Enterprise Clients</dt>
                             </div>
                             <dd className="text-4xl font-semibold tracking-tight text-white">150<span className="text-2xl text-white/40 ml-1">+</span></dd>
                         </div>
                         <div className="border-t border-white/10 pt-6">
                             <div className="flex items-center gap-3 mb-4">
-                                <Zap className="w-5 h-5 text-blue-400" />
+                                <Zap className="w-5 h-5 text-[#D4AF37]" />
                                 <dt className="text-sm font-medium tracking-wide text-white/50 uppercase">Uptime Record</dt>
                             </div>
                             <dd className="text-4xl font-semibold tracking-tight text-white">99.9<span className="text-2xl text-white/40 ml-1">%</span></dd>
                         </div>
                         <div className="border-t border-white/10 pt-6">
                             <div className="flex items-center gap-3 mb-4">
-                                <Shield className="w-5 h-5 text-blue-400" />
+                                <Shield className="w-5 h-5 text-[#D4AF37]" />
                                 <dt className="text-sm font-medium tracking-wide text-white/50 uppercase">Security Breaches</dt>
                             </div>
                             <dd className="text-4xl font-semibold tracking-tight text-white">0</dd>

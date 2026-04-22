@@ -32,23 +32,23 @@ export default function ContactPage() {
                             <h3 className="text-2xl font-semibold tracking-tight text-white mb-6">Direct Inquiries</h3>
                             <dl className="space-y-6">
                                 <div className="flex gap-x-4 items-center p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                                    <dt className="flex-none p-3 rounded-full bg-white/5 text-blue-400">
+                                    <dt className="flex-none p-3 rounded-full bg-white/5 text-[#D4AF37]">
                                         <Mail className="h-5 w-5" />
                                     </dt>
                                     <dd className="flex flex-col">
                                         <span className="text-xs uppercase tracking-wider text-[#86868B] font-semibold mb-1">Email</span>
-                                        <a className="text-white hover:text-blue-400 transition-colors" href="mailto:hello@cerprise.com">
+                                        <a className="text-white hover:text-[#D4AF37] transition-colors" href="mailto:hello@cerprise.com">
                                             hello@cerprise.com
                                         </a>
                                     </dd>
                                 </div>
                                 <div className="flex gap-x-4 items-center p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                                    <dt className="flex-none p-3 rounded-full bg-white/5 text-blue-400">
+                                    <dt className="flex-none p-3 rounded-full bg-white/5 text-[#D4AF37]">
                                         <Phone className="h-5 w-5" />
                                     </dt>
                                     <dd className="flex flex-col">
                                         <span className="text-xs uppercase tracking-wider text-[#86868B] font-semibold mb-1">Telephone</span>
-                                        <a className="text-white hover:text-blue-400 transition-colors" href="tel:+1(555)123-4567">
+                                        <a className="text-white hover:text-[#D4AF37] transition-colors" href="tel:+1(555)123-4567">
                                             +1 (555) 123-4567
                                         </a>
                                     </dd>
@@ -60,7 +60,7 @@ export default function ContactPage() {
                         <div className="space-y-8 border-t border-white/10 pt-10">
                             <h3 className="text-xl font-semibold tracking-tight text-white">Global Offices</h3>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
-                                <div className="pl-6 border-l-2 border-white/10 hover:border-blue-400 transition-colors">
+                                <div className="pl-6 border-l-2 border-white/10 hover:border-[#D4AF37] transition-colors">
                                     <h4 className="text-sm tracking-[0.1em] uppercase text-white/70 font-bold mb-3 flex items-center gap-2">
                                         <Building2 className="w-4 h-4 text-[#86868B]" /> Headquarters
                                     </h4>
@@ -70,7 +70,7 @@ export default function ContactPage() {
                                         San Francisco, CA 94107
                                     </address>
                                 </div>
-                                <div className="pl-6 border-l-2 border-white/10 hover:border-blue-400 transition-colors">
+                                <div className="pl-6 border-l-2 border-white/10 hover:border-[#D4AF37] transition-colors">
                                     <h4 className="text-sm tracking-[0.1em] uppercase text-white/70 font-bold mb-3 flex items-center gap-2">
                                         <Building2 className="w-4 h-4 text-[#86868B]" /> EMEA Hub
                                     </h4>

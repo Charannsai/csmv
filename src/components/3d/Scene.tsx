@@ -94,8 +94,8 @@ export function Scene() {
             let targetMetalness = 1.0;
             let targetInnerOpacity = 0.1;
             let targetOpacity = 1;
-            const targetColor = new THREE.Color("#050505");
-            const targetInnerColor = new THREE.Color("#FFFFFF");
+            const targetColor = new THREE.Color("#0B0D10");
+            const targetInnerColor = new THREE.Color("#D4AF37"); // Cerprise Gold
 
             if (scrollVH < 0.3) {
                 // Hero
@@ -182,9 +182,10 @@ export function Scene() {
 
     return (
         <>
-            <ambientLight intensity={0.6} />
-            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} color="#FFFFFF" />
-            <pointLight position={[-10, -10, -10]} intensity={1} color="#94A3B8" />
+            <ambientLight intensity={1.5} />
+            <spotLight position={[10, 10, 10]} angle={0.2} penumbra={0.8} intensity={8} color="#FFF5D6" />
+            <pointLight position={[-10, -10, -10]} intensity={4} color="#D4AF37" />
+            <rectAreaLight width={10} height={10} intensity={3} color="#D4AF37" position={[0, 5, -5]} />
 
             {/* Group to control global position/scale via scroll */}
             <group ref={groupRef}>
@@ -203,19 +204,19 @@ export function Scene() {
                                 ref={matRef}
                                 metalness={1.0}
                                 roughness={0.05}
-                                color="#050505"
+                                color="#111111"
                                 flatShading={true}
-                                envMapIntensity={1.5}
+                                envMapIntensity={3.0}
                                 transparent={true}
                             />
                         </mesh>
                         <mesh scale={0.95}>
                             <icosahedronGeometry args={[2, 1]} />
-                            <meshStandardMaterial ref={innerMatRef} color="#FFFFFF" wireframe transparent opacity={0.1} depthWrite={false} />
+                            <meshStandardMaterial ref={innerMatRef} color="#D4AF37" wireframe transparent opacity={0.15} depthWrite={false} />
                         </mesh>
                     </Float>
                 </PresentationControls>
-                <ContactShadows position={[0, -3.5, 0]} opacity={0.5} scale={15} blur={2.5} far={4.5} color="#FFFFFF" />
+                <ContactShadows position={[0, -3.5, 0]} opacity={0.5} scale={15} blur={2.5} far={4.5} color="#D4AF37" />
             </group>
 
             <Environment preset="city" />

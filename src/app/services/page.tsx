@@ -72,7 +72,7 @@ export default function ServicesPage() {
 
                             <div className="flex-1 relative z-10 text-center md:text-left w-full">
                                 <p className="text-xs font-bold tracking-[0.2em] uppercase text-white/40 mb-3">{service.category}</p>
-                                <h2 className="text-2xl md:text-4xl font-semibold tracking-tight text-white mb-4 leading-snug group-hover:text-blue-400 transition-colors duration-300">
+                                <h2 className="text-2xl md:text-4xl font-semibold tracking-tight text-white mb-4 leading-snug group-hover:text-[#D4AF37] transition-colors duration-300">
                                     {service.title}
                                 </h2>
                                 <p className="text-base md:text-lg text-[#86868B] leading-relaxed mb-6 max-w-2xl mx-auto md:mx-0">
