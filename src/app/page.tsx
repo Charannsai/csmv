@@ -140,11 +140,11 @@ export default function Home() {
               className="absolute inset-0 flex flex-col justify-end md:justify-center pb-28 md:pb-0 px-6 md:px-20 lg:px-32 w-full"
             >
               <div className="max-w-4xl text-center md:text-left relative z-10">
-                <h1 className="text-[4rem] sm:text-6xl md:text-8xl lg:text-[9rem] font-semibold tracking-tighter leading-[0.9] mb-6 md:mb-8 -ml-1">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] font-semibold tracking-tighter leading-[0.95] mb-4 md:mb-6 -ml-1">
                   <span className="text-white">The Only</span><br />
                   <span className="bg-clip-text text-transparent bg-[linear-gradient(to_right,#D4AF37,#FFF5C3,#D4AF37)]" style={{ backgroundSize: '200% auto', animation: 'shine 4s linear infinite' }}>Partner.</span>
                 </h1>
-                <p className="text-lg sm:text-xl md:text-3xl text-[#86868B] font-medium max-w-2xl mx-auto md:mx-0">
+                <p className="text-base sm:text-lg md:text-xl text-[#86868B] font-medium leading-relaxed max-w-xl mx-auto md:mx-0">
                   From foundational branding and elite staffing to scalable cloud architectures and custom SaaS. We engineer every facet of your growth.
                 </p>
               </div>
