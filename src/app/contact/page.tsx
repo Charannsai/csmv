@@ -3,8 +3,8 @@ import { Building2, Mail, Phone, ArrowRight } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-    title: "Contact | CSMV",
-    description: "Get in touch with enterprise IT consultants and software engineers.",
+    title: "Contact | Cerprise",
+    description: "Get in touch with enterprise growth consultants, recruiters, and software engineers.",
 };
 
 export default function ContactPage() {
@@ -20,7 +20,7 @@ export default function ContactPage() {
                         Let's build <br className="hidden sm:block" /> your backbone.
                     </h1>
                     <p className="text-lg md:text-xl text-[#86868B] leading-relaxed">
-                        Reach out for product engineering, infrastructure migrations, risk assessments, or team extension. Our technical leaders normally respond within 24 hours.
+                        Reach out for product engineering, infrastructure migrations, brand identity, or talent acquisition. Our technical and operations leaders normally respond within 24 hours.
                     </p>
                 </div>
 
@@ -37,8 +37,8 @@ export default function ContactPage() {
                                     </dt>
                                     <dd className="flex flex-col">
                                         <span className="text-xs uppercase tracking-wider text-[#86868B] font-semibold mb-1">Email</span>
-                                        <a className="text-white hover:text-blue-400 transition-colors" href="mailto:consulting@csmv.com">
-                                            consulting@csmv.com
+                                        <a className="text-white hover:text-blue-400 transition-colors" href="mailto:hello@cerprise.com">
+                                            hello@cerprise.com
                                         </a>
                                     </dd>
                                 </div>

@@ -14,19 +14,24 @@ const links = [
         label: "Services",
         subItems: [
             {
-                title: "We Design and Deliver Reliable Software Systems",
-                description: "Product engineering, web applications, SaaS development",
-                href: "/services/software-systems"
+                title: "Software & SaaS Development",
+                description: "Product engineering, internal tools, B2B SaaS",
+                href: "/services/software-saas"
             },
             {
-                title: "We Strengthen and Modernize Technology Infrastructure",
-                description: "Architecture advisory, cloud strategy, audits, optimization",
+                title: "Cloud & Tech Infrastructure",
+                description: "Architecture advisory, cloud migrations, security",
                 href: "/services/infrastructure"
             },
             {
-                title: "We Extend Your Engineering Team with Proven Talent",
-                description: "Vetted developers, embedded teams, flexible staffing",
-                href: "/services/engineering-team"
+                title: "Talent & Staffing Solutions",
+                description: "Vetted developers, recruiting, embedded teams",
+                href: "/services/talent-staffing"
+            },
+            {
+                title: "Brand & Digital Identity",
+                description: "Brand building from scratch, UX/UI, digital strategy",
+                href: "/services/brand-identity"
             }
         ]
     },
@@ -63,7 +68,7 @@ export default function Navbar() {
                     <div className="flex-shrink-0 flex items-center">
                         <Link href="/" className="text-2xl font-semibold tracking-tighter text-white group flex items-center gap-3">
                             <span>
-                                CSMV.
+                                <span className="text-blue-500 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">C</span>erprise.
                             </span>
                         </Link>
                     </div>
@@ -86,7 +91,7 @@ export default function Navbar() {
                                 {/* Dropdown menu */}
                                 {link.subItems && (
                                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 pointer-events-none group-hover/navitem:opacity-100 group-hover/navitem:pointer-events-auto transition-all duration-300 w-[420px]">
-                                        <div className="bg-[#050505]/70 border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-xl">
+                                        <div className="bg-[#050505]/95 border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-3xl">
                                             {link.subItems.map((sub, idx) => (
                                                 <Link
                                                     key={idx}

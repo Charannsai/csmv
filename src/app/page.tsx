@@ -79,10 +79,10 @@ function MagneticButton({ children, className = "" }: { children: React.ReactNod
 }
 
 const servicesList = [
-  { id: "01", title: "Systems Engineering", icon: Code, color: "text-blue-400", glow: "bg-blue-500/20", desc: "We architect scalable backend systems and high-throughput web applications that serve as the indestructible backbone of your digital business.", image: "/images/cards/systems_engineering.png" },
-  { id: "02", title: "Cloud Infrastructure", icon: Server, color: "text-purple-400", glow: "bg-purple-500/20", desc: "Tear down monolithic bottlenecks. We design, migrate, and deploy resilient, auto-scaling cloud microservices.", image: "/images/cards/cloud_infrastructure.png" },
-  { id: "03", title: "Security & Audits", icon: Shield, color: "text-emerald-400", glow: "bg-emerald-500/20", desc: "Complete technological reviews. We identify vulnerabilities and optimize architectures for peak security.", image: "/images/cards/security_audits.png" },
-  { id: "04", title: "Dedicated Teams", icon: Users, color: "text-orange-400", glow: "bg-orange-500/20", desc: "Instantly scale your development velocity. Embed our fully-vetted, high-performing senior developers directly into your internal core teams.", image: "/images/cards/dedicated_teams.png" },
+  { id: "01", title: "Software & SaaS", icon: Code, color: "text-blue-400", glow: "bg-blue-500/20", desc: "Building internal software solutions, multi-tenant B2B SaaS, and custom web applications to natively automate your entire operational flow.", image: "/images/cards/systems_engineering.png" },
+  { id: "02", title: "Cloud & Infrastructure", icon: Server, color: "text-purple-400", glow: "bg-purple-500/20", desc: "Tear down monolithic bottlenecks. We design, migrate, and deploy resilient, auto-scaling cloud architectures with zero-trust security.", image: "/images/cards/cloud_infrastructure.png" },
+  { id: "03", title: "Talent & Staffing", icon: Users, color: "text-emerald-400", glow: "bg-emerald-500/20", desc: "Instantly scale your velocity. We outfit your business with high-performing manpower, vetted developers, and embedded recruitment pipelines.", image: "/images/cards/security_audits.png" },
+  { id: "04", title: "Brand & Design", icon: Layers, color: "text-orange-400", glow: "bg-orange-500/20", desc: "Build massive visual authority from scratch. Comprehensive UX/UI, digital branding, and identity strategies mapped perfectly to your business goals.", image: "/images/cards/dedicated_teams.png" },
 ];
 
 export default function Home() {
@@ -139,13 +139,18 @@ export default function Home() {
               style={{ opacity: heroOpacity, scale: heroScale }}
               className="absolute inset-0 flex flex-col justify-end md:justify-center pb-28 md:pb-0 px-6 md:px-20 lg:px-32 w-full"
             >
-              <div className="max-w-4xl text-center md:text-left">
+              {/* Massive 'C' Watermark Aesthetic */}
+              <div className="absolute left-[5%] top-[10%] md:top-[15%] text-[40rem] md:text-[60rem] font-black text-transparent bg-clip-text leading-none pointer-events-none opacity-20" style={{ backgroundImage: "linear-gradient(to bottom right, #3B82F6, #1e3a8a, transparent)" }}>
+                C
+              </div>
+
+              <div className="max-w-4xl text-center md:text-left relative z-10">
                 <h1 className="text-[4rem] sm:text-6xl md:text-8xl lg:text-[9rem] font-semibold tracking-tighter leading-[0.9] mb-6 md:mb-8 -ml-1">
-                  <span className="text-white">Logic into</span><br />
-                  <span className="text-[#86868B]">Legacy.</span>
+                  <span className="text-white">The Only</span><br />
+                  <span className="text-[#86868B]">Partner.</span>
                 </h1>
                 <p className="text-lg sm:text-xl md:text-3xl text-[#86868B] font-medium max-w-2xl mx-auto md:mx-0">
-                  Elite software engineering, robust infrastructure, and dedicated tech teams for ambitious enterprises.
+                  From foundational branding and elite staffing to scalable cloud architectures and custom SaaS. We engineer every facet of your growth.
                 </p>
               </div>
             </motion.div>
@@ -156,10 +161,10 @@ export default function Home() {
               className="absolute md:right-[10%] w-full md:w-1/3 flex flex-col text-center md:text-left px-6"
             >
               <h2 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-4 md:mb-6 leading-[1.05]">
-                Custom <br className="hidden md:block" /> Software.
+                End-To-End <br className="hidden md:block" /> Ecosystem.
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl text-[#86868B] font-medium leading-snug">
-                From high-performance SaaS platforms to complex enterprise applications, we build resilient systems designed to scale perfectly from day one.
+                Stop managing multiple vendors. We provide a singular, unified platform for your growth—handling everything from brand incubation to full-scale SaaS.
               </p>
             </motion.div>
 
@@ -169,10 +174,10 @@ export default function Home() {
               className="absolute md:left-[10%] w-full md:w-1/3 flex flex-col text-center md:text-left px-6"
             >
               <h2 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-4 md:mb-6 leading-[1.05]">
-                Cloud <br className="hidden md:block" /> Architecture.
+                Absolute <br className="hidden md:block" /> Alignment.
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl text-[#86868B] font-medium leading-snug">
-                We audit, modernize, and fortify your cloud infrastructure—guaranteeing zero-trust security and flawless uptime under exponential load.
+                Whether you are a startup needing a brand prototype, or an enterprise requiring 100 new developers and a cloud migration, our solutions map to your business goals perfectly.
               </p>
             </motion.div>
 
@@ -314,12 +319,12 @@ export default function Home() {
 
           <div className="w-full max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 pt-[60vh] md:pt-0">
             <div className="flex flex-col justify-center text-center md:text-left">
-              <h2 className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-4">Engineering Process</h2>
+              <h2 className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-4">Unified Ecosystem</h2>
               <h3 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-4 md:mb-6 leading-none">
-                Absolute <br className="hidden md:block" /> Transparency.
+                One <br className="hidden md:block" /> Solution.
               </h3>
               <p className="text-lg sm:text-xl text-[#86868B] font-medium leading-relaxed max-w-md mx-auto md:mx-0">
-                There are no black boxes in our delivery. We treat your infrastructure with total clarity—delivering fully documented, test-driven systems where every deployment, dependency, and architectural decision is openly accessible to your team.
+                You don't need a third party for every roadblock. By streamlining development, staffing, design, and architecture into a single uncompromising roof, Cerprise guarantees productive outcomes for any sector.
               </p>
             </div>
             {/* The right side is intentionally implicitly empty to allow the 3D Hologram Diamond to shine here */}
@@ -333,13 +338,13 @@ export default function Home() {
           <div className="w-full max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center md:items-end text-center md:text-right pt-[60vh] md:pt-0">
             <div className="max-w-md">
               <h2 className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-white/50 mb-4 flex items-center justify-center md:justify-end gap-2">
-                <Lock className="w-4 h-4" /> Zero-Trust Security
+                <Lock className="w-4 h-4" /> Infinite Scalability
               </h2>
               <h3 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-4 md:mb-6 leading-none">
-                The <br className="hidden md:block" /> Vault.
+                The <br className="hidden md:block" /> Foundation.
               </h3>
               <p className="text-lg sm:text-xl text-[#86868B] font-medium leading-relaxed">
-                Our infrastructure designs enforce military-grade security layers at the edge. We fortify your tech stack against vulnerabilities before a single packet drops payload internally, guaranteeing impenetrable digital assets for your enterprise.
+                We fortify your operational stack. From structuring airtight technical architecture to infusing your business with rigorous manpower, we ensure you have the resilience to rapidly scale your revenue untouched by friction.
               </p>
             </div>
             {/* The left side is open for the dark monolith diamond */}

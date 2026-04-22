@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CSMV Solutions | Global Technology Partner",
-  description: "Delivering reliable, scalable, and high-performance software systems for growing businesses.",
+  title: "Cerprise | End-To-End Growth Partner",
+  description: "Delivering reliable branding, staffing, and high-performance software systems for growing businesses.",
 };
 
 export default function RootLayout({

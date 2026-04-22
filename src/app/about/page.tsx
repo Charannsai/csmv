@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { Shield, Zap, Globe, Cpu } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "About Us | CSMV",
-    description: "Learn more about CSMV's mission, standard, and expertise.",
+    title: "About Us | Cerprise",
+    description: "Learn more about Cerprise's mission, standard, and ecosystem.",
 };
 
 export default function AboutPage() {
@@ -17,7 +17,7 @@ export default function AboutPage() {
                         Built for <br className="hidden sm:block" /> the Future.
                     </h1>
                     <p className="text-lg md:text-xl text-[#86868B] leading-relaxed">
-                        CSMV is a premier technology engineering firm specializing in architecting modern tech stacks, implementing high-grade protocols, and building robust digital products.
+                        Cerprise is a premier business enablement firm specializing in architecting modern tech stacks, implementing high-grade branding, and providing elite staffing to build robust digital products.
                     </p>
                 </div>
 
@@ -26,14 +26,14 @@ export default function AboutPage() {
                         <div className="mb-16">
                             <h3 className="text-2xl font-semibold tracking-tight text-white mb-4">Our Mission</h3>
                             <p className="text-base md:text-lg leading-relaxed text-[#86868B]">
-                                To simplify complex enterprise technology. We believe in building resilient infrastructure that allows businesses to scale rapidly without worrying about technical debt, security breaches, or system downtimes. Our approach integrates closely with your leadership teams to guarantee outcomes, not just deliverables.
+                                To simplify complex enterprise growth. We believe in building resilient foundations that allow businesses to scale rapidly without worrying about technical debt, missing talent, or weak brand identity. Our approach integrates closely with your leadership teams to guarantee outcomes, not just deliverables.
                             </p>
                         </div>
 
                         <div>
-                            <h3 className="text-2xl font-semibold tracking-tight text-white mb-4">The Engineering Standard</h3>
+                            <h3 className="text-2xl font-semibold tracking-tight text-white mb-4">The Cerprise Standard</h3>
                             <p className="text-base md:text-lg leading-relaxed text-[#86868B]">
-                                CSMV prides itself on meticulous code quality, cloud-native operational standards, and an unyielding commitment to security. Every engineer in our firm operates with an enterprise-level maturity to ensure that mission-critical systems run flawlessly around the clock.
+                                Cerprise prides itself on meticulous quality, comprehensive scaling standards, and an unyielding commitment to your vision. Every expert in our firm operates with an enterprise-level maturity to ensure that your mission-critical operations run flawlessly around the clock.
                             </p>
                         </div>
                     </div>

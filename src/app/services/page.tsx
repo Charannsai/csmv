@@ -3,34 +3,42 @@ import { Code2, Network, Users } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Services | CSMV",
-    description: "Pro-grade software engineering, infrastructure modernization, and elite team extension.",
+    title: "Services | Cerprise",
+    description: "End-To-End business growth, software engineering, infrastructure, staffing, and brand identity.",
 };
 
 const services = [
     {
-        title: "We Design and Deliver Reliable Software Systems",
-        category: "Software Engineering",
-        description: "From product engineering to massive web applications and full-scale SaaS development, we build uncompromising, high-performance systems designed to scale perfectly.",
+        title: "We Build Internal Solutions and Custom B2B SaaS",
+        category: "Software & SaaS",
+        description: "From enterprise product engineering to massive web applications and full-scale SaaS development, we build uncompromising systems designed to automate your operations.",
         icon: Code2,
-        href: "/services/software-systems",
-        tags: ["Product Engineering", "Web Applications", "SaaS Development"]
+        href: "/services/software-saas",
+        tags: ["Product Engineering", "Custom Software", "SaaS Development"]
     },
     {
-        title: "We Strengthen and Modernize Technology Infrastructure",
-        category: "Infrastructure & Architecture",
+        title: "We Architect and Scale High-Performance Infrastructure",
+        category: "Cloud & Infrastructure",
         description: "We audit, optimize, and fortify your tech stack. Through deep architecture advisory and precise cloud strategy, we ensure zero-trust security and flawless resilience.",
         icon: Network,
         href: "/services/infrastructure",
-        tags: ["Architecture Advisory", "Cloud Strategy", "Audits & Optimization"]
+        tags: ["Architecture Advisory", "Cloud Strategy", "Zero-Trust Security"]
     },
     {
-        title: "We Extend Your Engineering Team with Proven Talent",
-        category: "Team Extension",
-        description: "Scale your engineering velocity instantly. We provide elite, fully-vetted developers and flexible embedded teams that integrate seamlessly with your internal operations.",
+        title: "We Accelerate Growth with Elite Manpower",
+        category: "Talent & Staffing",
+        description: "Scale your business velocity instantly. We provide high-performing manpower, fully-vetted developers, and embedded teams that integrate perfectly with your operations.",
         icon: Users,
-        href: "/services/engineering-team",
-        tags: ["Vetted Developers", "Embedded Teams", "Flexible Staffing"]
+        href: "/services/talent-staffing",
+        tags: ["Recruiting", "Embedded Teams", "Staff Augmentation"]
+    },
+    {
+        title: "We Forge Massive Brand and Visual Authority",
+        category: "Brand & Design",
+        description: "Stand out in any sector. We handle comprehensive UX/UI, digital branding, and identity strategies from scratch, mapping them perfectly to your business goals.",
+        icon: Code2, // Using Code2 temporarily as placeholder for Layers or Globe icon
+        href: "/services/brand-identity",
+        tags: ["Brand Identity", "UX/UI Design", "Digital Strategy"]
     },
 ];
 
@@ -41,10 +49,10 @@ export default function ServicesPage() {
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="text-center max-w-3xl mx-auto mb-20 md:mb-32">
                     <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-none">
-                        Uncompromising <br className="hidden md:block" /> Expertise.
+                        Unified <br className="hidden md:block" /> Ecosystem.
                     </h1>
                     <p className="text-lg md:text-xl text-[#86868B] font-medium leading-relaxed">
-                        We operate at the absolute highest standard of software execution, delivering elite systems and teams for ambitious enterprises.
+                        We operate at the highest standard of business execution, delivering elite systems, teams, and design for ambitious enterprises across any sector.
                     </p>
                 </div>
 
