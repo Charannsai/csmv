@@ -9,7 +9,7 @@ export default function Footer() {
                 <div className="xl:grid xl:grid-cols-4 xl:gap-8">
                     <div className="space-y-8 xl:col-span-1">
                         <Link href="/" className="flex items-center gap-2">
-                            <Image src="/cerpriselogo.png" alt="Cerprise Logo" width={280} height={80} className="w-auto h-12 lg:h-14 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]" />
+                            <Image src="/cerpriselogo.png" alt="Cerprise Logo" width={200} height={40} className="w-auto h-32 lg:h-40 drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]" />
                         </Link>
                         <p className="text-sm leading-6 max-w-xs">
                             Product engineering, brand identity, technology architecture, and dedicated elite teams.

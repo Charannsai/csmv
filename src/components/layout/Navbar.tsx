@@ -68,7 +68,7 @@ export default function Navbar() {
                 <div className="flex justify-between items-center h-20">
                     <div className="flex-shrink-0 flex items-center">
                         <Link href="/" className="flex items-center gap-3 group">
-                            <Image src="/cerpriselogo.png" alt="Cerprise Logo" width={280} height={80} priority className="w-auto h-12 lg:h-14 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]" />
+                            <Image src="/cerpriselogo.png" alt="Cerprise Logo" width={280} height={80} priority className="w-auto h-24 lg:h-48 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]" />
                         </Link>
                     </div>
 
